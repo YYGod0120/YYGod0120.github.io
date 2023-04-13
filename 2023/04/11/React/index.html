@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.filepicker.io/api/file/SVFQZQAyRpqJ31f6LNGe">
 <meta property="article:published_time" content="2023-04-11T14:02:15.091Z">
-<meta property="article:modified_time" content="2023-04-13T07:06:32.733Z">
+<meta property="article:modified_time" content="2023-04-13T07:38:05.085Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -322,7 +322,7 @@
 <li>渲染随时可能发生，因此组件不应依赖于彼此的渲染顺序。</li>
 <li>你不应该改变组件用于渲染的任何输入。这包括 props、state 和 context。通过setEffect 来更新界面，而不要改变预先存在的对象。</li>
 <li>努力在你返回的 JSX 中表达你的组件逻辑。当你需要“改变事物”时，你通常希望在事件处理程序中进行。作为最后的手段，你可以使用 useEffect。</li>
-<li>编写纯函数需要一些练习，但它充分释放了 React 范式的能力。<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><h3 id="添加响应事件："><a href="#添加响应事件：" class="headerlink" title="添加响应事件："></a>添加响应事件：</h3>如需添加一个事件处理函数，你需要先定义一个函数，然后 <a target="_blank" rel="noopener" href="https://react.docschina.org/learn/passing-props-to-a-component">将其作为 prop 传入</a> 合适的 JSX 标签。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Button</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      未绑定任何事件</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<li>编写纯函数需要一些练习，但它充分释放了 React 范式的能力。<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><h3 id="添加响应事件："><a href="#添加响应事件：" class="headerlink" title="添加响应事件："></a>添加响应事件：</h3>如需添加一个事件处理函数，你需要先定义一个函数，然后将其作为 prop 传入合适的 JSX 标签。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Button</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      未绑定任何事件</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
 按照如下三个步骤，即可让它在用户点击时显示消息：</li>
 </ul>
 <ol>

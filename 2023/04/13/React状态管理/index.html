@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.filepicker.io/api/file/SVFQZQAyRpqJ31f6LNGe">
 <meta property="article:published_time" content="2023-04-13T05:50:54.000Z">
-<meta property="article:modified_time" content="2023-04-13T07:37:04.066Z">
+<meta property="article:modified_time" content="2023-04-13T08:08:57.483Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          547 字
+          969 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          9 分钟
         
       </span>
     
@@ -292,6 +292,19 @@
 <li>你是否可以在另外一个state变量中的相反值获得信息</li>
 </ul>
 <p><strong>步骤五：链接事件处理函数以来设置state</strong><br>最后，我们只需将state绑定在事件处理函数上即可</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>声明式编程意味着为每个视图状态声明 UI 而非细致地控制 UI（命令式）。</li>
+<li>当开发一个组件时：<ul>
+<li>写出你的组件中所有的视图状态。</li>
+<li>确定是什么触发了这些 state 的改变。</li>
+<li>通过 useState 模块化内存中的 state。</li>
+<li>删除任何不必要的 state 变量。</li>
+<li>连接事件处理函数去设置 state。</li>
+</ul>
+</li>
+</ul>
+<h2 id="选择状态结构"><a href="#选择状态结构" class="headerlink" title="选择状态结构"></a>选择状态结构</h2><h3 id="构建状态的原则"><a href="#构建状态的原则" class="headerlink" title="构建状态的原则"></a>构建状态的原则</h3><p><strong>组相关状态，如果您总是同时更新两个或多个状态变量，请考虑将它们合并为一个状态变量。</strong><br><strong>避免状态上的矛盾。当状态的结构方式使多个状态可能相互矛盾和“不一致”时，就会为错误留下空间。尽量避免这种情况。</strong><br><strong>避免冗余状态。如果您可以在渲染期间从组件的 props 或其现有状态变量中计算出一些信息，则不应将该信息放入该组件的状态中。</strong><br><strong>避免状态重复。当相同的数据在多个状态变量之间或嵌套对象中重复时，很难使它们保持同步。尽可能减少重复。</strong><br><strong>避免深度嵌套状态。层次很深的状态更新起来不是很方便。如果可能，更喜欢以扁平的方式构建状态。</strong></p>
+<p>如果你想看看这些原则在实际该如何运用<a target="_blank" rel="noopener" href="https://react.docschina.org/learn/choosing-the-state-structure">请点击这里</a></p>
 
                 
               </div>
