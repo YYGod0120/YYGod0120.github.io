@@ -18,14 +18,14 @@
   
     <meta name="description" content="什么是React：React 是一个用于构建用户界面（UI）的 JavaScript 库，用户界面由按钮、文本和图像等小单元内容构建而成。React 帮助你把它们组合成可重用、可嵌套的 _组件_。从 web 端网站到移动端应用，屏幕上的所有内容都可以被分解成组件。  React 允许你创建组件，应用程序的可复用 UI 元素。 在 React 应用程序中，每一个 UI 模块都是一个组件。 React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React初学">
+<meta property="og:title" content="React">
 <meta property="og:url" content="http://example.com/2023/04/11/React/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
 <meta property="og:description" content="什么是React：React 是一个用于构建用户界面（UI）的 JavaScript 库，用户界面由按钮、文本和图像等小单元内容构建而成。React 帮助你把它们组合成可重用、可嵌套的 _组件_。从 web 端网站到移动端应用，屏幕上的所有内容都可以被分解成组件。  React 允许你创建组件，应用程序的可复用 UI 元素。 在 React 应用程序中，每一个 UI 模块都是一个组件。 React">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-11T14:02:15.091Z">
-<meta property="article:modified_time" content="2023-04-13T15:54:16.240Z">
+<meta property="article:modified_time" content="2023-04-15T13:26:46.953Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>React初学 - Ye&#39;s Blog</title>
+  <title>React - Ye&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -100,7 +100,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ye&#39;s Blog</strong>
+      <strong>YE</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -173,6 +173,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -202,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="React初学"></span>
+            <span id="subtitle" data-typed-text="React"></span>
           
         </div>
 
@@ -225,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.2k 字
+          12k 字
         
       </span>
     
@@ -236,7 +248,7 @@
         
         
         
-          52 分钟
+          100 分钟
         
       </span>
     
@@ -282,7 +294,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">React初学</h1>
+            <h1 style="display: none">React</h1>
             
             
               <div class="markdown-body">
@@ -416,8 +428,82 @@
 <li>You can use the {…obj, something: ‘newValue’} object spread syntax to create copies of objects.<br>您可以使用 {…obj, something: ‘newValue’} 对象传播语法来创建对象的副本。</li>
 <li>Spread syntax is shallow: it only copies one level deep.<br>传播语法很浅：它只复制一层深。</li>
 <li>To update a nested object, you need to create copies all the way up from the place you’re updating.<br>要更新嵌套对象，您需要从要更新的地方一直向上创建副本。</li>
-<li>To reduce repetitive copying code, use Immer.<br>要减少重复复制代码，请使用 Immer。<h2 id="更新数组："><a href="#更新数组：" class="headerlink" title="更新数组："></a>更新数组：</h2>更新数组和对象一样，需要复制再修改<br>善于利用map，fliter，slice等数组方法<br>例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleIncreaseClick</span>(<span class="hljs-params">productId</span>) &#123;<br>    <span class="hljs-title function_">setProducts</span>(products.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">product</span>=&gt;</span>&#123;<br>      <span class="hljs-keyword">if</span>(productId===product.<span class="hljs-property">id</span>)&#123;<br>        <span class="hljs-keyword">return</span>&#123;<br>          ...product,<br>          count : product.<span class="hljs-property">count</span>+<span class="hljs-number">1</span><br>        &#125;<br>      &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> product<br>      &#125;<br>    &#125;))<br>  &#125; <span class="hljs-comment">//id+1</span><br></code></pre></td></tr></table></figure></li>
+<li>To reduce repetitive copying code, use Immer.<br>要减少重复复制代码，请使用 Immer。<h2 id="更新数组："><a href="#更新数组：" class="headerlink" title="更新数组："></a>更新数组：</h2>更新数组和对象一样，需要复制再修改<br>善于利用map，fliter，slice等数组方法<br>例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleIncreaseClick</span>(<span class="hljs-params">productId</span>) &#123;<br>    <span class="hljs-title function_">setProducts</span>(products.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">product</span>=&gt;</span>&#123;<br>      <span class="hljs-keyword">if</span>(productId===product.<span class="hljs-property">id</span>)&#123;<br>        <span class="hljs-keyword">return</span>&#123;<br>          ...product,<br>          count : product.<span class="hljs-property">count</span>+<span class="hljs-number">1</span><br>        &#125;<br>      &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> product<br>      &#125;<br>    &#125;))<br>  &#125; <span class="hljs-comment">//id+1</span><br></code></pre></td></tr></table></figure>
+<h2 id="用State响应输入"><a href="#用State响应输入" class="headerlink" title="用State响应输入"></a>用State响应输入</h2></li>
 </ul>
+<p><strong>采用声明式编程比采用命令式编程更好，面对更复杂庞大的功能，命令式编程易错且难以维护</strong></p>
+<p>React提供了很好的声明式编程的方法，通过<code>setState()</code>来对不同的状态进行处理，具体有以下五个步骤：<br><strong>步骤一：定位组件中不同的视图状态</strong><br>你得先预测你的组件在不同的状态下的视图样式，模拟不同状态下的样子<br><strong>步骤二：确定是什么改变了这些状态</strong><br>简单来说可以分为：</p>
+<ul>
+<li>人为输入：比如点击按钮、在表单中输入内容，或导航到链接。</li>
+<li>计算机输入：比如网络请求得到反馈、定时器被触发，或加载一张图片。<br>你得设置State状态去响应这些变化</li>
+</ul>
+<p><strong>步骤三：通过<code>useState</code>去表示内存中的<code>state</code></strong><br>我们的目的肯定是state越少越好，更复杂的程序bug会越多。<br>但是一开始我们可以将所有想到的视图状态都写出来，随后再一个一个去删除<br><strong>步骤四：删除任何没必要的<code>state</code>变量</strong><br>你想简化你的代码，减少state内容的重复，我们就需要花一点心思在重构你的state结构<br>关于你的state变量，你可以思考这些问题：</p>
+<ul>
+<li>这个state变量是否会导致矛盾？</li>
+<li>相同的信息是否在另外一个state变量中存在</li>
+<li>你是否可以在另外一个state变量中的相反值获得信息</li>
+</ul>
+<p><strong>步骤五：链接事件处理函数以来设置state</strong><br>最后，我们只需将state绑定在事件处理函数上即可</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>声明式编程意味着为每个视图状态声明 UI 而非细致地控制 UI（命令式）。</li>
+<li>当开发一个组件时：<ul>
+<li>写出你的组件中所有的视图状态。</li>
+<li>确定是什么触发了这些 state 的改变。</li>
+<li>通过 useState 模块化内存中的 state。</li>
+<li>删除任何不必要的 state 变量。</li>
+<li>连接事件处理函数去设置 state。</li>
+</ul>
+</li>
+</ul>
+<h2 id="选择状态结构"><a href="#选择状态结构" class="headerlink" title="选择状态结构"></a>选择状态结构</h2><h3 id="构建状态的原则"><a href="#构建状态的原则" class="headerlink" title="构建状态的原则"></a>构建状态的原则</h3><ul>
+<li><p><strong>组相关状态，如果您总是同时更新两个或多个状态变量，请考虑将它们合并为一个状态变量。</strong></p>
+</li>
+<li><p><strong>避免状态上的矛盾。当状态的结构方式使多个状态可能相互矛盾和“不一致”时，就会为错误留下空间。尽量避免这种情况。</strong></p>
+</li>
+<li><p><strong>避免冗余状态。如果您可以在渲染期间从组件的 props 或其现有状态变量中计算出一些信息，则不应将该信息放入该组件的状态中。</strong></p>
+</li>
+<li><p><strong>避免状态重复。当相同的数据在多个状态变量之间或嵌套对象中重复时，很难使它们保持同步。尽可能减少重复。</strong></p>
+</li>
+<li><p><strong>避免深度嵌套状态。层次很深的状态更新起来不是很方便。如果可能，更喜欢以扁平的方式构建状态。</strong></p>
+</li>
+</ul>
+<p>如果你想看看这些原则在实际该如何运用<a target="_blank" rel="noopener" href="https://react.docschina.org/learn/choosing-the-state-structure">请点击这里</a>.</p>
+<h2 id="在组件间共享状态"><a href="#在组件间共享状态" class="headerlink" title="在组件间共享状态"></a>在组件间共享状态</h2><p>通常情况下，一个app内的不同的组件的状态是不共享的，你操纵一个组件的时候并不会影响到其他组件，这很大程度上方便了我们构建一个应用<br>但我们有的时候也需要对同一类型的组件进行管理，以便一次性改变全部某一类型组件的样式</p>
+<p><strong>这是一个有两个面板的组件：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Panel</span>(<span class="hljs-params">&#123; title, children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [isActive, setIsActive] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;panel&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      &#123;isActive ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setIsActive(true)&#125;&gt;</span><br><span class="language-xml">          显示</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Accordion</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>哈萨克斯坦，阿拉木图<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;关于&quot;</span>&gt;</span></span><br><span class="language-xml">        阿拉木图人口约200万，是哈萨克斯坦最大的城市。它在 1929 年到 1997 年间都是首都。</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;词源&quot;</span>&gt;</span></span><br><span class="language-xml">        这个名字来自于 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;kk-KZ&quot;</span>&gt;</span>алма<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>，哈萨克语中“苹果”的意思，经常被翻译成“苹果之乡”。事实上，阿拉木图的周边地区被认为是苹果的发源地，<span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;la&quot;</span>&gt;</span>Malus sieversii<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> 被认为是现今苹果的祖先。</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>那么我们需要分三步将状态提升至他们的父组件：</p>
+<p><strong>1.从子组件中移除state。</strong></p>
+<p>从<code>Panel</code>删掉<code>const [isActive, setIsActive] = useState(false);</code><br>再将<code>isActive</code>加入<code>Panel</code>组件的<code>props</code>中<br><code>function Panel(&#123; title, children, isActive &#125;) &#123;</code></p>
+<p><strong>2.从父组件中传递state状态。</strong><br>首先定位到这两个子组件最近的共同父组件<code>Accodion</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Accordion</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>哈萨克斯坦，阿拉木图<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;关于&quot;</span> <span class="hljs-attr">isActive</span>=<span class="hljs-string">&#123;true&#125;</span>&gt;</span></span><br><span class="language-xml">        阿拉木图人口约200万，是哈萨克斯坦最大的城市。它在 1929 年到 1997 年间都是首都。</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;词源&quot;</span> <span class="hljs-attr">isActive</span>=<span class="hljs-string">&#123;true&#125;</span>&gt;</span></span><br><span class="language-xml">        这个名字来自于 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;kk-KZ&quot;</span>&gt;</span>алма<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>，哈萨克语中“苹果”的意思，经常被翻译成“苹果之乡”。事实上，阿拉木图的周边地区被认为是苹果的发源地，<span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;la&quot;</span>&gt;</span>Malus sieversii<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> 被认为是现今苹果的祖先。</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Panel</span>(<span class="hljs-params">&#123; title, children, isActive &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;panel&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      &#123;isActive ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setIsActive(true)&#125;&gt;</span><br><span class="language-xml">          显示</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3.为共同的父组件添加 state ，并将其与事件处理函数一起向下传递。</strong></p>
+<p>再对父组件进行<code>state</code>管理，这样父组件就能控制哪个子组件是显示的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [activeIndex, setActiveIndex] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);<br><span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">isActive</span>=<span class="hljs-string">&#123;activeIndex</span> === <span class="hljs-string">0&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">onShow</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setActiveIndex(0)&#125; </span><br><span class="language-xml">  &gt;</span><br><span class="language-xml">    ...</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">Panel</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">isActive</span>=<span class="hljs-string">&#123;activeIndex</span> === <span class="hljs-string">1&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">onShow</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setActiveIndex(1)&#125;</span><br><span class="language-xml">  &gt;</span><br><span class="language-xml">    ...</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Panel</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h2 id="对state进行保留和重置"><a href="#对state进行保留和重置" class="headerlink" title="对state进行保留和重置"></a>对state进行保留和重置</h2><p>React在移除一个组件的时候会将其state也一起移除</p>
+<p>React中相同位置的相同组件的state会被保留下来，<strong>注意相同位置指的是在UI树中的位置而不是在JSX中的位置</strong></p>
+<p>React中相同位置的不同组件会使得state重置</p>
+<p>如何在相同位置重置state：</p>
+<ul>
+<li><strong>方法一：将组件渲染在不同的位置</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Scoreboard</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [isPlayerA, setIsPlayerA] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">true</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      &#123;isPlayerA &amp;&amp;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> <span class="hljs-attr">person</span>=<span class="hljs-string">&quot;Taylor&quot;</span> /&gt;</span></span><br><span class="language-xml">      &#125;</span><br><span class="language-xml">      &#123;!isPlayerA &amp;&amp;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> <span class="hljs-attr">person</span>=<span class="hljs-string">&quot;Sarah&quot;</span> /&gt;</span></span><br><span class="language-xml">      &#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123;</span><br><span class="language-xml">        setIsPlayerA(!isPlayerA);</span><br><span class="language-xml">      &#125;&#125;&gt;</span><br><span class="language-xml">        下一位玩家！</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+这个例子中，就将不同的Counter组件渲染在不同的位置<br>但是这只是简单的情况下，当组件复杂后这个方法就变得困难了 </li>
+<li><strong>方法二：使用key来重置state</strong><br>和渲染列表中的key一样，你也可以对你的组件渲染一个key<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Scoreboard</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [isPlayerA, setIsPlayerA] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">true</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      &#123;isPlayerA ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;Taylor&quot;</span> <span class="hljs-attr">person</span>=<span class="hljs-string">&quot;Taylor&quot;</span> /&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;Sarah&quot;</span> <span class="hljs-attr">person</span>=<span class="hljs-string">&quot;Sarah&quot;</span> /&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123;</span><br><span class="language-xml">        setIsPlayerA(!isPlayerA);</span><br><span class="language-xml">      &#125;&#125;&gt;</span><br><span class="language-xml">        下一位玩家！</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>当key更改的时候，react将从头开始重新创建节点<br>请记住 key 不是全局唯一的。它们只能指定父组件内部的顺序。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>摘要</strong></p>
+<ul>
+<li>只要在相同位置渲染的是相同组件， React 就会保留状态。</li>
+<li>state 不会被保存在 JSX 标签里。它与你在树中放置该 JSX 的位置相关联。</li>
+<li>你可以通过为一个子树指定一个不同的 key 来重置它的 state。</li>
+<li>不要嵌套组件的定义，否则你会意外地导致 state 被重置。</li>
+</ul>
+<h2 id="迁移状态逻辑到Reducer中"><a href="#迁移状态逻辑到Reducer中" class="headerlink" title="迁移状态逻辑到Reducer中"></a>迁移状态逻辑到Reducer中</h2><p>随着你组件的复杂度提高，你将很难一眼看清所有组件的状态<br>比如说：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">AddTask</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./AddTask.js&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">TaskList</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./TaskList.js&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">TaskApp</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [tasks, setTasks] = <span class="hljs-title function_">useState</span>(initialTasks);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleAddTask</span>(<span class="hljs-params">text</span>) &#123;<br>    <span class="hljs-title function_">setTasks</span>([<br>      ...tasks,<br>      &#123;<br>        <span class="hljs-attr">id</span>: nextId++,<br>        <span class="hljs-attr">text</span>: text,<br>        <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>,<br>      &#125;,<br>    ]);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleChangeTask</span>(<span class="hljs-params">task</span>) &#123;<br>    <span class="hljs-title function_">setTasks</span>(<br>      tasks.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (t.<span class="hljs-property">id</span> === task.<span class="hljs-property">id</span>) &#123;<br>          <span class="hljs-keyword">return</span> task;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          <span class="hljs-keyword">return</span> t;<br>        &#125;<br>      &#125;)<br>    );<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleDeleteTask</span>(<span class="hljs-params">taskId</span>) &#123;<br>    <span class="hljs-title function_">setTasks</span>(tasks.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.<span class="hljs-property">id</span> !== taskId));<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>布拉格的行程安排<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">AddTask</span> <span class="hljs-attr">onAddTask</span>=<span class="hljs-string">&#123;handleAddTask&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">TaskList</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">tasks</span>=<span class="hljs-string">&#123;tasks&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChangeTask</span>=<span class="hljs-string">&#123;handleChangeTask&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onDeleteTask</span>=<span class="hljs-string">&#123;handleDeleteTask&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">let</span> nextId = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">const</span> initialTasks = [<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;参观卡夫卡博物馆&#x27;</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;看木偶戏&#x27;</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;打卡列侬墙&#x27;</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125;,<br>];<br></code></pre></td></tr></table></figure>
+<p>这个例子中每个事件处理都通过<code>setTasks</code>来更新状态，但随着组件不断更新，其状态会越来越多，越来越复杂。所以我们可以为了降低复杂度,可以把这些逻辑都放到一个<code>reducer</code>函数中:<br><strong>第一步:将设置状态的逻辑修改成dispatch的一个action</strong></p>
 
                 
               </div>
@@ -465,7 +551,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>React初学</div>
+      <div>React</div>
       <div>http://example.com/2023/04/11/React/</div>
     </div>
     <div class="license-meta">
@@ -482,12 +568,24 @@
         </div>
       
       
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年4月15日</div>
+        </div>
+      
       
         <div class="license-meta-item">
           <div>许可协议</div>
           <div>
             
-              BY-YY
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
           </div>
         </div>
