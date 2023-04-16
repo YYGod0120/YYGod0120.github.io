@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-04-16T07:16:25.952Z">
+<meta property="article:modified_time" content="2023-04-16T08:58:40.336Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -248,7 +248,7 @@
         
         
         
-          156 分钟
+          158 分钟
         
       </span>
     
@@ -629,6 +629,19 @@
 </li>
 <li><p>状态管理： 随着你的应用的增长，最终在靠近应用顶部的位置可能会有很多 state。许多遥远的下层组件可能想要修改它们。通常 将 reducer 与 context 搭配使用来管理复杂的状态并将其传递给深层的组件来避免过多的麻烦。</p>
 </li>
+</ul>
+<p><strong>摘要</strong></p>
+<ul>
+<li>Context 使组件向其下方的整个树提供信息。</li>
+<li>传递 Context 的方法:<ul>
+<li>通过 export const MyContext = createContext(defaultValue) 创建并导出 context。</li>
+<li>在无论层级多深的任何子组件中，把 context 传递给 useContext(MyContext) Hook 来读取它。</li>
+<li>在父组件中把 children 包在<code>&lt;MyContext.Provider value=&#123;...&#125;&gt;</code>中来提供 context。</li>
+</ul>
+</li>
+<li>Context 会穿过中间的任何组件。</li>
+<li>Context 可以让你写出 “较为通用” 的组件。</li>
+<li>在使用 context 之前，先试试传递 props 或者将 JSX 作为 children 传递。</li>
 </ul>
 
                 
