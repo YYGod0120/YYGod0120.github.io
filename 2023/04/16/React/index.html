@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-04-17T08:42:56.205Z">
+<meta property="article:modified_time" content="2023-04-17T15:08:47.535Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          164 分钟
+          176 分钟
         
       </span>
     
@@ -299,7 +299,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月17日 下午
+                    本文最后更新于：2023年4月17日 晚上
                   
                 
               </p>
@@ -644,8 +644,7 @@
 <li><p>状态管理： 随着你的应用的增长，最终在靠近应用顶部的位置可能会有很多 state。许多遥远的下层组件可能想要修改它们。通常 将 reducer 与 context 搭配使用来管理复杂的状态并将其传递给深层的组件来避免过多的麻烦。</p>
 </li>
 </ul>
-<p><strong>摘要</strong></p>
-<ul>
+<h3 id="摘要-2"><a href="#摘要-2" class="headerlink" title="摘要"></a>摘要</h3><ul>
 <li>Context 使组件向其下方的整个树提供信息。</li>
 <li>传递 Context 的方法:<ul>
 <li>通过 export const MyContext = createContext(defaultValue) 创建并导出 context。</li>
@@ -656,6 +655,26 @@
 <li>Context 会穿过中间的任何组件。</li>
 <li>Context 可以让你写出 “较为通用” 的组件。</li>
 <li>在使用 context 之前，先试试传递 props 或者将 JSX 作为 children 传递。</li>
+</ul>
+<h2 id="使用-ref-引用值"><a href="#使用-ref-引用值" class="headerlink" title="使用 ref 引用值"></a>使用 ref 引用值</h2><p>当你希望你的组件“记住”某些信息，但又不想让这些信息触发新的渲染，你可以使用 ref<br>首先你得导入 ref，就像导入 state 一样，<code>import &#123;useRef&#125; from &#39;react&#39;</code><br>然后创建一个 ref，<code>const ref = useRef(0)</code><br>useRef 将返回一个这样的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>  <span class="hljs-attr">current</span>: <span class="hljs-number">0</span>; <span class="hljs-comment">// 你向 useRef 传入的值</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当然你也可以传入字符串，对象，甚至是函数</p>
+<p>你可以通过 ref.current 属性访问 ref 当前的值，你既可以读取也可以修改这个值</p>
+<p>记住：修改 ref 不会让 react 重新渲染<br><strong>实例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//一个秒表</span><br><span class="hljs-keyword">import</span> &#123; useState, useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Stopwatch</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [startTime, setStartTime] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);<br>  <span class="hljs-keyword">const</span> [now, setNow] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);<br>  <span class="hljs-keyword">const</span> intervalRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStart</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">setStartTime</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());<br>    <span class="hljs-title function_">setNow</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());<br><br>    <span class="hljs-built_in">clearInterval</span>(intervalRef.<span class="hljs-property">current</span>);<br>    intervalRef.<span class="hljs-property">current</span> = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">setNow</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());<br>    &#125;, <span class="hljs-number">10</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStop</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-built_in">clearInterval</span>(intervalRef.<span class="hljs-property">current</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">let</span> secondsPassed = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (startTime != <span class="hljs-literal">null</span> &amp;&amp; now != <span class="hljs-literal">null</span>) &#123;<br>    secondsPassed = (now - startTime) / <span class="hljs-number">1000</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>时间过去了： &#123;secondsPassed.toFixed(3)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleStart&#125;</span>&gt;</span>开始<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleStop&#125;</span>&gt;</span>停止<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个例子中使用 ref 传入了一个 setInterval,并且实现了 clearInterval，这下就可以不重新渲染 react 的情况下停止这个秒表了</p>
+<h3 id="何时使用-ref"><a href="#何时使用-ref" class="headerlink" title="何时使用 ref"></a>何时使用 ref</h3><p>通常，当你的组件需要“跳出” React 并与外部 API 通信时，你会用到 ref —— 通常是不会影响组件外观的浏览器 API。以下是这些罕见情况中的几个：</p>
+<ul>
+<li>存储 timeout ID</li>
+<li>存储和操作 DOM 元素</li>
+<li>存储不需要被用来计算 JSX 的其他对象</li>
+</ul>
+<p>如果你的组件需要存储一些值，但不影响渲染逻辑，请选择 ref</p>
+<h3 id="ref-的最佳实践"><a href="#ref-的最佳实践" class="headerlink" title="ref 的最佳实践"></a>ref 的最佳实践</h3><ul>
+<li>将 ref 视为应急方案</li>
+<li>不要在渲染过程中读取或写入 ref.current</li>
 </ul>
 
                 
