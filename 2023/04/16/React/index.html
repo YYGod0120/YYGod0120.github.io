@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-04-19T07:03:14.341Z">
+<meta property="article:modified_time" content="2023-04-19T07:27:20.044Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21k 字
+          22k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          176 分钟
+          187 分钟
         
       </span>
     
@@ -676,7 +676,35 @@
 <li>将 ref 视为应急方案</li>
 <li>不要在渲染过程中读取或写入 ref.current</li>
 </ul>
-<h2 id="使用-ref-操作-Dom"><a href="#使用-ref-操作-Dom" class="headerlink" title="使用 ref 操作 Dom"></a>使用 ref 操作 Dom</h2>
+<h2 id="使用-ref-操作-Dom"><a href="#使用-ref-操作-Dom" class="headerlink" title="使用 ref 操作 Dom"></a>使用 ref 操作 Dom</h2><p>一般来说，React 会自动处理并且渲染 DOM 以匹配你的渲染输出，因此你在组件中不需要操作 DOM<br>但有的时候你可能需要访问 React 管理的组件，因此你可以利用 ref 来操作 Dom</p>
+<h3 id="获取指向节点的-ref"><a href="#获取指向节点的-ref" class="headerlink" title="获取指向节点的 ref"></a>获取指向节点的 ref</h3><p>首先你需要引入 ref<br><code>import &#123; useRef &#125; from &#39;react&#39;;</code></p>
+<p>其次声明一个 ref<br><code>const myRef = useRef(null);</code></p>
+<p>最后将其传递给 Dom 节点<br><code>&lt;div ref=&#123;myRef&#125;&gt;</code></p>
+<p>这样当 React 为这个 div 元素创建一个 Dom 节点的时候，就会将该节点的引用放入 myRef.current 中<br>你就可以通过事件处理访问到这个元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 你可以使用任意浏览器 API，例如：</span><br>myRef.<span class="hljs-property">current</span>.<span class="hljs-title function_">scrollIntoView</span>();<br></code></pre></td></tr></table></figure>
+
+<p><strong>例子</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Form</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> inputRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) &#123;<br>    inputRef.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;inputRef&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleClick&#125;</span>&gt;</span>聚焦输入框<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="用-ref-访问另一个组件的-Dom-节点"><a href="#用-ref-访问另一个组件的-Dom-节点" class="headerlink" title="用 ref 访问另一个组件的 Dom 节点"></a>用 ref 访问另一个组件的 Dom 节点</h3><p>React 不允许你使用 ref 在自己创建的组件中<br>但是你可以将 ref’转发’给一个子组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyInput</span> = <span class="hljs-title function_">forwardRef</span>(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> &#123;<span class="hljs-attr">...props</span>&#125; <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> /&gt;</span></span>;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>它是这样工作的:</p>
+<ol>
+<li><MyInput ref={inputRef} /> 告诉 React 将对应的 DOM 节点放入 inputRef.current 中。但是，这取决于 MyInput 组件是否允许这种行为， 默认情况下是不允许的。</li>
+<li>MyInput 组件是使用 forwardRef 声明的。 这让从上面接收的 inputRef 作为第二个参数 ref 传入组件，第一个参数是 props 。</li>
+<li>MyInput 组件将自己接收到的 ref 传递给它内部的 <input>。</li>
+</ol>
+<h3 id="使用-ref-操作-Dom-的最佳实践"><a href="#使用-ref-操作-Dom-的最佳实践" class="headerlink" title="使用 ref 操作 Dom 的最佳实践"></a>使用 ref 操作 Dom 的最佳实践</h3><p>Refs 是一个应急方案。你应该只在你必须“跳出 React”时使用它们。这方面的常见示例包括管理焦点、滚动位置或调用 React 未暴露的浏览器 API。<br>如果你只是使用聚焦，滚动等非破坏性的操作，那并没有什么大碍。<br>但是如果尝试手动修改 Dom 元素，很可能 React 不知道你做了什么操作从而出现问题<br>所以你只能<strong>修改 React 没有理由更新的部分 DOM。</strong></p>
+<h3 id="摘要-3"><a href="#摘要-3" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>Refs 是一个通用概念，但大多数情况下你会使用它们来保存 DOM 元素。</li>
+<li>你通过传递 <div ref={myRef}> 指示 React 将 DOM 节点放入 myRef.current。</li>
+<li>通常，你会将 refs 用于非破坏性操作，例如聚焦、滚动或测量 DOM 元素。</li>
+<li>默认情况下，组件不暴露其 DOM 节点。 您可以通过使用 forwardRef 并将第二个 ref 参数传递给特定节点来暴露 DOM 节点。</li>
+<li>避免更改由 React 管理的 DOM 节点。</li>
+<li>如果你确实修改了 React 管理的 DOM 节点，请修改 React 没有理由更新的部分。</li>
+</ul>
+
                 
               </div>
             
