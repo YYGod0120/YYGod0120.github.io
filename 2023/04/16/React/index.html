@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-04-21T09:32:42.473Z">
+<meta property="article:modified_time" content="2023-04-22T07:27:10.689Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -248,7 +248,7 @@
         
         
         
-          255 分钟
+          258 分钟
         
       </span>
     
@@ -299,7 +299,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月21日 下午
+                    本文最后更新于：2023年4月22日 下午
                   
                 
               </p>
@@ -790,7 +790,7 @@
 <blockquote>
 <p>React 会帮你检查是否将每个反应值指定为依赖项，叫做 lint 错误</p>
 </blockquote>
-<h3 id="不想同步怎么办"><a href="#不想同步怎么办" class="headerlink" title="不想同步怎么办"></a>不想同步怎么办</h3><p>如果 serverUrl 和 roomId 不依赖于渲染并且始终具有相同的值，则可以将它们移到组件之外。现在它们不需要是依赖项</p>
+<h4 id="不想同步怎么办"><a href="#不想同步怎么办" class="headerlink" title="不想同步怎么办"></a>不想同步怎么办</h4><p>如果 serverUrl 和 roomId 不依赖于渲染并且始终具有相同的值，则可以将它们移到组件之外。现在它们不需要是依赖项</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> serverUrl = <span class="hljs-string">&quot;https://localhost:1234&quot;</span>; <span class="hljs-comment">// serverUrl is not reactive</span><br><span class="hljs-keyword">const</span> roomId = <span class="hljs-string">&quot;general&quot;</span>; <span class="hljs-comment">// roomId is not reactive</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ChatRoom</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> connection = <span class="hljs-title function_">createConnection</span>(serverUrl, roomId);<br>    connection.<span class="hljs-title function_">connect</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;<br>      connection.<span class="hljs-title function_">disconnect</span>();<br>    &#125;;<br>  &#125;, []); <span class="hljs-comment">// ✅ All dependencies declared</span><br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>您也可以将它们移动到 Effect 中。它们不是在渲染过程中计算的，所以它们不是反应式的：</p>
@@ -818,7 +818,7 @@
 <h2 id="事件处理程序与-Effect"><a href="#事件处理程序与-Effect" class="headerlink" title="事件处理程序与 Effect"></a>事件处理程序与 Effect</h2><p>事件处理程序是用户对应用有特殊的交互才执行的代码<br>Effect 是用户需要应用的时候就执行的代码</p>
 <p>直观的说：事件处理程序总是“手动”触发的，效果器是“自动”的。</p>
 <h3 id="从-Effect-中提取非反应性逻辑"><a href="#从-Effect-中提取非反应性逻辑" class="headerlink" title="从 Effect 中提取非反应性逻辑"></a>从 Effect 中提取非反应性逻辑</h3><p>试想一下，一个聊天室有 Id 和 theme 两个反应性变量，你运用 Effect 的时候必须将其都放入依赖项，可是你并不希望每次更换主题都重新链接一下聊天室<br>这个时候你就需要用到 useEffectEvent：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ChatRoom</span>(<span class="hljs-params">&#123; roomId, theme &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> onConnected = <span class="hljs-title function_">useEffectEvent</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">showNotification</span>(<span class="hljs-string">&#x27;Connected!&#x27;</span>, theme);<br>  &#125;);<br><br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> connection = <span class="hljs-title function_">createConnection</span>(serverUrl, roomId);<br>    connection.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;connected&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">onConnected</span>();<br>    &#125;);<br>    connection.<span class="hljs-title function_">connect</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> connection.<span class="hljs-title function_">disconnect</span>();<br>  &#125;, [roomId]); <span class="hljs-comment">// ✅ All dependencies declared</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ChatRoom</span>(<span class="hljs-params">&#123; roomId, theme &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> onConnected = <span class="hljs-title function_">useEffectEvent</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">showNotification</span>(<span class="hljs-string">&quot;Connected!&quot;</span>, theme);<br>  &#125;);<br><br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> connection = <span class="hljs-title function_">createConnection</span>(serverUrl, roomId);<br>    connection.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;connected&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">onConnected</span>();<br>    &#125;);<br>    connection.<span class="hljs-title function_">connect</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> connection.<span class="hljs-title function_">disconnect</span>();<br>  &#125;, [roomId]); <span class="hljs-comment">// ✅ All dependencies declared</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这个代码中，我们把 theme 放到了一个 useEffectEvent 的函数中，这样在 useEffect 中就可以触发，也不需要添加依赖项</p>
 <p>Effect Events 让您可以修复许多您可能想要抑制依赖性 linter 的模式。</p>
@@ -837,6 +837,20 @@
 <li>仅从 Effects 内部调用 Effect Events。</li>
 <li>不要将 Effect Events 传递给其他组件或 Hooks。</li>
 </ul>
+<h2 id="关于依赖项-1"><a href="#关于依赖项-1" class="headerlink" title="关于依赖项"></a>关于依赖项</h2><p>这里是一些关于依赖项的问题</p>
+<ul>
+<li>依赖项始终与代码匹配</li>
+<li>当您对依赖项不满意时，您需要编辑的是代码。</li>
+<li>抑制 linter 会导致非常混乱的错误，您应该始终避免它。</li>
+<li>要删除依赖项，您需要向 linter“证明”它不是必需的。</li>
+<li>如果某些代码应该运行以响应特定的交互，请将该代码移至事件处理程序。</li>
+<li>如果您的 Effect 的不同部分因不同原因需要重新运行，请将其拆分为多个 Effect。</li>
+<li>如果你想根据以前的状态更新一些状态，传递一个更新函数。</li>
+<li>如果您想读取最新值而不对其进行“反应”，请从您的效果中提取一个效果事件。</li>
+<li>在 JavaScript 中，如果对象和函数是在不同时间创建的，则它们被认为是不同的。</li>
+<li>尽量避免对象和函数依赖。将它们移到组件外或 Effect 内</li>
+</ul>
+<p>具体实例可以查阅<a target="_blank" rel="noopener" href="https://react.docschina.org/learn/removing-effect-dependencies">官方文档</a></p>
 
                 
               </div>
@@ -903,7 +917,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年4月21日</div>
+          <div>2023年4月22日</div>
         </div>
       
       
