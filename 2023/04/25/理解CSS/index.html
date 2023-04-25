@@ -16,15 +16,15 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CSS - Cascading Style Sheets中文名 层叠样式表 01 层叠，优先级优先程度：样式表来源 &gt; 选择器优先级 &gt; 源码位置 样式表来源用户代理样式表(浏览器默认样式) &lt; 用户样式表(很少) &lt; 作者样式表(我们写的 css) &lt; 作者样式表里的!important &lt; 用户样式表里的!important &lt; 用户代理样式表的!im">
+    <meta name="description" content="这是一篇关于CSS的文章，关于基础知识，布局和定位，层叠上下文，变形过渡和动画，响应式设计以及css生态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解CSS">
 <meta property="og:url" content="https://www.yygod0120.com/2023/04/25/%E7%90%86%E8%A7%A3CSS/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="CSS - Cascading Style Sheets中文名 层叠样式表 01 层叠，优先级优先程度：样式表来源 &gt; 选择器优先级 &gt; 源码位置 样式表来源用户代理样式表(浏览器默认样式) &lt; 用户样式表(很少) &lt; 作者样式表(我们写的 css) &lt; 作者样式表里的!important &lt; 用户样式表里的!important &lt; 用户代理样式表的!im">
+<meta property="og:description" content="这是一篇关于CSS的文章，关于基础知识，布局和定位，层叠上下文，变形过渡和动画，响应式设计以及css生态">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-25T13:54:00.000Z">
-<meta property="article:modified_time" content="2023-04-25T14:48:20.070Z">
+<meta property="article:modified_time" content="2023-04-25T15:23:11.749Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="-前端 -CSS">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -333,13 +333,47 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;<span class="hljs-selector-tag">div</span><br>  class=&quot;wrap&quot;<br>  &gt; &lt;<span class="hljs-selector-tag">img</span><br>  class=&quot;image&quot;<br>  scr=&quot;dy<span class="hljs-selector-class">.png</span>&quot;<br>  &gt; &lt;<span class="hljs-selector-tag">span</span><br>  class=&quot;text&quot;<br>  &gt; 抖音同款能力&lt;/<span class="hljs-selector-tag">span</span><br>  &gt; &lt;/<span class="hljs-selector-tag">div</span><br>  &gt; <span class="hljs-selector-class">.image</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">24px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">24px</span>;<br>  <span class="hljs-attribute">vertical-align</span>: middle;<br>&#125;<br><span class="hljs-selector-class">.text</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;<br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">vertical-align</span>: middle;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这个不是<strong>完全垂直对齐</strong>，设置父元素的 font-size:0，则基线和中线对齐，则居中对齐</p>
-<h2 id="弹性盒子布局"><a href="#弹性盒子布局" class="headerlink" title="弹性盒子布局"></a>弹性盒子布局</h2><h2 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h2>
+<h2 id="弹性盒子布局"><a href="#弹性盒子布局" class="headerlink" title="弹性盒子布局"></a>弹性盒子布局</h2><p>利用 flex</p>
+<h2 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h2><p>利用 Grid 布局</p>
+<h2 id="Grid-和-Flex-布局的使用策略"><a href="#Grid-和-Flex-布局的使用策略" class="headerlink" title="Grid 和 Flex 布局的使用策略"></a>Grid 和 Flex 布局的使用策略</h2><ol>
+<li>大面积或整体布局 推荐 Grid</li>
+<li>小面积或者组件利用 Flex 布局</li>
+</ol>
+<h2 id="Position-定位"><a href="#Position-定位" class="headerlink" title="Position 定位"></a>Position 定位</h2><ul>
+<li>relative</li>
+<li>absolute</li>
+<li>fixed</li>
+<li>sticky</li>
+</ul>
+<h3 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h3><p>元素相对它的最近滚动祖先(祖先的 overflow 是 scroll/hidden/auto)的视口(scrollport)定位</p>
+
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
