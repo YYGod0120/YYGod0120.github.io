@@ -16,27 +16,28 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这是一篇关于JS的文章，关于JS的一些基本概念，JS的变量提升，作用域，闭包以及垃圾回收">
+    <meta name="description" content="大学生涯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解JS">
-<meta property="og:url" content="https://www.yygod0120.com/2023/04/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JS/index.html">
+<meta property="og:title" content="武汉之行">
+<meta property="og:url" content="https://www.yygod0120.com/2023/05/03/%E6%AD%A6%E6%B1%89%E4%B9%8B%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="这是一篇关于JS的文章，关于JS的一些基本概念，JS的变量提升，作用域，闭包以及垃圾回收">
+<meta property="og:description" content="大学生涯">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.yygod0120.com/images/JS_more.jpg">
-<meta property="article:published_time" content="2023-04-27T07:05:00.000Z">
-<meta property="article:modified_time" content="2023-05-03T04:25:28.336Z">
+<meta property="og:image" content="https://www.yygod0120.com/images/wuhan.jpg">
+<meta property="article:published_time" content="2023-05-03T03:50:26.000Z">
+<meta property="article:modified_time" content="2023-05-03T05:07:29.849Z">
 <meta property="article:author" content="叶">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="JS">
+<meta property="article:tag" content="武汉">
+<meta property="article:tag" content="玩!">
+<meta property="article:tag" content="旅游">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.yygod0120.com/images/JS_more.jpg">
+<meta name="twitter:image" content="https://www.yygod0120.com/images/wuhan.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>深入理解JS - Ye&#39;s Blog</title>
+  <title>武汉之行 - Ye&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="深入理解JS"></span>
+            <span id="subtitle" data-typed-text="武汉之行"></span>
           
         </div>
 
@@ -225,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-27 15:05" pubdate>
-          2023年4月27日 下午
+        <time datetime="2023-05-03 11:50" pubdate>
+          2023年5月3日 中午
         </time>
       </span>
     
@@ -237,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          971 字
+          515 字
         
       </span>
     
@@ -248,7 +249,7 @@
         
         
         
-          9 分钟
+          5 分钟
         
       </span>
     
@@ -294,12 +295,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">深入理解JS</h1>
+            <h1 style="display: none">武汉之行</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年5月3日 中午
+                    本文最后更新于：2023年5月3日 下午
                   
                 
               </p>
@@ -307,38 +308,11 @@
             
               <div class="markdown-body">
                 
-                <h1 id="JS-的基本概念"><a href="#JS-的基本概念" class="headerlink" title="JS 的基本概念"></a>JS 的基本概念</h1><h2 id="JS-中的数据类型"><a href="#JS-中的数据类型" class="headerlink" title="JS 中的数据类型"></a>JS 中的数据类型</h2><p>JS 中的数据类型分为对象和基础类型</p>
-<p>JS 中的对象有数组,函数</p>
-<p>基础类型有字符串,undefined,数字,null,sympol,bigint,布尔</p>
-<h2 id="JS-中的基本概念-作用域"><a href="#JS-中的基本概念-作用域" class="headerlink" title="JS 中的基本概念-作用域"></a>JS 中的基本概念-作用域</h2><p>变量的可访问性和可见性</p>
-<p>静态作用域，通过它就能预测代码在执行过程中如何查找标识符<br><img src="/2023/04/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JS/area.png" srcset="/img/loading.gif" lazyload alt="作用域"></p>
-<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><ul>
-<li><p>var 有变量提升</p>
-</li>
-<li><p>let,const 没有变量提升,提前访问会报错</p>
-</li>
-<li><p>function 函数可以先调用，再定义</p>
-</li>
-<li><p>赋值给变量的函数无法提前调用</p>
-</li>
-</ul>
-<h1 id="JS-的执行"><a href="#JS-的执行" class="headerlink" title="JS 的执行"></a>JS 的执行</h1><p>当 JS 引擎解析到可执行代码片段(通常是函数调用)的时候，就会先做一些执行前的准备工作，这个准备工作就叫做<strong>执行上下文</strong><br><img src="/2023/04/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JS/execution-context.png" srcset="/img/loading.gif" lazyload alt="执行上下文"></p>
-<p><strong>全局上下文：</strong><br>代码开始执行的时候就会创建，将他压执行栈的栈底</p>
-<p><strong>函数执行上下文：</strong><br>当执行一个函数的时候，这个函数内的代码就会被编译，生成变量环境，词法环境等，当函数执行完毕的时候该执行环境从栈顶弹出</p>
-<ul>
-<li><p>词法环境：基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联，一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成</p>
-</li>
-<li><p>变量环境：变量环境和词法环境不同的就是前者用于储存函数声明和变量(let,const)绑定，后者只用来储存 var 变量绑定</p>
-</li>
-<li><p>Outer:指向外部变量环境的一个指针</p>
-</li>
-</ul>
-<h1 id="JS-的进阶知识点"><a href="#JS-的进阶知识点" class="headerlink" title="JS 的进阶知识点"></a>JS 的进阶知识点</h1><h2 id="JS-的-this"><a href="#JS-的-this" class="headerlink" title="JS 的 this"></a>JS 的 this</h2><p>可以查看<a href="/2023/04/15/JS%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A5%E9%97%A8%E9%9A%BE%E7%82%B9/index.html">JS 的一些入门难点</a></p>
-<h2 id="JS-的闭包"><a href="#JS-的闭包" class="headerlink" title="JS 的闭包"></a>JS 的闭包</h2><p>当你的函数 a 返回了一个函数 b，并且返回的这个函数 b 中带有函数 a 的变量，那么这个操作就叫做闭包<br>本来一个函数执行完就会被回收以免占用空间，但通过闭包能使函数即使被回收了也能引用内部的变量<br>例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> a0 = <span class="hljs-string">&quot;闭包&quot;</span>;<br>  <span class="hljs-keyword">const</span> a1 = <span class="hljs-string">&quot;xxx&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a0);<br>    <span class="hljs-keyword">return</span> a1; <span class="hljs-comment">//形成闭包</span><br>  &#125;;<br>&#125;<br><span class="hljs-keyword">let</span> c = <span class="hljs-title function_">a</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">c</span>()); <span class="hljs-comment">//xxx</span><br></code></pre></td></tr></table></figure>
-
-<p>即使 a 执行完被回收了，内部的 a1 依旧能被引用</p>
-<h2 id="JS-的回收机制"><a href="#JS-的回收机制" class="headerlink" title="JS 的回收机制"></a>JS 的回收机制</h2><p>JS 中的内存回收分为两个部分，一个是新生代，存放小的变量等体积小的文件，一个是老生代，放大体积的文件<br>新生代的内存回收是先标记常用的内容，然后复制一份，反转到空闲区域，统一删除，最后留下标记的复制的对象<br>老生代就是直接进行标记，然后删除，最后在进行内存处理<br><img src="/2023/04/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JS/rubbish.png" srcset="/img/loading.gif" lazyload alt="rubbish"></p>
+                <blockquote>
+<p>人真的多多多，酒店真的远远远；希望下次能避开大假期，酒店定的<del>贵一点</del>好一点</p>
+</blockquote>
+<h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><p>早上八点快九点的动车，网约车司机硬生生要我和另外一个校友 5 点出发。想着早点去也好免得堵车什么的，到车上也一样睡觉<br>刚进站，发现昨天买的零食丢在出租车上了。算了，到车上看看吃点什么吧，也不是很饿(谁知道车上一盒盒饭卖我 50 块钱)<br>饿了七个多小时终于到了武汉，谁知道小小的一个武汉站出站口，能有两个中百罗森，甚至两家对面都还有两家仟吉，害得我硬是找女朋友找了半天<br>最后还是一起坐上了去酒店的网约车，30 多快 40 公里的路程，将近一百的打车费，预示了这次旅游打车费要爆炸了</p>
+<p>晚上六点半，本来想吃的肥肥虾庄已经排上了 130 桌，看来是没希望吃了，换了一家偏僻的靓靓蒸虾，一盘 520 的招牌虾王又吓我一跳，好在其他东西价格还算能接受，就选择这家了。不过确实，武汉的小龙虾是有说法的<br><img src="../武汉之行/feifeixiazhuang.JPG" srcset="/img/loading.gif" lazyload alt="肥肥虾庄" width="300" height="300"><br><img src="../武汉之行/liangliangzhengxia.JPG" srcset="/img/loading.gif" lazyload alt="靓靓蒸虾" width="300" height="300"><br>晚上九点，吃完饭的我们走路坐上了轮渡，本来不想去的，但是同行的小伙伴说来都来了，不坐白不坐，我们就冒着被踩死的风险上了轮渡，好看是真好看，人多是真的多<br>从轮渡上下来就到了长江大桥，也能看到黄鹤楼，不得不说确实很美<br><img src="../武汉之行/bridge0.JPG" srcset="/img/loading.gif" lazyload alt="桥头小亭子" width="300" height="300"><br><img src="../武汉之行/bridge1.JPG" srcset="/img/loading.gif" lazyload alt="黄鹤楼(桥上)" width="300" height="300"><br>晚上 10 点半，基本除了黄鹤楼以外的地方灯光都关了，我们也就打了 40 块钱的车回到了酒店</p>
 
                 
               </div>
@@ -357,7 +331,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  <a href="/categories/%E6%97%85%E6%B8%B8/" class="category-chain-item">旅游</a>
   
   
 
@@ -372,9 +346,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+        <a href="/tags/%E6%AD%A6%E6%B1%89/">#武汉</a>
       
-        <a href="/tags/JS/">#JS</a>
+        <a href="/tags/%E7%8E%A9/">#玩!</a>
+      
+        <a href="/tags/%E6%97%85%E6%B8%B8/">#旅游</a>
       
     </div>
   
@@ -386,8 +362,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>深入理解JS</div>
-      <div>https://www.yygod0120.com/2023/04/27/深入理解JS/</div>
+      <div>武汉之行</div>
+      <div>https://www.yygod0120.com/2023/05/03/武汉之行/</div>
     </div>
     <div class="license-meta">
       
@@ -399,7 +375,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月27日</div>
+          <div>2023年5月3日</div>
         </div>
       
       
@@ -436,18 +412,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/03/%E6%AD%A6%E6%B1%89%E4%B9%8B%E8%A1%8C/" title="武汉之行">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">武汉之行</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/25/%E7%90%86%E8%A7%A3CSS/" title="理解CSS">
-                        <span class="hidden-mobile">理解CSS</span>
+                      <a href="/2023/04/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JS/" title="深入理解JS">
+                        <span class="hidden-mobile">深入理解JS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
