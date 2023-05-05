@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/css.jpg">
 <meta property="article:published_time" content="2023-04-25T13:54:00.000Z">
-<meta property="article:modified_time" content="2023-05-03T04:25:29.550Z">
+<meta property="article:modified_time" content="2023-05-05T08:04:02.472Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="CSS">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          4k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          32 分钟
+          34 分钟
         
       </span>
     
@@ -299,7 +299,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年5月3日 中午
+                    本文最后更新于：2023年5月5日 下午
                   
                 
               </p>
@@ -419,17 +419,8 @@
 <li>maximum-scale</li>
 <li>user-scalable</li>
 </ul>
-<p>常见的移动端的 viewport 的设置 1.保存 scale 为 1</p>
-<meta name="viewport" content="width=device-width,inital-scale=1">
-这样设置的好处是：让布局视口宽度和设备屏幕的宽度一样，完成适配
-坏处在于对于dpr>1的设备，没法实现真实设备像素
-
-<p>2.保持 scale 放缩参数是 1/dpr<br><code>const calScale = 1/window.devicePixeRation</code></p>
-<meta name="viewport" content="initial-scale=calScale,
-maximum-scale=calScale,minimun-scale=calScale,user-scalable=no">
-这样的好处是实现了真实的设备像素，1css像素等于1设备像素
-不好的在于不同设备想达到一个csspx严格等于一设备像素，需要处理兼容性，而且全局等比例放缩，对于某些固定尺寸要特殊处理
-
+<p>常见的移动端的 viewport 的设置 1.保存 scale 为 1<br><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,inital-scale=1&quot;&gt;</code><br>这样设置的好处是：让布局视口宽度和设备屏幕的宽度一样，完成适配<br>坏处在于对于 dpr&gt;1 的设备，没法实现真实设备像素</p>
+<p>2.保持 scale 放缩参数是 1/dpr<br><code>const calScale = 1/window.devicePixeRation</code><br><code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=calScale&gt;</code><br>maximum-scale=calScale,minimun-scale=calScale,user-scalable=no”&gt;<br>这样的好处是实现了真实的设备像素，1css 像素等于 1 设备像素<br>不好的在于不同设备想达到一个 csspx 严格等于一设备像素，需要处理兼容性，而且全局等比例放缩，对于某些固定尺寸要特殊处理</p>
 <h2 id="相对长度"><a href="#相对长度" class="headerlink" title="相对长度"></a>相对长度</h2><h3 id="em："><a href="#em：" class="headerlink" title="em："></a>em：</h3><ul>
 <li>在非 font-size 属性中使用是相对于自身的字体大小</li>
 <li>在 font-size 上使用是相对于父元素的字体大小(一般不用于 font-size)<br>运用场景：可以让展示区域根据展示字号的不同，做出放缩调整<br><img src="/2023/04/25/%E7%90%86%E8%A7%A3CSS/em0.png" srcset="/img/loading.gif" lazyload alt="em"><br><img src="/2023/04/25/%E7%90%86%E8%A7%A3CSS/em1.png" srcset="/img/loading.gif" lazyload alt="em"></li>
@@ -511,7 +502,7 @@ maximum-scale=calScale,minimun-scale=calScale,user-scalable=no">
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年5月3日</div>
+          <div>2023年5月5日</div>
         </div>
       
       

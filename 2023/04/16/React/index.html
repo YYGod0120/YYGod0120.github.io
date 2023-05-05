@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/react.jpg">
 <meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-05-03T04:25:37.772Z">
+<meta property="article:modified_time" content="2023-05-05T06:58:51.572Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -299,7 +299,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年5月3日 中午
+                    本文最后更新于：2023年5月5日 下午
                   
                 
               </p>
@@ -694,7 +694,7 @@
 <ol>
 <li><MyInput ref={inputRef} /> 告诉 React 将对应的 DOM 节点放入 inputRef.current 中。但是，这取决于 MyInput 组件是否允许这种行为， 默认情况下是不允许的。</li>
 <li>MyInput 组件是使用 forwardRef 声明的。 这让从上面接收的 inputRef 作为第二个参数 ref 传入组件，第一个参数是 props 。</li>
-<li>MyInput 组件将自己接收到的 ref 传递给它内部的 <input>。</li>
+<li>MyInput 组件将自己接收到的 ref 传递给它内部的<code>&lt;input&gt;</code>。</li>
 </ol>
 <h3 id="一些存在的问题"><a href="#一些存在的问题" class="headerlink" title="一些存在的问题"></a>一些存在的问题</h3><p>有的时候 React 对 Dom 的更改不是立即的，所以使用 Ref 改变 Dom 的时候会发生错误，所以你需要让 Dom 更改立即执行<br>你需要利用 flushSync 将更改立即执行</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; flushSync &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;React&quot;</span>;<br><span class="hljs-title function_">flushSync</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-title function_">setTodos</span>([...todos, newTodo]);<br>&#125;);<br>listRef.<span class="hljs-property">current</span>.<span class="hljs-property">lastChild</span>.<span class="hljs-title function_">scrollIntoView</span>();<br></code></pre></td></tr></table></figure>
@@ -934,7 +934,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年5月3日</div>
+          <div>2023年5月5日</div>
         </div>
       
       
