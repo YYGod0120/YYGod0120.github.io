@@ -4,6 +4,85 @@
   
   
   <entry>
+    <title>vscode使用手册</title>
+    <link href="/2023/05/07/vscode%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/"/>
+    <url>/2023/05/07/vscode%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="常用的快捷键"><a href="#常用的快捷键" class="headerlink" title="常用的快捷键:"></a>常用的快捷键:</h1><p>对于<strong>行</strong>：</p><ul><li>重开一行：光标在行尾的话，回车即可；不在行尾，ctrl + enter 向下重开一行；ctrl+shift + enter 则是在上一行重开一行</li><li>删除一行：光标没有选择内容时，ctrl + x 剪切一行；ctrl +shift + k 直接删除一行</li><li>移动一行：alt + ↑ 向上移动一行；alt + ↓ 向下移动一行</li><li>复制一行：shift + alt + ↓ 向下复制一行；shift + alt + ↑ 向上复制一行</li><li>ctrl + z 回退</li></ul><p>对于 词 的操作：</p><ul><li><p>选中一个词：ctrl + d</p></li><li><p>搜索或者替换：</p></li><li><p>ctrl + f ：搜索</p></li><li><p>ctrl + alt + f： 替换</p></li><li><p>ctrl + shift + f：在项目内搜索</p></li><li><p>通过 Ctrl + ` 可以打开或关闭终端</p></li><li><p>Ctrl+P 快速打开最近打开的文件</p></li><li><p>Ctrl+Shift+N 打开新的编辑器窗口</p></li><li><p>Ctrl+Shift+W 关闭编辑器</p></li><li><p>Home 光标跳转到行头</p></li><li><p>End 光标跳转到行尾</p></li><li><p>Ctrl + Home 跳转到页头</p></li><li><p>Ctrl + End 跳转到页尾</p></li><li><p>Ctrl + Shift + [ 折叠区域代码</p></li><li><p>Ctrl + Shift + ] 展开区域代码</p></li><li><p>Ctrl + / 添加关闭行注释</p></li><li><p>Shift + Alt +A 块区域注释</p></li></ul><h1 id="常用的插件"><a href="#常用的插件" class="headerlink" title="常用的插件"></a>常用的插件</h1><p>1、open in browser<br>在浏览器里预览网页必备。运行 html 文件<br>2、Auto Rename Tag<br>自动修改匹配的 HTML 标签。<br>3、Path Intellisense<br>智能路径提示，可以在你输入文件路径时智能提示。<br>4、Markdown Preview<br>实时预览 markdown。<br>5、stylelint<br>CSS / SCSS / Less 语法检查<br>6、Prettier<br>比 Beautify 更好用的代码格式化插件<br>可以配置.prettierc.js 文件,配合 eslint、git hooks 一起使用，提升项目代码的规范性<br><a href="https://www.prettier.cn/">官网教程</a><br>7、code runner<br>直接运行.js 等文件，在控制台输出结果<br>8、GitLens<br>详细的 Git 提交日志。<br>9、CSS Peek<br>定位 CSS 类名。</p><h1 id="设置同步"><a href="#设置同步" class="headerlink" title="设置同步"></a>设置同步</h1><p>花了一天终于把 vscode 配置成自己满意的样子，如果每换一次电脑就要重新来一次，大家一定会手撕了我。放心，早就帮大家准备好了。Settings Sync，在不同电脑间同步你的插件。</p><p>首先要想在不同的设备间同步你的插件, 需要用到 Token 和 Gist id</p><p>Token 就是你把插件上传到 github 上时, 让你保存的那段字符，Gist id 在你上传插件的那台电脑上保存着。</p><p>先给大家来三个快捷键，后面会用到</p><p>1、CTRL+SHIFT+P 我也不知道叫什么，暂且就叫它功能搜索功能吧<br>2、ALT+SHIFT+D 下载配置<br>3、ALT+SHIFT+U 上传配置<br>现在手把手教大家配置：</p><p>1、安装 Settings Sync<br>2、登陆 Github&gt;settings&gt;Developer settings&gt;personal access tokens&gt;generate new token，输入名称，勾选 Gist，提交<br>3、保存 Github Access Token<br>4、打开 vscode，Ctrl+Shift+P 打开命令框–&gt;输入 sync–&gt;选择高级设置–&gt;编辑本地扩展设置–&gt;编辑 token<br>5、Ctrl+Shift+P 打开命令框–&gt;输入 sync–&gt;找到 update/upload settings，上传成功后会返回 Gist ID，保存此 Gist ID.<br>6、在 VSCode 里，依次打开: 文件 -&gt; 首选项 -&gt; 设置，然后输入 Sync 进行搜索:能找到你 gist id<br>7、若需在其他机器上 DownLoad 插件的话，同样，Ctrl+Shift+P 打开命令框，输入 sync，找到 Download settings，会跳转到 Github 的 Token 编辑界面，点 Edit，regenerate token，保存新生成的 token，在 vscode 命令框中输入此 Token，回车，再输入之前的 Gist ID，即可同步插件和设置</p><blockquote><p>换电脑了再说</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vscode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>React脚手架使用</title>
+    <link href="/2023/05/07/React%E8%84%9A%E6%89%8B%E6%9E%B6%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/05/07/React%E8%84%9A%E6%89%8B%E6%9E%B6%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p>React 脚手架：来帮助程序员快速创建一个基于 xxx 库的模板项目<br>项目的整体技术架构为: react+webpacl+es6eslint</p><h1 id="React-脚手架使用"><a href="#React-脚手架使用" class="headerlink" title="React 脚手架使用"></a>React 脚手架使用</h1><p>第一步：全局安装<br><code>npm install -g create-react-app</code></p><p>第二步：创建项目目录<br><code>create-react-app name</code></p><p>第三步：启动项目<br><code>cd name</code><br><code>npm start</code></p><h1 id="脚手架文件说明"><a href="#脚手架文件说明" class="headerlink" title="脚手架文件说明"></a>脚手架文件说明</h1><h2 id="public-目录"><a href="#public-目录" class="headerlink" title="public 目录"></a>public 目录</h2><p>public 目录下存放静态文件，比如 icon 和 html 文件</p><h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p><img src="/2023/05/07/React%E8%84%9A%E6%89%8B%E6%9E%B6%E4%BD%BF%E7%94%A8/jiaoshou.png" alt="说明"></p><h2 id="src"><a href="#src" class="headerlink" title="src"></a>src</h2><p>src 目录下存放 APP 文件和相关组件</p><h3 id="APP-JS"><a href="#APP-JS" class="headerlink" title="APP.JS"></a>APP.JS</h3><p>你应用的最终集合组件。</p><h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><p>渲染的入口文件，用于渲染</p><h3 id="其他文件"><a href="#其他文件" class="headerlink" title="其他文件"></a>其他文件</h3><p>不是很重要，包括 APP 组件测试的 js 文件，对你 AppReact 旧用法的警告，页面性能检测</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>React</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>React状态管理</title>
+    <link href="/2023/05/06/React%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/"/>
+    <url>/2023/05/06/React%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="React-状态管理工具"><a href="#React-状态管理工具" class="headerlink" title="React 状态管理工具"></a>React 状态管理工具</h1><p><strong>React 自带：</strong> props,Context<br><strong>单向数据流：</strong>Flux(被 Redux 平替)，Redux(Redux-toolkit)<br><strong>双向数据绑定：</strong>Mobx<br><strong>原子型状态管理：</strong>Recoil、Jotai<br><strong>异步操作密集型：</strong>Rxjs</p><h2 id="Local-State-props"><a href="#Local-State-props" class="headerlink" title="Local State-props"></a>Local State-props</h2><p>React 原生自带的组件之间传递信息的方式，从父组件单向传递给子组件</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br><span class="hljs-comment">//Child1</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Child1</span> = (<span class="hljs-params">&#123;name1, ...otherProps&#125;</span>) =&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>&#123;name1&#125;<span class="hljs-tag">&lt;/&gt;</span></span><br>&#125;<br><span class="hljs-comment">//Child2 5491</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Child2</span> = (<span class="hljs-params"> &#123;name2&#125;</span>)=&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>&#123;name2&#125;<span class="hljs-tag">&lt;/&gt;</span></span><br>&#125;<br><span class="hljs-comment">// Parent</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Parent</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br><br>    <span class="hljs-keyword">const</span> [name1 ,setName1] = useState ( <span class="hljs-string">&quot;Tom&quot;</span><span class="hljs-string">&#x27;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    const [name2 ,setName2] = useState ( &quot;Jerry&quot;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">return &lt;&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &lt;Child1 name1=&#123;name1&#125; name2=&#123;name2&#125;&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &lt;Child2 name2=&#123;name2&#125; /&gt;</span><br><span class="hljs-string">    &lt;/&gt;</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure><h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>但是当父组件与子组件之间的层级关系过于多的时候，一层一层传递 props 显得过于臃肿<br>所以就引申出了 Context 这种状态管理<br>移步到<a href="/2023/04/15/React/index.html">React</a>查看如何编写一个 Context</p><p>但是 Context 也存在一些问题</p><ol><li>Context 相当于全局变量,难以追溯数据的变更情况</li><li>使用 Context 的组件内部耦合度太高，不利于组件的复用和单元测试</li><li>会产生不必要的更新(比如会穿透 memo 和 dependicies 等)</li><li>Context 只能存储单一值，无法存储多个各自拥有消费者的值的集合</li><li>粒度也不太好控制，不能细粒度的区分组件依赖了哪一个 Context</li><li>多个 Context 会存在层层嵌套的问题</li></ol><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>Redux 是由 Flux 演变而来的，Flux 是 Facebook 官方给出的应用架构，利用数据的单向流动的形式对公共状态进行管理，不过现在已经被 Redux 平替了。</p><p>Redux 比较适用用于大型 Web 项目，尤其是一些交互比较复杂，组件通信频繁的场景，状态可预测和回溯是非常有价值的。</p><p><a href="https://cn.redux.js.org/">Redux 中文官网</a></p><blockquote><p>推荐顺带学习 Redux-toolkit，是官方推荐的高效的 redux 状态管理工具集<br>能够简化 Redux 开发，包括配置 store，定义 reducer 等等，而且也提供了完整的 React hooks，可以方便 react 函数组件中使用 Redux toolkit</p></blockquote><p><a href="https://redux-toolkit.js.org/">Redux-toolkit 中文官网</a></p><h2 id="Zustand"><a href="#Zustand" class="headerlink" title="Zustand"></a>Zustand</h2><p>Zustand 是主打轻量级的状态管理工具，没有 Redux 那样臃肿的设计，也没有兼容 React 类组件的历史包袱，Zustand 状态管理工具体积很小，所以很适合移动端的网页。</p><p>Zustand 的使用极其简单，初始化过程中，我们不仅可以保存状态，也能在初始化的时候制定方法和函数<br><img src="/2023/05/06/React%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/zustand.png" alt="Zustand的案例"></p><p>Zustand 库的核心 API 和 Redux 极为相似，区别主要在于状态的更新，Redux 通过 dispatch 和 reducer 函数进行状态更新，而 Zustand 则是通过 setState 来直接修改状态</p><table><thead><tr><th></th><th>Redux</th><th>Zustand</th></tr></thead><tbody><tr><td>创建 Store</td><td><code>createStore(reducer,[preloadedState],[enhance])</code></td><td><code>createStore()</code></td></tr><tr><td>获取 state</td><td><code>getState()</code></td><td><code>getState()</code></td></tr><tr><td>监听 state 的变化</td><td><code>subscribe(listener)</code></td><td><code>subscribe(listener)</code></td></tr><tr><td>更新 state</td><td><code>dispatch(action)</code></td><td><code>setState()</code></td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>React</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>深入浅出TypeScript</title>
     <link href="/2023/05/03/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BATypeScript/"/>
     <url>/2023/05/03/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BATypeScript/</url>
