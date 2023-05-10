@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/TypeScript.jpg">
 <meta property="article:published_time" content="2023-05-03T15:02:31.000Z">
-<meta property="article:modified_time" content="2023-05-10T13:52:25.262Z">
+<meta property="article:modified_time" content="2023-05-10T14:30:04.184Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="TypeScript">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.2k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          25 分钟
+          27 分钟
         
       </span>
     
@@ -336,6 +336,13 @@
 <li>undefined,null</li>
 <li>any,unknown,viod</li>
 <li>never</li>
+</ol>
+<ul>
+<li>never 指的是永远不存在的值，比如报错和死循环</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 异常</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">err</span>(<span class="hljs-params">msg: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">never</span> &#123;<br>  <span class="hljs-comment">// OK</span><br>  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(msg);<br>&#125;<br><br><span class="hljs-comment">// 死循环</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">loopForever</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">never</span> &#123;<br>  <span class="hljs-comment">// OK</span><br>  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="5">
 <li>数组类型[]</li>
 <li>元组类型()</li>
 </ol>
