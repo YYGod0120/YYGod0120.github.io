@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/TypeScript.jpg">
 <meta property="article:published_time" content="2023-05-03T15:02:31.000Z">
-<meta property="article:modified_time" content="2023-05-11T08:42:28.207Z">
+<meta property="article:modified_time" content="2023-06-04T03:18:02.392Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="TypeScript">
@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- hexo injector head_end start --><style type="text/css">span[class="simple-icon"]{width:1.2rem;height:1.2rem;display:inline-block}span[class="simple-icon"] svg,img{display:inline-block;vertical-align:middle;height:inherit;width:inherit}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -299,7 +299,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年5月11日 下午
+                    本文最后更新于：2023年6月4日 上午
                   
                 
               </p>
@@ -404,7 +404,8 @@
 <p>同名属性是非基本数据类型的话</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> A &#123;<br>  <span class="hljs-attr">x</span>: &#123; <span class="hljs-attr">d</span>: <span class="hljs-literal">true</span> &#125;;<br>&#125;<br><span class="hljs-keyword">interface</span> B &#123;<br>  <span class="hljs-attr">x</span>: &#123; <span class="hljs-attr">e</span>: <span class="hljs-built_in">string</span> &#125;;<br>&#125;<br><span class="hljs-keyword">interface</span> C &#123;<br>  <span class="hljs-attr">x</span>: &#123; <span class="hljs-attr">f</span>: <span class="hljs-built_in">number</span> &#125;;<br>&#125;<br><span class="hljs-keyword">type</span> <span class="hljs-variable constant_">ABC</span> = A &amp; B &amp; C;<br><span class="hljs-keyword">let</span> <span class="hljs-attr">abc</span>: <span class="hljs-variable constant_">ABC</span> = &#123;<br>  <span class="hljs-attr">x</span>: &#123;<br>    <span class="hljs-attr">d</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">e</span>: <span class="hljs-string">&quot;&quot;</span>,<br>    <span class="hljs-attr">f</span>: <span class="hljs-number">666</span>,<br>  &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<p>混入多个类型时，若存在相同的成员，且成员类型为非基本数据类型，那么是可以成功合并。 3.类型断言</p>
+<p>混入多个类型时，若存在相同的成员，且成员类型为非基本数据类型，那么是可以成功合并。</p>
+<p>3.类型断言</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getLength</span>(<span class="hljs-params">arg: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">number</span> &#123;<br>  <span class="hljs-keyword">const</span> str = arg <span class="hljs-keyword">as</span> <span class="hljs-built_in">string</span>;<br>  <span class="hljs-keyword">if</span> (str.<span class="hljs-property">length</span>) &#123;<br>    <span class="hljs-keyword">return</span> str.<span class="hljs-property">length</span>;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-built_in">number</span> = arg <span class="hljs-keyword">as</span> <span class="hljs-built_in">number</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">number</span>.<span class="hljs-title function_">toString</span>().<span class="hljs-property">length</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>4.类型别名(type 和 interface)<br>定义：给类型取个别名<br>相同点：</p>
@@ -538,7 +539,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年5月11日</div>
+          <div>2023年6月4日</div>
         </div>
       
       
