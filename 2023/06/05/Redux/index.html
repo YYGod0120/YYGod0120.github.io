@@ -16,16 +16,16 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一章：Redux 的基础概念什么是 ReduxRedux 是一个使用叫做 “action” 的事件来管理和更新应用状态的模式和工具库它以集中式 Store（centralized store）的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新 Redux 术语与概念State 管理这是一个小小的计数器组件 12345678910111213141516function">
+    <meta name="description" content="第一章：Redux 的基础概念什么是 ReduxRedux 是一个使用叫做 “action” 的事件来管理和更新应用状态的模式和工具库它以集中式 Store（centralized store）的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新 为什么要使用 ReduxRedux 帮你管理“全局”状态 - 应用程序中的很多组件都需要的状态。 Redux 提供的模式和工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux">
 <meta property="og:url" content="https://www.yygod0120.com/2023/06/05/Redux/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="第一章：Redux 的基础概念什么是 ReduxRedux 是一个使用叫做 “action” 的事件来管理和更新应用状态的模式和工具库它以集中式 Store（centralized store）的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新 Redux 术语与概念State 管理这是一个小小的计数器组件 12345678910111213141516function">
+<meta property="og:description" content="第一章：Redux 的基础概念什么是 ReduxRedux 是一个使用叫做 “action” 的事件来管理和更新应用状态的模式和工具库它以集中式 Store（centralized store）的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新 为什么要使用 ReduxRedux 帮你管理“全局”状态 - 应用程序中的很多组件都需要的状态。 Redux 提供的模式和工具">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/Redux.jpg">
 <meta property="article:published_time" content="2023-06-05T14:53:15.000Z">
-<meta property="article:modified_time" content="2023-06-06T06:18:30.275Z">
+<meta property="article:modified_time" content="2023-06-06T06:22:59.229Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3.4k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          26 分钟
+          29 分钟
         
       </span>
     
@@ -308,6 +308,16 @@
               <div class="markdown-body">
                 
                 <h1 id="第一章：Redux-的基础概念"><a href="#第一章：Redux-的基础概念" class="headerlink" title="第一章：Redux 的基础概念"></a>第一章：Redux 的基础概念</h1><h2 id="什么是-Redux"><a href="#什么是-Redux" class="headerlink" title="什么是 Redux"></a>什么是 Redux</h2><p><strong>Redux 是一个使用叫做 “action” 的事件来管理和更新应用状态的模式和工具库</strong>它以集中式 Store（centralized store）的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新</p>
+<h3 id="为什么要使用-Redux"><a href="#为什么要使用-Redux" class="headerlink" title="为什么要使用 Redux"></a>为什么要使用 Redux</h3><p>Redux 帮你管理“全局”状态 - 应用程序中的很多组件都需要的状态。</p>
+<p>Redux 提供的模式和工具使你更容易理解应用程序中的状态何时、何地、为什么、state 如何被更新，以及当这些更改发生时你的应用程序逻辑将如何表现. Redux 指导你编写可预测和可测试的代码，这有助于你确信你的应用程序将按预期工作。</p>
+<h3 id="什么时候使用-Redux"><a href="#什么时候使用-Redux" class="headerlink" title="什么时候使用 Redux"></a>什么时候使用 Redux</h3><p>在以下情况下使用 Redux：</p>
+<ul>
+<li>应用中有很多 state 在多个组件中需要使用</li>
+<li>应用 state 会随着时间的推移而频繁更新</li>
+<li>更新 state 的逻辑很复杂</li>
+<li>中型和大型代码量的应用，很多人协同开发</li>
+</ul>
+<p><strong>并非所有应用程序都需要 Redux。 花一些时间思考你正在构建的应用程序类型，并决定哪些工具最能帮助解决你正在处理的问题。</strong></p>
 <h2 id="Redux-术语与概念"><a href="#Redux-术语与概念" class="headerlink" title="Redux 术语与概念"></a>Redux 术语与概念</h2><h3 id="State-管理"><a href="#State-管理" class="headerlink" title="State 管理"></a>State 管理</h3><p>这是一个小小的计数器组件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// State: counter 值</span><br>  <span class="hljs-keyword">const</span> [counter, setCounter] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-comment">// Action: 当事件发生后，触发状态更新的代码</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-title function_">setCounter</span>(<span class="hljs-function">(<span class="hljs-params">prevCounter</span>) =&gt;</span> prevCounter + <span class="hljs-number">1</span>);<br>  &#125;;<br><br>  <span class="hljs-comment">// View: 视图定义</span><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      Value: &#123;counter&#125; <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>Increment<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
 
