@@ -24,7 +24,7 @@
 <meta property="og:description" content="创建一个应用实例应用实例每个 vue 应用都是通过 createAPP 函数创建一个新的应用实例： 12345import &amp;#123; createApp &amp;#125; from &quot;vue&quot;;const app &#x3D; createApp(&amp;#123;  &#x2F;* 根组件选项 *&#x2F;&amp;#125;);  需要给 createApp 的对象实际上是一个组件,每个运用都需要一个”根组件” 1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-08T11:56:43.000Z">
-<meta property="article:modified_time" content="2023-06-10T08:04:21.175Z">
+<meta property="article:modified_time" content="2023-06-10T08:54:44.204Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Vue">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9k 字
+          11k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          76 分钟
+          95 分钟
         
       </span>
     
@@ -408,9 +408,11 @@
 
 <p>简言之，ref() 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。这个功能很重要，因为它经常用于将逻辑提取到 组合函数 中。</p>
 <h2 id="ref在模板中的解包"><a href="#ref在模板中的解包" class="headerlink" title="ref在模板中的解包"></a><code>ref</code>在模板中的解包</h2><p>当 ref 在模板中作为顶层属性被访问时，它们会被自动“解包”，所以不需要使用 .value。下面是之前的计数器例子，用 ref() 代替：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>);</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    count.<span class="hljs-property">value</span>++;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span><br>    &#123;&#123; count &#125;&#125;<br>    <span class="hljs-comment">&lt;!-- 无需 .value --&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref &#125; from &quot;vue&quot;;<br><br>const count = ref(0);<br><br>function increment() &#123;<br>  count.value++;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;button @click=&quot;increment&quot;&gt;<br>    &#123;&#123; count &#125;&#125;<br>    &lt;!-- 无需 .value --&gt;<br>  &lt;/button&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
+<blockquote>
 <p>请注意，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。</p>
+</blockquote>
 <h2 id="ref在响应式对象中的解包"><a href="#ref在响应式对象中的解包" class="headerlink" title="ref在响应式对象中的解包"></a><code>ref</code>在响应式对象中的解包</h2><p>当一个 ref 被嵌套在一个响应式对象中，作为属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>);<br><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123;<br>  count,<br>&#125;);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(state.<span class="hljs-property">count</span>); <span class="hljs-comment">// 0</span><br><br>state.<span class="hljs-property">count</span> = <span class="hljs-number">1</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span>); <span class="hljs-comment">// 1</span><br><span class="hljs-comment">//如果将一个新的 ref 赋值给一个关联了已有 ref 的属性，那么它会替换掉旧的 ref：</span><br><span class="hljs-keyword">const</span> otherCount = <span class="hljs-title function_">ref</span>(<span class="hljs-number">2</span>);<br><br>state.<span class="hljs-property">count</span> = otherCount;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(state.<span class="hljs-property">count</span>); <span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 原始 ref 现在已经和 state.count 失去联系</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span>); <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
 
@@ -433,6 +435,60 @@
 
 <h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="Getter-不应该有副作用"><a href="#Getter-不应该有副作用" class="headerlink" title="Getter 不应该有副作用"></a>Getter 不应该有副作用</h3><p>计算属性的 getter 应只做计算而没有任何其他的副作用，这一点非常重要，请务必牢记。举例来说，<strong>不要在 getter 中做异步请求或者更改 DOM！</strong>一个计算属性的声明中描述的是如何根据其他值派生一个值。因此 getter 的职责应该仅为计算和返回该值。在之后的指引中我们会讨论如何使用监听器根据其他响应式状态的变更来创建副作用。</p>
 <h3 id="避免直接修改计算属性值"><a href="#避免直接修改计算属性值" class="headerlink" title="避免直接修改计算属性值"></a>避免直接修改计算属性值</h3><p>从计算属性返回的值是派生状态。可以把它看作是一个“临时快照”，每当源状态发生变化时，就会创建一个新的快照。更改快照是没有意义的，因此计算属性的返回值应该被视为只读的，并且永远不应该被更改——应该更新它所依赖的源状态以触发新的计算。</p>
+<h1 id="Class-与-Style-绑定"><a href="#Class-与-Style-绑定" class="headerlink" title="Class 与 Style 绑定"></a>Class 与 Style 绑定</h1><p>数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。</p>
+<h2 id="绑定-HTML-class"><a href="#绑定-HTML-class" class="headerlink" title="绑定 HTML class"></a>绑定 HTML class</h2><h3 id="绑定对象"><a href="#绑定对象" class="headerlink" title="绑定对象"></a>绑定对象</h3><p>我们可以给 :class (v-bind:class 的缩写) 传递一个对象来动态切换 class</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;&#123; active: isActive &#125;&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>上面的语法表示 active 是否存在取决于数据属性 isActive 的真假值。</p>
+<p>你可以在对象中写多个字段来操作多个 class。此外，:class 指令也可以和一般的 class attribute 共存。举例来说，下面这样的状态：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> isActive = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">true</span>);<br><span class="hljs-keyword">const</span> hasError = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">false</span>);<br></code></pre></td></tr></table></figure>
+
+<p>配合以下模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div<br>  class=&quot;static&quot;<br>  :class=&quot;&#123; active: isActive, &#x27;text-danger&#x27;: hasError &#125;&quot;<br>&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>渲染的结果会是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div class=&quot;static active&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>绑定的对象并不一定需要写成内联字面量的形式，也可以直接绑定一个对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> classObject = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-string">&quot;text-danger&quot;</span>: <span class="hljs-literal">false</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;classObject&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>我们也可以绑定一个返回对象的计算属性。这是一个常见且很有用的技巧：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> isActive = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">true</span>);<br><span class="hljs-keyword">const</span> error = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);<br><br><span class="hljs-keyword">const</span> classObject = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> (&#123;<br>  <span class="hljs-attr">active</span>: isActive.<span class="hljs-property">value</span> &amp;&amp; !error.<span class="hljs-property">value</span>,<br>  <span class="hljs-string">&quot;text-danger&quot;</span>: error.<span class="hljs-property">value</span> &amp;&amp; error.<span class="hljs-property">value</span>.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;fatal&quot;</span>,<br>&#125;));<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;classObject&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="绑定数组"><a href="#绑定数组" class="headerlink" title="绑定数组"></a>绑定数组</h3><p>我们可以给 :class 绑定一个数组来渲染多个 CSS class：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> activeClass = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;active&quot;</span>);<br><span class="hljs-keyword">const</span> errorClass = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;text-danger&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;[activeClass, errorClass]&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>渲染的结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>如果你也想在数组中有条件地渲染某个 class，你可以使用三元表达式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;[isActive ? activeClass : &#x27;&#x27;, errorClass]&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中嵌套对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;[&#123; active: isActive &#125;, errorClass]&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h2><h3 id="绑定对象-1"><a href="#绑定对象-1" class="headerlink" title="绑定对象"></a>绑定对象</h3><p>:style 支持绑定 JavaScript 对象值，对应的是 HTML 元素的 style 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> activeColor = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;red&quot;</span>);<br><span class="hljs-keyword">const</span> fontSize = <span class="hljs-title function_">ref</span>(<span class="hljs-number">30</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :style=&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>尽管推荐使用 camelCase，但 :style 也支持 kebab-cased 形式的 CSS 属性 key (对应其 CSS 中的实际名称)，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :style=&quot;&#123; &#x27;font-size&#x27;: fontSize + &#x27;px&#x27; &#125;&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>直接绑定一个样式对象通常是一个好主意，这样可以使模板更加简洁：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> styleObject = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;red&quot;</span>,<br>  <span class="hljs-attr">fontSize</span>: <span class="hljs-string">&quot;13px&quot;</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :style=&quot;styleObject&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>同样的，如果样式对象需要更复杂的逻辑，也可以使用返回样式对象的计算属性。</p>
+<h3 id="绑定数组-1"><a href="#绑定数组-1" class="headerlink" title="绑定数组"></a>绑定数组</h3><p>我们还可以给 :style 绑定一个包含多个样式对象的数组。这些对象会被合并后渲染到同一元素上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :style=&quot;[baseStyles, overridingStyles]&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
