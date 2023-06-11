@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/Vue.jpg">
 <meta property="article:published_time" content="2023-06-08T11:56:43.000Z">
-<meta property="article:modified_time" content="2023-06-11T02:32:33.522Z">
+<meta property="article:modified_time" content="2023-06-11T02:33:34.497Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Vue">
@@ -593,10 +593,7 @@
 
 <p>你可能认为这将导致 Vue 丢弃现有的 DOM 并重新渲染整个列表——幸运的是，情况并非如此。Vue 实现了一些巧妙的方法来最大化对 DOM 元素的重用，因此用另一个包含部分重叠对象的数组来做替换，仍会是一种非常高效的操作。</p>
 <h2 id="展示过滤或排序后的结果"><a href="#展示过滤或排序后的结果" class="headerlink" title="展示过滤或排序后的结果"></a>展示过滤或排序后的结果</h2><p>有时，我们希望显示数组经过过滤或排序后的内容，而不实际变更或重置原始数据。在这种情况下，你可以创建返回已过滤或已排序数组的计算属性(使用 filter )。<br>在计算属性中使用 reverse() 和 sort() 的时候务必小心！这两个方法将变更原始数组，计算函数中不应该这么做。请在调用这些方法之前创建一个原数组的副本：</p>
-<!-- ```diff
-- return numbers.reverse()
-+ return [...numbers].reverse()
-``` -->
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">- return numbers.reverse()</span><br><span class="hljs-addition">+ return [...numbers].reverse()</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
