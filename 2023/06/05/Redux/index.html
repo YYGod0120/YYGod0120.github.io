@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/Redux.jpg">
 <meta property="article:published_time" content="2023-06-05T14:53:15.000Z">
-<meta property="article:modified_time" content="2023-06-10T08:30:36.127Z">
+<meta property="article:modified_time" content="2023-07-15T12:59:41.935Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          11k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          76 分钟
+          91 分钟
         
       </span>
     
@@ -314,7 +314,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月10日 下午
+                    本文最后更新于：2023年7月15日 晚上
                   
                 
               </p>
@@ -463,8 +463,19 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-dom&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./index.css&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./App&quot;</span>;<br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./app/store&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Provider</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;<br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> serviceWorker <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./serviceWorker&quot;</span>;<br><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;root&quot;</span>)<br>);<br></code></pre></td></tr></table></figure>
 
 <p>为了让像 <code>useSelector</code> 这样的 <code>hooks</code> 正常工作，我们需要使用一个名为 <code>&lt;Provider&gt;</code> 的组件在幕后传递<code> Redux store</code>，以便他们可以访问它。</p>
-<h1 id="第三章-寄"><a href="#第三章-寄" class="headerlink" title="第三章(寄)"></a>第三章(寄)</h1><p>Redux 官网提供的那个实例 demo 因为 node，react，webpack 的版本问题导致没法使用，而且官网之后全部的教程都得围绕着这个 demo 来做，这下一连串都卡住了<br>只能<del>放弃</del>等后续更新或者换一个教程</p>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><p>既然官网的教材代码没法用，我就通过我暑假集训的使用的 redux 做一个小小的总结用法，只能算能用，还得多琢磨，这个只是为了能快速使用上 redux 才写的，很多很多具体的还得去 redux 官网上去学</p>
+<h2 id="store-创建"><a href="#store-创建" class="headerlink" title="store 创建"></a>store 创建</h2><p>我这边采用的是 ts 的写法<br>在 src 目录下创建一个 store.ts，当然随便取名字</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; configureStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;<br><span class="hljs-keyword">import</span> degreeReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./features/degreeSlice&quot;</span>;<br><span class="hljs-keyword">import</span> listSlice <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./features/listSlice&quot;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> store = <span class="hljs-title function_">configureStore</span>(&#123;<br>  <span class="hljs-attr">reducer</span>: &#123;<br>    <span class="hljs-attr">degree</span>: degreeReducer,<br>    <span class="hljs-attr">list</span>: listSlice,<br>  &#125;,<br>&#125;);<br><br><span class="hljs-comment">// Infer the `RootState` and `AppDispatch` types from the store itself</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootState</span> = <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> store.<span class="hljs-property">getState</span>&gt;;<br><span class="hljs-comment">// Inferred type: &#123;posts: PostsState, comments: CommentsState, users: UsersState&#125;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">AppDispatch</span> = <span class="hljs-keyword">typeof</span> store.<span class="hljs-property">dispatch</span>;<br></code></pre></td></tr></table></figure>
 
+<p><code>configureStore</code>是 redux-toolkit 的一个创建 store 的工具<br><code>degreeReducer</code>是一个 reducer，在里面编写一些 reducer<br><code>listSlice</code>同上</p>
+<h2 id="reducer-写法"><a href="#reducer-写法" class="headerlink" title="reducer 写法"></a>reducer 写法</h2><p>然后我们再在 src 下创建 features 文件夹里面用来放各种 reducer</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/features/degreeSlice</span><br><span class="hljs-keyword">import</span> &#123; createSlice &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> &#123; <span class="hljs-title class_">PayloadAction</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;<br><span class="hljs-comment">//state状态</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">DegreeState</span> &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-comment">//初始state</span><br><span class="hljs-keyword">const</span> <span class="hljs-attr">initialState</span>: <span class="hljs-title class_">DegreeState</span> = &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-number">1</span>,<br>&#125;;<br><span class="hljs-comment">//切片代码：名字状态以及reducer</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> degreeSlice = <span class="hljs-title function_">createSlice</span>(&#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;degree&quot;</span>,<br>  initialState,<br>  <span class="hljs-attr">reducers</span>: &#123;<br>    <span class="hljs-attr">change</span>: <span class="hljs-function">(<span class="hljs-params">state, action: PayloadAction&lt;<span class="hljs-built_in">number</span>&gt;</span>) =&gt;</span> &#123;<br>      state.<span class="hljs-property">value</span> = action.<span class="hljs-property">payload</span>;<br>    &#125;,<br>  &#125;,<br>&#125;);<br><span class="hljs-comment">//导出</span><br><span class="hljs-comment">// Action creators are generated for each case reducer function</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> &#123; change &#125; = degreeSlice.<span class="hljs-property">actions</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> degreeSlice.<span class="hljs-property">reducer</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="在组件中用法"><a href="#在组件中用法" class="headerlink" title="在组件中用法"></a>在组件中用法</h2><p><code>import &#123; useSelector, useDispatch &#125; from &quot;react-redux&quot;;</code><br>useSelector 用来获取数据<br>useDispatch 用来传递 actions<br>用法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; useSelector, useDispatch &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;<br><span class="hljs-keyword">const</span> degree = <span class="hljs-title function_">useSelector</span>(<span class="hljs-function">(<span class="hljs-params">state: RootState</span>) =&gt;</span> state.<span class="hljs-property">degree</span>.<span class="hljs-property">value</span>);<br><span class="hljs-keyword">const</span> dispatch = useDispatch&lt;<span class="hljs-title class_">AppDispatch</span>&gt;();<br><span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">change</span>(<span class="hljs-number">5</span>));<br></code></pre></td></tr></table></figure>
+
+<p>这样 store 里的 degree 就会发生改变</p>
+<h2 id="如果遇到了网络请求呢"><a href="#如果遇到了网络请求呢" class="headerlink" title="如果遇到了网络请求呢"></a>如果遇到了网络请求呢</h2>
                 
               </div>
             
@@ -530,7 +541,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年6月10日</div>
+          <div>2023年7月15日</div>
         </div>
       
       
