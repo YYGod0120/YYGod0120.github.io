@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/Redux.jpg">
 <meta property="article:published_time" content="2023-06-05T14:53:15.000Z">
-<meta property="article:modified_time" content="2023-07-15T12:59:41.935Z">
+<meta property="article:modified_time" content="2023-07-16T02:25:38.196Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          91 分钟
+          96 分钟
         
       </span>
     
@@ -314,7 +314,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年7月15日 晚上
+                    本文最后更新于：2023年7月16日 上午
                   
                 
               </p>
@@ -475,7 +475,16 @@
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; useSelector, useDispatch &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;<br><span class="hljs-keyword">const</span> degree = <span class="hljs-title function_">useSelector</span>(<span class="hljs-function">(<span class="hljs-params">state: RootState</span>) =&gt;</span> state.<span class="hljs-property">degree</span>.<span class="hljs-property">value</span>);<br><span class="hljs-keyword">const</span> dispatch = useDispatch&lt;<span class="hljs-title class_">AppDispatch</span>&gt;();<br><span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">change</span>(<span class="hljs-number">5</span>));<br></code></pre></td></tr></table></figure>
 
 <p>这样 store 里的 degree 就会发生改变</p>
-<h2 id="如果遇到了网络请求呢"><a href="#如果遇到了网络请求呢" class="headerlink" title="如果遇到了网络请求呢"></a>如果遇到了网络请求呢</h2>
+<h2 id="如果遇到了网络请求呢"><a href="#如果遇到了网络请求呢" class="headerlink" title="如果遇到了网络请求呢"></a>如果遇到了网络请求呢</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fetchList = <span class="hljs-title function_">createAsyncThunk</span>(<br>  <span class="hljs-string">&quot;posts/fetchList&quot;</span>,<br>  <span class="hljs-keyword">async</span> (<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getList</span>(id);<br>    <span class="hljs-keyword">return</span> response;<br>  &#125;<br>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> listSlice = <span class="hljs-title function_">createSlice</span>(&#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;list&quot;</span>,<br>  initialState,<br>  <span class="hljs-attr">reducers</span>: &#123;<br>    <span class="hljs-attr">setIsList</span>: <span class="hljs-function">(<span class="hljs-params">state, action: PayloadAction&lt;<span class="hljs-built_in">boolean</span>&gt;</span>) =&gt;</span> &#123;<br>      state.<span class="hljs-property">isList</span> = action.<span class="hljs-property">payload</span>;<br>    &#125;,<br>  &#125;,<br>  <span class="hljs-title function_">extraReducers</span>(<span class="hljs-params">builder</span>) &#123;<br>    builder.<span class="hljs-title function_">addCase</span>(<br>      fetchList.<span class="hljs-property">fulfilled</span>,<br>      <span class="hljs-function">(<span class="hljs-params">state, action: PayloadAction&lt;Playlist&gt;</span>) =&gt;</span> &#123;<br>        state.<span class="hljs-property">list</span> = action.<span class="hljs-property">payload</span>;<br>      &#125;<br>    );<br>  &#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>extraReducers 可以对请求的各种情况做响应，这里只写了完成以后的作用</p>
+<p>随后就在项目里使用就可以了</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">fetchList</span>(id!));<br>&#125;, [dispatch, id]);<br></code></pre></td></tr></table></figure>
+
+<p>分配 fetchList 给 store 就可以改变 state.list 了</p>
+
                 
               </div>
             
@@ -541,7 +550,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年7月15日</div>
+          <div>2023年7月16日</div>
         </div>
       
       
