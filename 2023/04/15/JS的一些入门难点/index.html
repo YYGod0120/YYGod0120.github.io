@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/js.png">
 <meta property="article:published_time" content="2023-04-15T13:12:40.000Z">
-<meta property="article:modified_time" content="2023-04-21T06:52:43.790Z">
+<meta property="article:modified_time" content="2023-07-16T06:50:46.675Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.7k 字
+          7.1k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          56 分钟
+          60 分钟
         
       </span>
     
@@ -314,7 +314,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月21日 下午
+                    本文最后更新于：2023年7月16日 下午
                   
                 
               </p>
@@ -330,6 +330,17 @@
 <p>原型链是一种关系</p>
 </blockquote>
 <h3 id="原型链-1"><a href="#原型链-1" class="headerlink" title="原型链"></a>原型链</h3><p>试想一下，原型对象也是对象，那么它肯定也有<code>__proto__</code>属性，指向原型对象的原型对象，那么原型链的概念就孕育而生了。通过<code>__proto__</code>，一个函数没有的属性，到它的原型对象上寻找，还是没有就通过<code>__prtot__</code>到原型对象的原型对象上去找，最后一直到最上层。</p>
+<h2 id="new-操作符"><a href="#new-操作符" class="headerlink" title="new 操作符"></a>new 操作符</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><code>let a = new function()&#123;&#125;</code></p>
+<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p><code>new</code>关键词会执行以下步骤</p>
+<ol>
+<li>创建一个空的简单 JavaScript 对象（即 {}）；</li>
+<li>为步骤 1 新创建的对象添加属性 <code>__proto__</code>，将该属性链接至构造函数的原型对象；</li>
+<li>将步骤 1 新创建的对象作为 this 的上下文(this 指向新创建的对象)</li>
+<li>如果该函数没有返回对象，则返回步骤一创建的新对象。</li>
+</ol>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">my</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;yy&quot;</span>;<br>&#125;<br><span class="hljs-keyword">let</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title function_">my</span>();<br><span class="hljs-keyword">let</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title function_">my</span>();<br>my.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">age</span> = <span class="hljs-number">18</span>;<br>b.<span class="hljs-property">age</span> = <span class="hljs-number">19</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a.<span class="hljs-property">age</span>, b.<span class="hljs-property">age</span>); <span class="hljs-comment">//18 19</span><br></code></pre></td></tr></table></figure>
+
+<p>上面代码中 a 和 b 都创建了一个<code>__proto__</code>指向 my 函数的 <code>prototype(原型对象)</code><br>所以当 my 函数内部 name 改变的时候就会影响 a 和 b 的 name</p>
 <h2 id="JS-的执行机制"><a href="#JS-的执行机制" class="headerlink" title="JS 的执行机制"></a>JS 的执行机制</h2><blockquote>
 <p>前言：Javascript 是一门单线程语言，一切“多线程”的 JS 都是由单线程模拟出来的</p>
 </blockquote>
@@ -500,7 +511,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年4月21日</div>
+          <div>2023年7月16日</div>
         </div>
       
       
