@@ -16,22 +16,22 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="拖了好久的 Next.js 终于有空来学一学了  什么是 Next.js按照惯例，先介绍一下 Next.js，它是一个 react 的框架，一个框架的框架。当你觉得写 react 在某些时候很不方便的时候，就有必要来学习一下 Next.js 了 它的优势在于：  既支持 SSG(静态预渲染页面),也支持 SSR(请求时预渲染页面) 基于文件下的路由 内置支持 CSSModule,Sass,t">
+    <meta name="description" content="Next.js 为您提供生产环境所需的所有功能以及最佳的开发体验：包括静态及服务器端融合渲染、 支持 TypeScript、智能化打包、 路由预取等功能 无需任何配置。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NextJs">
 <meta property="og:url" content="https://www.yygod0120.com/2023/07/21/NextJs/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="拖了好久的 Next.js 终于有空来学一学了  什么是 Next.js按照惯例，先介绍一下 Next.js，它是一个 react 的框架，一个框架的框架。当你觉得写 react 在某些时候很不方便的时候，就有必要来学习一下 Next.js 了 它的优势在于：  既支持 SSG(静态预渲染页面),也支持 SSR(请求时预渲染页面) 基于文件下的路由 内置支持 CSSModule,Sass,t">
+<meta property="og:description" content="Next.js 为您提供生产环境所需的所有功能以及最佳的开发体验：包括静态及服务器端融合渲染、 支持 TypeScript、智能化打包、 路由预取等功能 无需任何配置。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.htbUdWgFQ3a94PMEvBr_hQHaEO">
+<meta property="og:image" content="https://www.yygod0120.com/images/NextJS.png">
 <meta property="article:published_time" content="2023-07-21T14:45:33.000Z">
-<meta property="article:modified_time" content="2023-07-21T15:08:34.921Z">
+<meta property="article:modified_time" content="2023-07-22T07:38:17.792Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="Next.js">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.htbUdWgFQ3a94PMEvBr_hQHaEO">
+<meta name="twitter:image" content="https://www.yygod0120.com/images/NextJS.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          444 字
+          1.4k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          4 分钟
+          12 分钟
         
       </span>
     
@@ -315,7 +315,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年7月21日 晚上
+                    本文最后更新于：2023年7月22日 下午
                   
                 
               </p>
@@ -323,12 +323,13 @@
             
               <div class="markdown-body">
                 
-                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.htbUdWgFQ3a94PMEvBr_hQHaEO" srcset="/img/loading.gif" lazyload style="width:50%;margin-left:50%;transform:translateX(-50%)" />
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.htbUdWgFQ3a94PMEvBr_hQHaEO" srcset="/img/loading.gif" lazyload style="width:70%;margin-left:50%;transform:translateX(-50%)" />
+</br>
 
-<blockquote>
+<h1 id="什么是-Next-js"><a href="#什么是-Next-js" class="headerlink" title="什么是 Next.js"></a>什么是 Next.js</h1><blockquote>
 <p>拖了好久的 Next.js 终于有空来学一学了</p>
 </blockquote>
-<h1 id="什么是-Next-js"><a href="#什么是-Next-js" class="headerlink" title="什么是 Next.js"></a>什么是 Next.js</h1><p>按照惯例，先介绍一下 Next.js，它是一个 react 的框架，一个框架的框架。当你觉得写 react 在某些时候很不方便的时候，就有必要来学习一下 Next.js 了</p>
+<p>按照惯例，先介绍一下 Next.js，它是一个 react 的框架，一个框架的框架。当你觉得写 react 在某些时候很不方便的时候，就有必要来学习一下 Next.js 了</p>
 <p>它的优势在于：</p>
 <ul>
 <li>既支持 SSG(静态预渲染页面),也支持 SSR(请求时预渲染页面)</li>
@@ -340,7 +341,17 @@
 <h1 id="SSG-与-SSR"><a href="#SSG-与-SSR" class="headerlink" title="SSG 与 SSR"></a>SSG 与 SSR</h1><p>SSG 指的是页面预渲染，当我们使用 react 构建项目的时候，都是通过执行 js 代码来生成 html 和样式然后渲染到页面上，当你对一个 react 项目禁用 js 的时候，你就会发现他们打不开了，而 Next.js 则会提前渲染每个页面的 html，就算你禁用了 js，他一样会被渲染出来。</p>
 <p>Next.js 实现预渲染有两种方式,一个是<strong>静态生成(客户端预渲染)</strong>,一个是<strong>请求时生成(后端预渲染)。</strong></p>
 <p>如果你需要在请求时渲染页面，那就选择 SSR.如果时请求前渲染，那就选择 SSG</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+<h1 id="基于文件下的路由"><a href="#基于文件下的路由" class="headerlink" title="基于文件下的路由"></a>基于文件下的路由</h1><p>一般我们编写 react 的时候离不开路由的切换，而路由的切换就要使用到 react-router-dom 来写，有一点小小的繁琐，而 next.js 支持基于文件的路由，也就是当你在 pages 目录下编写文件的时候，该文件目录就会直接变成 URL 路径。<br>比如说:假设你在<code>/pages/about.js</code>路径下写了一串代码，那么访问<code>http://localhost:3000/about</code>就会呈现出你的页面(本地开发)</p>
+<h1 id="支持-CSSModule，Sass，Tailwindcss"><a href="#支持-CSSModule，Sass，Tailwindcss" class="headerlink" title="支持 CSSModule，Sass，Tailwindcss"></a>支持 CSSModule，Sass，Tailwindcss</h1><p>Next.js 框架支持 CSSModule，Sass，Tailwindcss。<br>CSSModule 就是将 Css 模块化避免冲突。在 Next.js 中将你 css 的后缀改为 xxx.module.css 使用<code>import styles from &#39;./layout.module.css&#39;</code>并且在需要用到 style 的地方<code>styles.name</code>来使用<br>其他的两种需要的时候可以自己查阅文档</p>
+<h1 id="Next-js-提供一些组件"><a href="#Next-js-提供一些组件" class="headerlink" title="Next.js 提供一些组件"></a>Next.js 提供一些组件</h1><p><code>&lt;Link&gt;</code>组件支持在 pages 之间跳转，类似<code>Link</code>的组件。路径就是<code>pages/</code><br><code>&lt;Img&gt;</code>组件更加优化你的图片的生成，它自带懒加载以及图像优化<br><code>&lt;Hea&gt;</code>组件允许你修改页面的<code>&lt;head&gt;</code><br><code>&lt;Script&gt;</code>组件支持高性能的导入第三方 script 脚本。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Script</span><br>  src=<span class="hljs-string">&quot;https://connect.facebook.net/en_US/sdk.js&quot;</span><br>  strategy=<span class="hljs-string">&quot;lazyOnload&quot;</span><br>  onLoad=&#123;<span class="hljs-function">() =&gt;</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`script loaded correctly, window.FB has been populated`</span>)<br>  &#125;<br>/&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>strategy 控制何时加载第三方脚本。 lazyOnload 值告诉 Next.js 在浏览器空闲期间延迟加载此特定脚本</li>
+<li>onLoad 用于在脚本完成加载后立即运行任何 JavaScript 代码。在此示例中，我们将一条消息记录到控制台，指出脚本已正确加载</li>
+</ul>
+<p>如果需要知道更多 Next.js 的内置组件以及组件的用法，可以查阅<a target="_blank" rel="noopener" href="https://nextjs.org/docs/pages/building-your-application/optimizing">官方文档</a></p>
+
                 
               </div>
             
@@ -408,7 +419,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年7月21日</div>
+          <div>2023年7月22日</div>
         </div>
       
       
@@ -438,6 +449,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/07/23/git%E5%AD%A6%E4%B9%A0/" title="git学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">git学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
