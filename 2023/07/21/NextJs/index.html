@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/NextJS.png">
 <meta property="article:published_time" content="2023-07-21T14:45:33.000Z">
-<meta property="article:modified_time" content="2023-07-22T07:38:17.792Z">
+<meta property="article:modified_time" content="2023-07-25T13:39:23.692Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          3k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          12 分钟
+          25 分钟
         
       </span>
     
@@ -315,7 +315,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年7月22日 下午
+                    本文最后更新于：2023年7月25日 晚上
                   
                 
               </p>
@@ -351,6 +351,23 @@
 <li>onLoad 用于在脚本完成加载后立即运行任何 JavaScript 代码。在此示例中，我们将一条消息记录到控制台，指出脚本已正确加载</li>
 </ul>
 <p>如果需要知道更多 Next.js 的内置组件以及组件的用法，可以查阅<a target="_blank" rel="noopener" href="https://nextjs.org/docs/pages/building-your-application/optimizing">官方文档</a></p>
+<h1 id="静态页面生成"><a href="#静态页面生成" class="headerlink" title="静态页面生成"></a>静态页面生成</h1><p>我们的页面都需要有一些数据来支撑构建<br>我们可以使用 getStaticProps 来获取<br>导出页面组件时顺便导出函数<br>这个函数将会获取外部数据并将其作为 Props 发送到页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getSortedPostsData &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticProps</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> allPostsData = <span class="hljs-title function_">getSortedPostsData</span>();<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      allPostsData,<br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>getSortedPostsData 是一个工具函数，你可以在 lib(utils)下编写这种工具函数，值得一提的是因为 Next 是 ssr 渲染，所以你甚至可以编写只有在 node 环境下才能跑的代码，如查询数据库或者 fs 模块等等<br>前提是不能在页面中编写，只能放到工具函数中。</p>
+<p>但如果你需要在请求中获取参数，你就得导出 getServerSideProps</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getServerSideProps</span>(<span class="hljs-params">context</span>) &#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      <span class="hljs-comment">// props for your component</span><br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因为在请求时调用，所以 getServerSideProps 其参数 （ context ） 包含请求特定的参数。<br>Next.js 背后的团队创建了一个名为 SWR 的 React 数据获取钩子。如果您在客户端获取数据，我们强烈建议您这样做。它处理缓存、重新验证、焦点跟踪、间隔重新获取等。我们不会在这里介绍详细信息，但这里有一个用法示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> useSWR <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;swr&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-title function_">useSWR</span>(<span class="hljs-string">&quot;/api/user&quot;</span>, fetch);<br><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>failed to load<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">if</span> (!data) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>hello &#123;data.name&#125;!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><p>首先我们需要一个<code>[id].js</code>的页面在 page 下<br>就像<code>page/posts/[id].js</code><br>其次我们需要一个 getStaticPaths 函数来获取 id</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getAllPostIds &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticPaths</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> paths = <span class="hljs-title function_">getAllPostIds</span>();<br>  <span class="hljs-keyword">return</span> &#123;<br>    paths,<br>    <span class="hljs-attr">fallback</span>: <span class="hljs-literal">false</span>,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>随后就需要 getStaticProps 来获取数据以便构建页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getAllPostIds, getPostData &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticProps</span>(<span class="hljs-params">&#123; params &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> postData = <span class="hljs-title function_">getPostData</span>(params.<span class="hljs-property">id</span>);<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      postData,<br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这下就拥有了一个动态路由来根据 id 变化页面</p>
 
                 
               </div>
@@ -419,7 +436,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年7月22日</div>
+          <div>2023年7月25日</div>
         </div>
       
       
