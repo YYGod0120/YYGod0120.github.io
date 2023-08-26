@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.yygod0120.com/images/Vue.jpg">
 <meta property="article:published_time" content="2023-06-08T11:56:43.000Z">
-<meta property="article:modified_time" content="2023-08-25T03:08:41.429Z">
+<meta property="article:modified_time" content="2023-08-25T07:42:24.307Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Vue">
@@ -314,7 +314,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年8月25日 上午
+                    本文最后更新于：2023年8月25日 下午
                   
                 
               </p>
@@ -478,7 +478,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div class=&quot;static active&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
 <p>绑定的对象并不一定需要写成内联字面量的形式，也可以直接绑定一个对象：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> classObject = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-string">&quot;text-danger&quot;</span>: <span class="hljs-literal">false</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> classObject = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-string">&quot;active&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-string">&quot;text-danger&quot;</span>: <span class="hljs-literal">false</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs template">&lt;div :class=&quot;classObject&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
