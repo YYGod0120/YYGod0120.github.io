@@ -16,27 +16,28 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="React是由Facebook开发的一个JavaScript库，用于构建用户界面（User Interface，UI）。它提供了一种声明式的、高效的、灵活的方式来构建各种规模的应用程序。">
+    <meta name="description" content="在这里汇总一下关于React的基础技术，不包括它的扩充包(Next.js等等)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React">
-<meta property="og:url" content="https://www.yygod0120.com/2023/04/16/React/index.html">
+<meta property="og:title" content="React技术汇总">
+<meta property="og:url" content="https://www.yygod0120.com/2023/10/11/React%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="React是由Facebook开发的一个JavaScript库，用于构建用户界面（User Interface，UI）。它提供了一种声明式的、高效的、灵活的方式来构建各种规模的应用程序。">
+<meta property="og:description" content="在这里汇总一下关于React的基础技术，不包括它的扩充包(Next.js等等)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.yygod0120.com/images/React.png">
-<meta property="article:published_time" content="2023-04-16T03:02:34.555Z">
-<meta property="article:modified_time" content="2023-06-04T11:20:35.403Z">
+<meta property="og:image" content="https://www.yygod0120.com/jiaoshou.png">
+<meta property="og:image" content="https://www.yygod0120.com/zustand.png">
+<meta property="article:published_time" content="2023-10-11T14:54:39.000Z">
+<meta property="article:modified_time" content="2023-10-11T15:13:22.060Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.yygod0120.com/images/React.png">
+<meta name="twitter:image" content="https://www.yygod0120.com/jiaoshou.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>React - Ye&#39;s Blog</title>
+  <title>React技术汇总 - Ye&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="React"></span>
+            <span id="subtitle" data-typed-text="React技术汇总"></span>
           
         </div>
 
@@ -240,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-16 11:02" pubdate>
-          2023年4月16日 上午
+        <time datetime="2023-10-11 22:54" pubdate>
+          2023年10月11日 晚上
         </time>
       </span>
     
@@ -252,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          32k 字
+          42k 字
         
       </span>
     
@@ -263,7 +264,7 @@
         
         
         
-          266 分钟
+          354 分钟
         
       </span>
     
@@ -309,12 +310,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">React</h1>
+            <h1 style="display: none">React技术汇总</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月4日 晚上
+                    本文最后更新于：2023年10月11日 晚上
                   
                 
               </p>
@@ -322,7 +323,17 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
+                <h1 id="React-脚手架"><a href="#React-脚手架" class="headerlink" title="React 脚手架"></a>React 脚手架</h1><p>React 脚手架：来帮助程序员快速创建一个基于 xxx 库的模板项目<br>项目的整体技术架构为: react+webpacl+es6eslint</p>
+<h2 id="React-脚手架使用"><a href="#React-脚手架使用" class="headerlink" title="React 脚手架使用"></a>React 脚手架使用</h2><p>第一步：全局安装<br><code>npm install -g create-react-app</code></p>
+<p>第二步：创建项目目录<br><code>create-react-app name</code><br><code>create-react-app name --template typescript</code> ts 的项目</p>
+<p>第三步：启动项目<br><code>cd name</code><br><code>npm start</code></p>
+<h2 id="脚手架文件说明"><a href="#脚手架文件说明" class="headerlink" title="脚手架文件说明"></a>脚手架文件说明</h2><h3 id="public-目录"><a href="#public-目录" class="headerlink" title="public 目录"></a>public 目录</h3><p>public 目录下存放静态文件，比如 icon 和 html 文件</p>
+<h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h4><p><img src="/jiaoshou.png" srcset="/img/loading.gif" lazyload alt="说明"></p>
+<h3 id="src"><a href="#src" class="headerlink" title="src"></a>src</h3><p>src 目录下存放 APP 文件和相关组件</p>
+<h4 id="APP-JS"><a href="#APP-JS" class="headerlink" title="APP.JS"></a>APP.JS</h4><p>你应用的最终集合组件。</p>
+<h4 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h4><p>渲染的入口文件，用于渲染</p>
+<h4 id="其他文件"><a href="#其他文件" class="headerlink" title="其他文件"></a>其他文件</h4><p>不是很重要，包括 APP 组件测试的 js 文件，对你 AppReact 旧用法的警告，页面性能检测</p>
+<h1 id="React-基础知识"><a href="#React-基础知识" class="headerlink" title="React 基础知识"></a>React 基础知识</h1><blockquote>
 <p>React 开发前言：<br><a target="_blank" rel="noopener" href="https://react.docschina.org/learn/editor-setup">对你的编辑器设置一下</a></p>
 </blockquote>
 <h2 id="什么是-React"><a href="#什么是-React" class="headerlink" title="什么是 React"></a>什么是 React</h2><p>React 是一个用于构建用户界面（UI）的 JavaScript 库，用户界面由按钮、文本和图像等小单元内容构建而成。React 帮助你把它们组合成可重用、可嵌套的 _组件_。从 web 端网站到移动端应用，屏幕上的所有内容都可以被分解成组件。</p>
@@ -883,6 +894,191 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>自此，React 的初步内容学习完毕，前面简单后面难，并且写到后面肉眼可见的简陋（主要是自己也没看太懂）</p>
 <p>参考内容<a target="_blank" rel="noopener" href="https://react.docschina.org/learn">React 原文档</a></p>
 <p>下一步继续深入 React，顺带学习学习 Next.js</p>
+<h1 id="ReactRouter6"><a href="#ReactRouter6" class="headerlink" title="ReactRouter6"></a>ReactRouter6</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><blockquote>
+<p>安装 npm install react-router-dom</p>
+</blockquote>
+<ol>
+<li><p>React Router 以三个不同的包发布到 npm 上，它们分别为：</p>
+<ol>
+<li>react-router: 路由的核心库，提供了很多的：组件、钩子。</li>
+<li><strong style="color:#dd4d40"><strong>react-router-dom:</strong></strong > <strong style="color:#dd4d40">包含 react-router 所有内容，并添加一些专门用于 DOM 的组件，例如 <code>&lt;BrowserRouter&gt;</code>等 </strong>。</li>
+<li>react-router-native: 包括 react-router 所有内容，并添加一些专门用于 ReactNative 的 API，例如:<code>&lt;NativeRouter&gt;</code>等。</li>
+</ol>
+</li>
+<li><p>与 React Router 5.x 版本相比，改变了什么？</p>
+<ol>
+<li><p>内置组件的变化：移除<code>&lt;Switch/&gt;</code> ，新增 <code>&lt;Routes/&gt;</code>等。</p>
+</li>
+<li><p>语法的变化：<code>component=&#123;About&#125;</code> 变为 <code>element=&#123;&lt;About/&gt;&#125;</code>等。</p>
+</li>
+<li><p>新增多个 hook：<code>useParams</code>、<code>useNavigate</code>、<code>useMatch</code>等。</p>
+</li>
+<li><p><strong style="color:#dd4d40">官方明确推荐函数式组件了！！！</strong></p>
+<p>……</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-Component"><a href="#2-Component" class="headerlink" title="2.Component"></a>2.Component</h2><h3 id="1-lt-BrowserRouter-gt"><a href="#1-lt-BrowserRouter-gt" class="headerlink" title="1. &lt;BrowserRouter&gt;"></a>1. <code>&lt;BrowserRouter&gt;</code></h3><ol>
+<li><p>说明：<code>&lt;BrowserRouter&gt; </code>用于包裹整个应用。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-dom&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">BrowserRouter</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">BrowserRouter</span>&gt;</span>&#123;/* 整体结构（通常为App组件） */&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">BrowserRouter</span>&gt;</span></span>,<br>  root<br>);<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-lt-HashRouter-gt"><a href="#2-lt-HashRouter-gt" class="headerlink" title="2. &lt;HashRouter&gt;"></a>2. <code>&lt;HashRouter&gt;</code></h3><ol>
+<li>说明：作用与<code>&lt;BrowserRouter&gt;</code>一样，但<code>&lt;HashRouter&gt;</code>修改的是地址栏的 hash 值。</li>
+<li>备注：6.x 版本中<code>&lt;HashRouter&gt;</code>、<code>&lt;BrowserRouter&gt; </code> 的用法与 5.x 相同。</li>
+</ol>
+<h3 id="3-lt-Routes-gt-与-lt-Route-gt"><a href="#3-lt-Routes-gt-与-lt-Route-gt" class="headerlink" title="3. &lt;Routes/&gt; 与 &lt;Route/&gt;"></a>3. <code>&lt;Routes/&gt; 与 &lt;Route/&gt;</code></h3><ol>
+<li><p>v6 版本中移出了先前的<code>&lt;Switch&gt;</code>，引入了新的替代者：<code>&lt;Routes&gt;</code>。</p>
+</li>
+<li><p><code>&lt;Routes&gt;</code> 和 <code>&lt;Route&gt;</code>要配合使用，且必须要用<code>&lt;Routes&gt;</code>包裹<code>&lt;Route&gt;</code>。</p>
+</li>
+<li><p><code>&lt;Route&gt;</code> 相当于一个 if 语句，如果其路径与当前 URL 匹配，则呈现其对应的组件。</p>
+</li>
+<li><p><code>&lt;Route caseSensitive&gt;</code> 属性用于指定：匹配时是否区分大小写（默认为 false）。</p>
+</li>
+<li><p>当 URL 发生变化时，<code>&lt;Routes&gt; </code>都会查看其所有子<code> &lt;Route&gt;</code> 元素以找到最佳匹配并呈现组件 。</p>
+</li>
+<li><p><code>&lt;Route&gt;</code> 也可以嵌套使用，且可配合<code>useRoutes()</code>配置 “路由表” ，但需要通过 <code>&lt;Outlet&gt;</code> 组件来渲染其子路由。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Routes</span>&gt;<br>  <span class="hljs-comment">/*path属性用于定义路径，element属性用于定义当前路径所对应的组件*/</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/login&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Login</span> /&gt;</span>&#125;&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br>  <span class="hljs-comment">/*用于定义嵌套路由，home是一级路由，对应的路径/home*/</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;home&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Home</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">    /*test1 和 test2 是二级路由,对应的路径是/home/test1 或 /home/test2*/</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;test1&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Test</span> /&gt;</span>&#125;&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;test2&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Test2</span> /&gt;</span>&#125;&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br>  <span class="hljs-comment">//Route也可以不写element属性, 这时就是用于展示嵌套的路由 .所对应的路径是/users/xxx</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;users&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;xxx&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Demo</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br>&lt;/<span class="hljs-title class_">Routes</span>&gt;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-lt-Link-gt"><a href="#4-lt-Link-gt" class="headerlink" title="4. &lt;Link&gt;"></a>4. <code>&lt;Link&gt;</code></h3><ol>
+<li><p>作用: 修改 URL，且不发送网络请求（路由链接）。</p>
+</li>
+<li><p>注意: 外侧需要用<code>&lt;BrowserRouter&gt;</code>或<code>&lt;HashRouter&gt;</code>包裹。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Link</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Test</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/路径&quot;</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="5-lt-NavLink-gt"><a href="#5-lt-NavLink-gt" class="headerlink" title="5. &lt;NavLink&gt;"></a>5. <code>&lt;NavLink&gt;</code></h3><ol>
+<li><p>作用: 与<code>&lt;Link&gt;</code>组件类似，且可实现导航的“高亮”效果。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 注意: NavLink默认类名是active，下面是指定自定义的class</span><br><br><span class="hljs-comment">//自定义样式</span><br>&lt;<span class="hljs-title class_">NavLink</span><br>    to=<span class="hljs-string">&quot;login&quot;</span><br>    className=&#123;<span class="hljs-function">(<span class="hljs-params">&#123; isActive &#125;</span>) =&gt;</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;home&#x27;</span>, isActive)<br>        <span class="hljs-keyword">return</span> isActive ? <span class="hljs-string">&#x27;base one&#x27;</span> : <span class="hljs-string">&#x27;base&#x27;</span><br>    &#125;&#125;<br>&gt;login&lt;/<span class="hljs-title class_">NavLink</span>&gt;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">	默认情况下，当Home的子组件匹配成功，Home的导航也会高亮，</span><br><span class="hljs-comment">	当NavLink上添加了end属性后，若Home的子组件匹配成功，则Home的导航没有高亮效果。</span><br><span class="hljs-comment">*/</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;home&quot;</span> <span class="hljs-attr">end</span> &gt;</span>home<span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="6-lt-Navigate-gt"><a href="#6-lt-Navigate-gt" class="headerlink" title="6. &lt;Navigate&gt;"></a>6. <code>&lt;Navigate&gt;</code></h3><ol>
+<li><p>作用：只要<code>&lt;Navigate&gt;</code>组件被渲染，就会修改路径，切换视图。</p>
+</li>
+<li><p><code>replace</code>属性用于控制跳转模式（push 或 replace，默认是 push）。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Navigate</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Home</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [sum, setSum] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>我是Home的内容<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      &#123;/* 根据sum的值决定是否切换视图 */&#125;</span><br><span class="language-xml">      &#123;sum === 1 ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>sum的值为&#123;sum&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/about&quot;</span> <span class="hljs-attr">replace</span>=<span class="hljs-string">&#123;true&#125;</span> /&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setSum(2)&#125;&gt;点我将sum变为2<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="7-lt-Outlet-gt"><a href="#7-lt-Outlet-gt" class="headerlink" title="7. &lt;Outlet&gt;"></a>7. <code>&lt;Outlet&gt;</code></h3><ol>
+<li><p>当<code>&lt;Route&gt;</code>产生嵌套时，渲染其对应的后续子路由。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">//根据路由表生成对应的路由规则</span><br><span class="hljs-keyword">const</span> element = <span class="hljs-title function_">useRoutes</span>([<br>  &#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/about&quot;</span>,<br>    <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">About</span> /&gt;</span></span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/home&quot;</span>,<br>    <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Home</span> /&gt;</span></span>,<br>    <span class="hljs-attr">children</span>: [<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;news&quot;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">News</span> /&gt;</span></span>,<br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;message&quot;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Message</span> /&gt;</span></span>,<br>      &#125;,<br>    ],<br>  &#125;,<br>]);<br><br><span class="hljs-comment">//Home.js</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">NavLink</span>, <span class="hljs-title class_">Outlet</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Home</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Home组件内容<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;nav nav-tabs&quot;</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list-group-item&quot;</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;news&quot;</span>&gt;</span></span><br><span class="language-xml">              News</span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list-group-item&quot;</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;</span></span><br><span class="language-xml">              Message</span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">        &#123;/* 指定路由组件呈现的位置 */&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Outlet</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-Hooks"><a href="#3-Hooks" class="headerlink" title="3.Hooks"></a>3.Hooks</h2><h3 id="1-useRoutes"><a href="#1-useRoutes" class="headerlink" title="1. useRoutes()"></a>1. useRoutes()</h3><ol>
+<li><p>作用：根据路由表，动态创建<code>&lt;Routes&gt;</code>和<code>&lt;Route&gt;</code>。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">//路由表配置：src/routes/index.js</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">About</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../pages/About&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Home</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../pages/Home&#x27;</span><br><span class="hljs-keyword">import</span> &#123;<span class="hljs-title class_">Navigate</span>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> [<br>	&#123;<br>		<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about&#x27;</span>,<br>		<span class="hljs-attr">element</span>:<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">About</span>/&gt;</span></span><br>	&#125;,<br>	&#123;<br>		<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/home&#x27;</span>,<br>		<span class="hljs-attr">element</span>:<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Home</span>/&gt;</span></span><br>	&#125;,<br>	&#123;<br>		<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/&#x27;</span>,<br>		<span class="hljs-attr">element</span>:<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/about&quot;</span>/&gt;</span></span><br>	&#125;<br>]<br><br><span class="hljs-comment">//App.jsx</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> &#123;<span class="hljs-title class_">NavLink</span>,useRoutes&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span><br><span class="hljs-keyword">import</span> routes <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./routes&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">//根据路由表生成对应的路由规则</span><br>	<span class="hljs-keyword">const</span> element = <span class="hljs-title function_">useRoutes</span>(routes)<br>	<span class="hljs-keyword">return</span> (<br>		<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">			......</span><br><span class="language-xml">      &#123;/* 注册路由 */&#125;</span><br><span class="language-xml">      &#123;element&#125;</span><br><span class="language-xml">		  ......</span><br><span class="language-xml">		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>	)<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-useNavigate"><a href="#2-useNavigate" class="headerlink" title="2. useNavigate()"></a>2. useNavigate()</h3><ol>
+<li><p>作用：返回一个函数用来实现编程式导航。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useNavigate &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Demo</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>();<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handle</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-comment">//第一种使用方式：指定具体的路径</span><br>    <span class="hljs-title function_">navigate</span>(<span class="hljs-string">&quot;/login&quot;</span>, &#123;<br>      <span class="hljs-attr">replace</span>: <span class="hljs-literal">false</span>,<br>      <span class="hljs-attr">state</span>: &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;,<br>    &#125;);<br>    <span class="hljs-comment">//第二种使用方式：传入数值进行前进或后退，类似于5.x中的 history.go()方法</span><br>    <span class="hljs-title function_">navigate</span>(-<span class="hljs-number">1</span>);<br>  &#125;;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handle&#125;</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-useParams"><a href="#3-useParams" class="headerlink" title="3. useParams()"></a>3. useParams()</h3><ol>
+<li><p>作用：回当前匹配路由的<code>params</code>参数，类似于 5.x 中的<code>match.params</code>。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Routes</span>, <span class="hljs-title class_">Route</span>, useParams &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./pages/User.jsx&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ProfilePage</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// 获取URL中携带过来的params参数</span><br>  <span class="hljs-keyword">let</span> &#123; id &#125; = <span class="hljs-title function_">useParams</span>();<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;users/:id&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">User</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-useSearchParams"><a href="#4-useSearchParams" class="headerlink" title="4. useSearchParams()"></a>4. useSearchParams()</h3><ol>
+<li><p>作用：用于读取和修改当前位置的 URL 中的查询字符串。</p>
+</li>
+<li><p>返回一个包含两个值的数组，内容分别为：当前的 seaech 参数、更新 search 的函数。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useSearchParams &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Detail</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [search, setSearch] = <span class="hljs-title function_">useSearchParams</span>();<br>  <span class="hljs-keyword">const</span> id = search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;id&quot;</span>);<br>  <span class="hljs-keyword">const</span> title = search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;title&quot;</span>);<br>  <span class="hljs-keyword">const</span> content = search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;content&quot;</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setSearch(&quot;id=008&amp;title=哈哈&amp;content=嘻嘻&quot;)&#125;&gt;</span><br><span class="language-xml">          点我更新一下收到的search参数</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息编号：&#123;id&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息标题：&#123;title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息内容：&#123;content&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="5-useLocation"><a href="#5-useLocation" class="headerlink" title="5. useLocation()"></a>5. useLocation()</h3><ol>
+<li><p>作用：获取当前 location 信息，对标 5.x 中的路由组件的<code>location</code>属性。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useLocation &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Detail</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> x = <span class="hljs-title function_">useLocation</span>();<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;@&quot;</span>, x);<br>  <span class="hljs-comment">// x就是location对象:</span><br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">		&#123;</span><br><span class="hljs-comment">      hash: &quot;&quot;,</span><br><span class="hljs-comment">      key: &quot;ah9nv6sz&quot;,</span><br><span class="hljs-comment">      pathname: &quot;/login&quot;,</span><br><span class="hljs-comment">      search: &quot;?name=zs&amp;age=18&quot;,</span><br><span class="hljs-comment">      state: &#123;a: 1, b: 2&#125;</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">	*/</span><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息编号：&#123;id&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息标题：&#123;title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>消息内容：&#123;content&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="6-useMatch"><a href="#6-useMatch" class="headerlink" title="6. useMatch()"></a>6. useMatch()</h3><ol>
+<li><p>作用：返回当前匹配信息，对标 5.x 中的路由组件的<code>match</code>属性。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Route</span> path=<span class="hljs-string">&quot;/login/:page/:pageSize&quot;</span> element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Login</span> /&gt;</span></span>&#125;/&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/login/1/10&quot;</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Login</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> match = <span class="hljs-title function_">useMatch</span>(<span class="hljs-string">&#x27;/login/:x/:y&#x27;</span>)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(match) <span class="hljs-comment">//输出match对象</span><br>  <span class="hljs-comment">//match对象内容如下：</span><br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">  	&#123;</span><br><span class="hljs-comment">      params: &#123;x: &#x27;1&#x27;, y: &#x27;10&#x27;&#125;</span><br><span class="hljs-comment">      pathname: &quot;/LoGin/1/10&quot;</span><br><span class="hljs-comment">      pathnameBase: &quot;/LoGin/1/10&quot;</span><br><span class="hljs-comment">      pattern: &#123;</span><br><span class="hljs-comment">      	path: &#x27;/login/:x/:y&#x27;,</span><br><span class="hljs-comment">      	caseSensitive: false,</span><br><span class="hljs-comment">      	end: false</span><br><span class="hljs-comment">      &#125;</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-keyword">return</span> (<br>  	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Login<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  )<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="7-useInRouterContext"><a href="#7-useInRouterContext" class="headerlink" title="7. useInRouterContext()"></a>7. useInRouterContext()</h3><p>​ 作用：如果组件在 <code>&lt;Router&gt;</code> 的上下文中呈现，则 <code>useInRouterContext</code> 钩子返回 true，否则返回 false。</p>
+<h3 id="8-useNavigationType"><a href="#8-useNavigationType" class="headerlink" title="8. useNavigationType()"></a>8. useNavigationType()</h3><ol>
+<li>作用：返回当前的导航类型（用户是如何来到当前页面的）。</li>
+<li>返回值：<code>POP</code>、<code>PUSH</code>、<code>REPLACE</code>。</li>
+<li>备注：<code>POP</code>是指在浏览器中直接打开了这个路由组件（刷新页面）。</li>
+</ol>
+<h3 id="9-useOutlet"><a href="#9-useOutlet" class="headerlink" title="9. useOutlet()"></a>9. useOutlet()</h3><ol>
+<li><p>作用：用来呈现当前组件中渲染的嵌套路由。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> result = <span class="hljs-title function_">useOutlet</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br><span class="hljs-comment">// 如果嵌套路由没有挂载,则result为null</span><br><span class="hljs-comment">// 如果嵌套路由已经挂载,则展示嵌套的路由对象</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="10-useResolvedPath"><a href="#10-useResolvedPath" class="headerlink" title="10.useResolvedPath()"></a>10.useResolvedPath()</h3><ol>
+<li>作用：给定一个 URL 值，解析其中的：path、search、hash 值。</li>
+</ol>
+<h1 id="React-状态管理工具"><a href="#React-状态管理工具" class="headerlink" title="React 状态管理工具"></a>React 状态管理工具</h1><p><strong>React 自带：</strong> props,Context<br><strong>单向数据流：</strong>Flux(被 Redux 平替)，Redux(Redux-toolkit)<br><strong>双向数据绑定：</strong>Mobx<br><strong>原子型状态管理：</strong>Recoil、Jotai<br><strong>异步操作密集型：</strong>Rxjs</p>
+<h2 id="Local-State-props"><a href="#Local-State-props" class="headerlink" title="Local State-props"></a>Local State-props</h2><p>React 原生自带的组件之间传递信息的方式，从父组件单向传递给子组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br><span class="hljs-comment">//Child1</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Child1</span> = (<span class="hljs-params">&#123;name1, ...otherProps&#125;</span>) =&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>&#123;name1&#125;<span class="hljs-tag">&lt;/&gt;</span></span><br>&#125;<br><span class="hljs-comment">//Child2 5491</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Child2</span> = (<span class="hljs-params"> &#123;name2&#125;</span>)=&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>&#123;name2&#125;<span class="hljs-tag">&lt;/&gt;</span></span><br>&#125;<br><span class="hljs-comment">// Parent</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Parent</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br><br>    <span class="hljs-keyword">const</span> [name1 ,setName1] = useState ( <span class="hljs-string">&quot;Tom&quot;</span><span class="hljs-string">&#x27;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">    const [name2 ,setName2] = useState ( &quot;Jerry&quot;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">return &lt;&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &lt;Child1 name1=&#123;name1&#125; name2=&#123;name2&#125;&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &lt;Child2 name2=&#123;name2&#125; /&gt;</span><br><span class="hljs-string">    &lt;/&gt;</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>但是当父组件与子组件之间的层级关系过于多的时候，一层一层传递 props 显得过于臃肿<br>所以就引申出了 Context 这种状态管理<br>移步到<a href="/2023/04/15/React/index.html">React</a>查看如何编写一个 Context</p>
+<p>但是 Context 也存在一些问题</p>
+<ol>
+<li>Context 相当于全局变量,难以追溯数据的变更情况</li>
+<li>使用 Context 的组件内部耦合度太高，不利于组件的复用和单元测试</li>
+<li>会产生不必要的更新(比如会穿透 memo 和 dependicies 等)</li>
+<li>Context 只能存储单一值，无法存储多个各自拥有消费者的值的集合</li>
+<li>粒度也不太好控制，不能细粒度的区分组件依赖了哪一个 Context</li>
+<li>多个 Context 会存在层层嵌套的问题</li>
+</ol>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>Redux 是由 Flux 演变而来的，Flux 是 Facebook 官方给出的应用架构，利用数据的单向流动的形式对公共状态进行管理，不过现在已经被 Redux 平替了。</p>
+<p>Redux 比较适用用于大型 Web 项目，尤其是一些交互比较复杂，组件通信频繁的场景，状态可预测和回溯是非常有价值的。</p>
+<p><a target="_blank" rel="noopener" href="https://cn.redux.js.org/">Redux 中文官网</a></p>
+<blockquote>
+<p>推荐顺带学习 Redux-toolkit，是官方推荐的高效的 redux 状态管理工具集<br>能够简化 Redux 开发，包括配置 store，定义 reducer 等等，而且也提供了完整的 React hooks，可以方便 react 函数组件中使用 Redux toolkit</p>
+</blockquote>
+<h2 id="Redux-toolkit-中文官网"><a href="#Redux-toolkit-中文官网" class="headerlink" title="Redux-toolkit 中文官网"></a><a target="_blank" rel="noopener" href="https://redux-toolkit.js.org/">Redux-toolkit 中文官网</a></h2><p>更新；可以去看看我的另一篇文章<a href="https://www.yygod0120.com/2023/06/05/Redux/">Redux</a></p>
+<h2 id="Zustand"><a href="#Zustand" class="headerlink" title="Zustand"></a>Zustand</h2><p>Zustand 是主打轻量级的状态管理工具，没有 Redux 那样臃肿的设计，也没有兼容 React 类组件的历史包袱，Zustand 状态管理工具体积很小，所以很适合移动端的网页。</p>
+<p>Zustand 的使用极其简单，初始化过程中，我们不仅可以保存状态，也能在初始化的时候制定方法和函数<br><img src="/zustand.png" srcset="/img/loading.gif" lazyload alt="Zustand的案例"></p>
+<p>Zustand 库的核心 API 和 Redux 极为相似，区别主要在于状态的更新，Redux 通过 dispatch 和 reducer 函数进行状态更新，而 Zustand 则是通过 setState 来直接修改状态</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Redux</th>
+<th>Zustand</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建 Store</td>
+<td><code>createStore(reducer,[preloadedState],[enhance])</code></td>
+<td><code>createStore()</code></td>
+</tr>
+<tr>
+<td>获取 state</td>
+<td><code>getState()</code></td>
+<td><code>getState()</code></td>
+</tr>
+<tr>
+<td>监听 state 的变化</td>
+<td><code>subscribe(listener)</code></td>
+<td><code>subscribe(listener)</code></td>
+</tr>
+<tr>
+<td>更新 state</td>
+<td><code>dispatch(action)</code></td>
+<td><code>setState()</code></td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -930,8 +1126,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>React</div>
-      <div>https://www.yygod0120.com/2023/04/16/React/</div>
+      <div>React技术汇总</div>
+      <div>https://www.yygod0120.com/2023/10/11/React技术汇总/</div>
     </div>
     <div class="license-meta">
       
@@ -943,13 +1139,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月16日</div>
+          <div>2023年10月11日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年6月4日</div>
+          <div>2023年10月11日</div>
         </div>
       
       
@@ -980,18 +1176,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/16/webpack/" title="webpack">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webpack</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/15/JS%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A5%E9%97%A8%E9%9A%BE%E7%82%B9/" title="JS的一些入门难点">
-                        <span class="hidden-mobile">JS的一些入门难点</span>
+                      <a href="/2023/10/06/JS%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="JS常用方法">
+                        <span class="hidden-mobile">JS常用方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
