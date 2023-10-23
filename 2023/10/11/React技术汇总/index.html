@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://www.yygod0120.com/jiaoshou.png">
 <meta property="og:image" content="https://www.yygod0120.com/zustand.png">
 <meta property="article:published_time" content="2023-10-11T14:54:39.000Z">
-<meta property="article:modified_time" content="2023-10-22T16:32:11.951Z">
+<meta property="article:modified_time" content="2023-10-23T14:34:54.226Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="React">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          42k 字
+          43k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          354 分钟
+          358 分钟
         
       </span>
     
@@ -315,7 +315,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月23日 凌晨
+                    本文最后更新于：2023年10月23日 晚上
                   
                 
               </p>
@@ -894,6 +894,16 @@
 <p><strong>每次您的组件重新渲染时，所有 Hooks 都会重新运行。</strong></p>
 <p><strong>你的自定义 Hooks 的代码应该是纯净的，就像你的组件的代码一样</strong></p>
 <p><strong>将自定义 Hook 接收到的事件处理程序包装到 Effect Events 中。</strong></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="useMemo-和-useCallback"><a href="#useMemo-和-useCallback" class="headerlink" title="useMemo 和 useCallback"></a>useMemo 和 useCallback</h3><blockquote>
+<p>很少用并且也不推荐使用<br>但你还是得学</p>
+</blockquote>
+<p>useMemo 和 useCallback 都是 react 内部自带的 hook<br>用法大同小异：一个用于缓存值，一个用于缓存函数<br>但记住这两个只适用于性能优化，而不是实现功能<br><a target="_blank" rel="noopener" href="https://react.docschina.org/reference/react/useMemo">useMemo</a><br><a target="_blank" rel="noopener" href="https://react.docschina.org/reference/react/useCallback#updating-state-from-a-memoized-callback">useCallback</a></p>
+<h3 id="update-function"><a href="#update-function" class="headerlink" title="update function"></a>update function</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span><br>  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span><br>  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>react 中这个结果其实是 43 而非 45</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">setAge</span>(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 =&gt; 43)</span><br>  <span class="hljs-title function_">setAge</span>(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(43 =&gt; 44)</span><br>  <span class="hljs-title function_">setAge</span>(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(44 =&gt; 45)</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>你可以向 setAge 传递一个 更新函数，而不是下一个状态<br>这样就是 45</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>自此，React 的初步内容学习完毕，前面简单后面难，并且写到后面肉眼可见的简陋（主要是自己也没看太懂）</p>
 <p>参考内容<a target="_blank" rel="noopener" href="https://react.docschina.org/learn">React 原文档</a></p>
 <p>下一步继续深入 React，顺带学习学习 Next.js</p>
