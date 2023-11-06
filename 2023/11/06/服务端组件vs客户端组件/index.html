@@ -16,28 +16,27 @@
   <meta name="author" content="叶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Next.js 为您提供生产环境所需的所有功能以及最佳的开发体验：包括静态及服务器端融合渲染、 支持 TypeScript、智能化打包、 路由预取等功能 无需任何配置。">
+    <meta name="description" content="NEXTJS14❌PHP✔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NextJs">
-<meta property="og:url" content="https://www.yygod0120.com/2023/07/21/NextJs/index.html">
+<meta property="og:title" content="服务端组件vs客户端组件">
+<meta property="og:url" content="https://www.yygod0120.com/2023/11/06/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BB%84%E4%BB%B6vs%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Ye&#39;s Blog">
-<meta property="og:description" content="Next.js 为您提供生产环境所需的所有功能以及最佳的开发体验：包括静态及服务器端融合渲染、 支持 TypeScript、智能化打包、 路由预取等功能 无需任何配置。">
+<meta property="og:description" content="NEXTJS14❌PHP✔">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.yygod0120.com/images/NextJS.png">
-<meta property="article:published_time" content="2023-07-21T14:45:33.000Z">
-<meta property="article:modified_time" content="2023-07-25T13:39:23.692Z">
+<meta property="og:image" content="https://www.yygod0120.com/images/NEXT14.png">
+<meta property="article:published_time" content="2023-11-06T12:45:02.000Z">
+<meta property="article:modified_time" content="2023-11-06T14:13:02.839Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
-<meta property="article:tag" content="React">
-<meta property="article:tag" content="Next.js">
+<meta property="article:tag" content="NEXTJS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.yygod0120.com/images/NextJS.png">
+<meta name="twitter:image" content="https://www.yygod0120.com/images/NEXT14.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>NextJs - Ye&#39;s Blog</title>
+  <title>服务端组件vs客户端组件 - Ye&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="NextJs"></span>
+            <span id="subtitle" data-typed-text="服务端组件vs客户端组件"></span>
           
         </div>
 
@@ -241,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-21 22:45" pubdate>
-          2023年7月21日 晚上
+        <time datetime="2023-11-06 20:45" pubdate>
+          2023年11月6日 晚上
         </time>
       </span>
     
@@ -253,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          2.2k 字
         
       </span>
     
@@ -264,7 +263,7 @@
         
         
         
-          25 分钟
+          19 分钟
         
       </span>
     
@@ -310,12 +309,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">NextJs</h1>
+            <h1 style="display: none">服务端组件vs客户端组件</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年7月25日 晚上
+                    本文最后更新于：2023年11月6日 晚上
                   
                 
               </p>
@@ -323,51 +322,74 @@
             
               <div class="markdown-body">
                 
-                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.htbUdWgFQ3a94PMEvBr_hQHaEO" srcset="/img/loading.gif" lazyload style="width:70%;margin-left:50%;transform:translateX(-50%)" />
-</br>
-
-<h1 id="什么是-Next-js"><a href="#什么是-Next-js" class="headerlink" title="什么是 Next.js"></a>什么是 Next.js</h1><blockquote>
-<p>拖了好久的 Next.js 终于有空来学一学了</p>
+                <blockquote>
+<p>什么 Next14,我只看到了 PHP</p>
 </blockquote>
-<p>按照惯例，先介绍一下 Next.js，它是一个 react 的框架，一个框架的框架。当你觉得写 react 在某些时候很不方便的时候，就有必要来学习一下 Next.js 了</p>
-<p>它的优势在于：</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上上周，Vercel 推出了重磅的 NEXT14。作为 React 中的 NO.1，React 官方都推荐的 React 框架，SSR 的最佳实践者——NEXTJS 把魔爪伸向了后端</p>
+<p>这次 NEXTJS14 大版本主要做了三个大事</p>
+<p>第一个是优化了 Turbopack,带来了大幅的性能提升，在 app router 和 page router 中通过了 5000 个测试：</p>
 <ul>
-<li>既支持 SSG(静态预渲染页面),也支持 SSR(请求时预渲染页面)</li>
-<li>基于文件下的路由</li>
-<li>内置支持 CSSModule,Sass,tailwindcss</li>
-<li>支持 Typescript</li>
-<li>0 配置，快速刷新，代码拆分和打包</li>
+<li>本地启动服务器时间快了约 50%</li>
+<li>热模块替换速度快了约 94%</li>
 </ul>
-<h1 id="SSG-与-SSR"><a href="#SSG-与-SSR" class="headerlink" title="SSG 与 SSR"></a>SSG 与 SSR</h1><p>SSG 指的是页面预渲染，当我们使用 react 构建项目的时候，都是通过执行 js 代码来生成 html 和样式然后渲染到页面上，当你对一个 react 项目禁用 js 的时候，你就会发现他们打不开了，而 Next.js 则会提前渲染每个页面的 html，就算你禁用了 js，他一样会被渲染出来。</p>
-<p>Next.js 实现预渲染有两种方式,一个是<strong>静态生成(客户端预渲染)</strong>,一个是<strong>请求时生成(后端预渲染)。</strong></p>
-<p>如果你需要在请求时渲染页面，那就选择 SSR.如果时请求前渲染，那就选择 SSG</p>
-<h1 id="基于文件下的路由"><a href="#基于文件下的路由" class="headerlink" title="基于文件下的路由"></a>基于文件下的路由</h1><p>一般我们编写 react 的时候离不开路由的切换，而路由的切换就要使用到 react-router-dom 来写，有一点小小的繁琐，而 next.js 支持基于文件的路由，也就是当你在 pages 目录下编写文件的时候，该文件目录就会直接变成 URL 路径。<br>比如说:假设你在<code>/pages/about.js</code>路径下写了一串代码，那么访问<code>http://localhost:3000/about</code>就会呈现出你的页面(本地开发)</p>
-<h1 id="支持-CSSModule，Sass，Tailwindcss"><a href="#支持-CSSModule，Sass，Tailwindcss" class="headerlink" title="支持 CSSModule，Sass，Tailwindcss"></a>支持 CSSModule，Sass，Tailwindcss</h1><p>Next.js 框架支持 CSSModule，Sass，Tailwindcss。<br>CSSModule 就是将 Css 模块化避免冲突。在 Next.js 中将你 css 的后缀改为 xxx.module.css 使用<code>import styles from &#39;./layout.module.css&#39;</code>并且在需要用到 style 的地方<code>styles.name</code>来使用<br>其他的两种需要的时候可以自己查阅文档</p>
-<h1 id="Next-js-提供一些组件"><a href="#Next-js-提供一些组件" class="headerlink" title="Next.js 提供一些组件"></a>Next.js 提供一些组件</h1><p><code>&lt;Link&gt;</code>组件支持在 pages 之间跳转，类似<code>Link</code>的组件。路径就是<code>pages/</code><br><code>&lt;Img&gt;</code>组件更加优化你的图片的生成，它自带懒加载以及图像优化<br><code>&lt;Hea&gt;</code>组件允许你修改页面的<code>&lt;head&gt;</code><br><code>&lt;Script&gt;</code>组件支持高性能的导入第三方 script 脚本。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Script</span><br>  src=<span class="hljs-string">&quot;https://connect.facebook.net/en_US/sdk.js&quot;</span><br>  strategy=<span class="hljs-string">&quot;lazyOnload&quot;</span><br>  onLoad=&#123;<span class="hljs-function">() =&gt;</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`script loaded correctly, window.FB has been populated`</span>)<br>  &#125;<br>/&gt;<br></code></pre></td></tr></table></figure>
-
+<p>但是并非所有的测试都通过了，还有 10%的测试还没通过，所以 Turbopack 属于是不稳定的阶段</p>
+<p>第二个就是引起热烈讨论的 php 化的 Server Actions 标记为稳定</p>
 <ul>
-<li>strategy 控制何时加载第三方脚本。 lazyOnload 值告诉 Next.js 在浏览器空闲期间延迟加载此特定脚本</li>
-<li>onLoad 用于在脚本完成加载后立即运行任何 JavaScript 代码。在此示例中，我们将一条消息记录到控制台，指出脚本已正确加载</li>
+<li>集成了缓存和重新验证</li>
+<li>简单的函数调用，与表单原生配合使用</li>
 </ul>
-<p>如果需要知道更多 Next.js 的内置组件以及组件的用法，可以查阅<a target="_blank" rel="noopener" href="https://nextjs.org/docs/pages/building-your-application/optimizing">官方文档</a></p>
-<h1 id="静态页面生成"><a href="#静态页面生成" class="headerlink" title="静态页面生成"></a>静态页面生成</h1><p>我们的页面都需要有一些数据来支撑构建<br>我们可以使用 getStaticProps 来获取<br>导出页面组件时顺便导出函数<br>这个函数将会获取外部数据并将其作为 Props 发送到页面</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getSortedPostsData &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticProps</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> allPostsData = <span class="hljs-title function_">getSortedPostsData</span>();<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      allPostsData,<br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>getSortedPostsData 是一个工具函数，你可以在 lib(utils)下编写这种工具函数，值得一提的是因为 Next 是 ssr 渲染，所以你甚至可以编写只有在 node 环境下才能跑的代码，如查询数据库或者 fs 模块等等<br>前提是不能在页面中编写，只能放到工具函数中。</p>
-<p>但如果你需要在请求中获取参数，你就得导出 getServerSideProps</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getServerSideProps</span>(<span class="hljs-params">context</span>) &#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      <span class="hljs-comment">// props for your component</span><br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>因为在请求时调用，所以 getServerSideProps 其参数 （ context ） 包含请求特定的参数。<br>Next.js 背后的团队创建了一个名为 SWR 的 React 数据获取钩子。如果您在客户端获取数据，我们强烈建议您这样做。它处理缓存、重新验证、焦点跟踪、间隔重新获取等。我们不会在这里介绍详细信息，但这里有一个用法示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> useSWR <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;swr&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-title function_">useSWR</span>(<span class="hljs-string">&quot;/api/user&quot;</span>, fetch);<br><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>failed to load<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">if</span> (!data) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>hello &#123;data.name&#125;!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><p>首先我们需要一个<code>[id].js</code>的页面在 page 下<br>就像<code>page/posts/[id].js</code><br>其次我们需要一个 getStaticPaths 函数来获取 id</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getAllPostIds &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticPaths</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> paths = <span class="hljs-title function_">getAllPostIds</span>();<br>  <span class="hljs-keyword">return</span> &#123;<br>    paths,<br>    <span class="hljs-attr">fallback</span>: <span class="hljs-literal">false</span>,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>随后就需要 getStaticProps 来获取数据以便构建页面</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; getAllPostIds, getPostData &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../lib/posts&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaticProps</span>(<span class="hljs-params">&#123; params &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> postData = <span class="hljs-title function_">getPostData</span>(params.<span class="hljs-property">id</span>);<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      postData,<br>    &#125;,<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>这下就拥有了一个动态路由来根据 id 变化页面</p>
+<p>第三个就是部分预渲染(预览版)，这部分内容还属于不完全阶段，预计在下几个小版本慢慢完善</p>
+<ul>
+<li>Suspense(流式渲染)：可以在 NEXT14 中使用，具体的可以参看官方的教程</li>
+</ul>
+<p>剩下的内容就是一些杂项，包括推出了最新的 NEXT 教程以及一些 bug 的修复</p>
+<hr>
+<p><strong>回归到重点！！</strong><br>很多人觉得 NEXTJS 推行的服务器操作完全就是越来越退化，从前后端分离又回到前后端耦合，属于是 php2.0。<br>但我觉得 NEXT 作为一个主打服务端渲染的框架，就是想进一步优化这种服务端组件的渲染，更好的在前端直接获取到数据库数据，进行数据库的操作，减轻客户端的渲染压力，进一步的优化 WEB 应用<br>至于安全性，有人说好有人说不行，具体的我也不太清楚，这里就不多说</p>
+<p>重点是在之前了解 NEXTJS 的时候，压根就没有服务端组件和客户端组件的概念，对 SSR(服务端渲染)也是一知半解<br>所以我看了几篇文章，加上一些自己的理解，记录一下</p>
+<h1 id="服务端组件"><a href="#服务端组件" class="headerlink" title="服务端组件"></a>服务端组件</h1><h2 id="什么是服务端组件"><a href="#什么是服务端组件" class="headerlink" title="什么是服务端组件"></a>什么是服务端组件</h2><p>服务端组件就是在服务端渲染的组件，NEXT 框架下的 APP 目录下的组件都默认为服务端组件</p>
+<h2 id="服务端组件-SSR-的优势"><a href="#服务端组件-SSR-的优势" class="headerlink" title="服务端组件(SSR)的优势"></a>服务端组件(SSR)的优势</h2><ul>
+<li>便于直接和服务器数据打交道，不需要客户端额外进行渲染，加快数据的获取</li>
+<li>安全性高，渲染直接在服务器上执行，不会有暴露敏感令牌或者密钥的风险</li>
+<li>加载速度快，服务端渲染的结果可以进行缓存，多次请求一个页面可以加快返回，不用重新渲染，对于一些大型库和框架，在服务器上跑的时间大大小于客户端，加快加速</li>
+<li>初始页面和首次内容绘制快，服务端渲染的页面可以直接返回可见的内容，而客户端的需要等待 js 执行完毕</li>
+<li>有助于搜索引擎的优化，服务端渲染会提供完整的 HTML，有助于爬虫的爬取，提高 SEO 排名</li>
+</ul>
+<h2 id="服务端组件的缺点"><a href="#服务端组件的缺点" class="headerlink" title="服务端组件的缺点"></a>服务端组件的缺点</h2><ul>
+<li>无法进行交互，无法添加事件监听器</li>
+<li>无法使用 React 的状态和生命周期效果(useState(),useReducer(),useEffect())</li>
+<li>无法使用浏览器专用 API</li>
+<li>无法使用依赖 React 的状态和生命周期效果的自定义钩子</li>
+<li>无法使用 React 类组件</li>
+</ul>
+<h2 id="服务端组件的渲染方式"><a href="#服务端组件的渲染方式" class="headerlink" title="服务端组件的渲染方式"></a>服务端组件的渲染方式</h2><ol>
+<li><p>静态渲染(默认)<br>NextJS v13 的服务端组件默认是静态渲染<br>它会在构建的时候进行渲染，或者数据重新验证后在渲染。<br>渲染的结果会被缓存，推送到内容分发网络(CDN)</p>
+</li>
+<li><p>动态渲染<br>渲染过程中，如果 NextJS 发现有动态函数或未缓存的数据请求，会自动切换为动态渲染整个路由。<br>动态渲染的一个特点就是数据不会被缓存，一更新马上重新渲染。<br>动态函数依赖于只能在请求时知道的信息，如用户的 cookie、当前请求头或 URL 的搜索参数。</p>
+</li>
+<li><p>流式渲染<br>这个是 NEXTJS14 重磅推出的一种渲染方式：它会将一个页面上的组件分成几块以流式传输到客户端，这样就能在页面完全呈现前就能看到页面预览<br>比如说一个组件获取数据慢于其他组件，使用流式渲染就不会阻塞整个页面<br>使用<code>loading.js</code>对路由段进行流式处理，<code>React Suspense</code>对 UI 组件进行流式处理</p>
+</li>
+</ol>
+<h1 id="客户端组件"><a href="#客户端组件" class="headerlink" title="客户端组件"></a>客户端组件</h1><p>如果要使用客户端组件，只需要在组件开头添加 “use client”指令。</p>
+<h2 id="客户端组件的优势"><a href="#客户端组件的优势" class="headerlink" title="客户端组件的优势"></a>客户端组件的优势</h2><ul>
+<li>交互性： 客户端组件可以使用状态、效果和事件监听器，这意味着它们可以向用户提供即时反馈并更新用户界面。</li>
+<li>浏览器 API：客户端组件可以访问浏览器 API，如 window，从而为特定用例构建用户界面。</li>
+</ul>
+<h2 id="客户端组件的渲染"><a href="#客户端组件的渲染" class="headerlink" title="客户端组件的渲染"></a>客户端组件的渲染</h2><p>客户端组件的渲染取决于你的请求是整个页面加载(首屏或者刷新)还是后续导航中的一部分</p>
+<h3 id="整页加载"><a href="#整页加载" class="headerlink" title="整页加载"></a>整页加载</h3><p>为了优化初始页面加载，Next.js 将使用 React 的 API 在服务器上为客户端和服务器组件呈现静态 HTML 预览。这意味着，当用户首次访问您的应用程序时，他们将立即看到页面的内容，而无需等待客户端下载、解析和执行客户端组件 JavaScript 包。<br>随后 NEXT 再进行水合(将事件侦听器附加到 DOM 的过程，以使静态 HTML 具有交互性。)</p>
+<h3 id="后续导航"><a href="#后续导航" class="headerlink" title="后续导航"></a>后续导航</h3><p>在后续导航中，客户端组件完全在客户端上呈现，而不使用服务器呈现的 HTML。这意味着客户端组件 JavaScript 捆绑包已下载并解析。一旦捆绑包准备就绪，React 将使用 RSC Payload 来协调客户端和服务器组件树，并更新 DOM。</p>
+<h1 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h1><p>NEXT 推荐混合使用客户端组件和服务端组件</p>
+<p>注意事项：</p>
+<ul>
+<li>将仅限服务器的代码排除在客户端环境之外</li>
+<li>将第三方包包装在客户端组件中然后再导出到服务端组件</li>
+<li>向下迁移客户端组件，颗粒化客户端组件</li>
+<li>将 props 从服务器传递到客户端组件（序列化）</li>
+<li>不能将服务器组件导入到客户端组件</li>
+<li>可以将服务器组件作为 props 传递给客户端组件</li>
+</ul>
+<p>具体的可以查看官方介绍<a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment">混合模式</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>服务端组件性能好，但是局限多<br>客户端组件性能差，但是使用操作丰富，更客制化<br>充分结合才是真正的 NEXTJS</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7272270987256397876?searchId=20231106202552A67B22CA13F1A91757BC#heading-18">NextJS v13 服务端组件和客户端组件及最佳实践</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7297049953229766690?searchId=202311062020051DA2D09DCD7F6D1D1320">大家都在嘲笑 Next.js14</a><br><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment">官方文档</a></p>
 
                 
               </div>
@@ -376,36 +398,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
       
-        <a href="/tags/React/">#React</a>
-      
-        <a href="/tags/Next-js/">#Next.js</a>
+        <a href="/tags/NEXTJS/">#NEXTJS</a>
       
     </div>
   
@@ -417,8 +416,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>NextJs</div>
-      <div>https://www.yygod0120.com/2023/07/21/NextJs/</div>
+      <div>服务端组件vs客户端组件</div>
+      <div>https://www.yygod0120.com/2023/11/06/服务端组件vs客户端组件/</div>
     </div>
     <div class="license-meta">
       
@@ -430,13 +429,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月21日</div>
+          <div>2023年11月6日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年7月25日</div>
+          <div>2023年11月6日</div>
         </div>
       
       
@@ -467,18 +466,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/23/git%E5%AD%A6%E4%B9%A0/" title="git学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/24/%E5%85%B3%E4%BA%8E%E6%9C%9F%E6%9C%AB%E5%91%A8%E5%8A%A0%E8%80%83%E6%A0%B8%E9%80%BC%E6%AD%BB%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%BF%99%E4%BB%B6%E4%BA%8B/" title="关于期末周加考核逼死大学生这件事">
-                        <span class="hidden-mobile">关于期末周加考核逼死大学生这件事</span>
+                      <a href="/2023/11/02/%E6%B5%85%E8%B0%88npm%E5%92%8Cyarn%E4%BB%A5%E5%8F%8Apnpm/" title="浅谈npm和yarn以及pnpm">
+                        <span class="hidden-mobile">浅谈npm和yarn以及pnpm</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
