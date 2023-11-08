@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.jpg">
+  <link rel="icon" href="/img/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="叶">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这周一，在 b 站上看到了辟殊大佬在重庆前端交流会上发布的演讲，关于 Rust 在前端构建高性能前端打包工具的主题，其中提到他们在阿里内部使用 Rust 开发打包工具的时候遇到的问题——TreeShaking 的依赖循环问题要解决这个问题,首先还是得去了解清楚什么是 TreeShaking 以及背后得原理 什么是 TreeShakingTree-Shaking 是一种基于 ES Module 规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tree-Shaking">
+<meta property="og:url" content="https://www.yygod0120.com/2023/11/08/Tree-Shaking/index.html">
+<meta property="og:site_name" content="Ye&#39;s Blog">
+<meta property="og:description" content="这周一，在 b 站上看到了辟殊大佬在重庆前端交流会上发布的演讲，关于 Rust 在前端构建高性能前端打包工具的主题，其中提到他们在阿里内部使用 Rust 开发打包工具的时候遇到的问题——TreeShaking 的依赖循环问题要解决这个问题,首先还是得去了解清楚什么是 TreeShaking 以及背后得原理 什么是 TreeShakingTree-Shaking 是一种基于 ES Module 规范">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-08T11:59:31.000Z">
+<meta property="article:modified_time" content="2023-11-08T13:36:06.093Z">
+<meta property="article:author" content="叶">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Tree-Shaking - Ye&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.yygod0120.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><style type="text/css">span[class="simple-icon"]{width:1.2rem;height:1.2rem;display:inline-block}span[class="simple-icon"] svg,img{display:inline-block;vertical-align:middle;height:inherit;width:inherit}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YE</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1677946060093-7c9f0208dab1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Tree-Shaking"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-08 19:59" pubdate>
+          2023年11月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Tree-Shaking</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年11月8日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这周一，在 b 站上看到了辟殊大佬在重庆前端交流会上发布的演讲，关于 Rust 在前端构建高性能前端打包工具的主题，其中提到他们在阿里内部使用 Rust 开发打包工具的时候遇到的问题——TreeShaking 的依赖循环问题<br>要解决这个问题,首先还是得去了解清楚什么是 TreeShaking 以及背后得原理</p>
+<h1 id="什么是-TreeShaking"><a href="#什么是-TreeShaking" class="headerlink" title="什么是 TreeShaking"></a>什么是 TreeShaking</h1><p>Tree-Shaking 是一种基于 <strong>ES Module</strong> 规范的 <strong>Dead Code Elimination</strong> 技术，它会在运行过程中静态分析模块之间的导入导出，确定 ESM 模块中哪些导出值未曾其它模块使用，并将其删除，以此实现打包产物的优化。</p>
+<p>在 CommonJS,AMD,CMD 等旧版本得 javascript 模块化方案中,导入导出是动态的,难以预测</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (a === <span class="hljs-string">&quot;import&quot;</span>) &#123;<br>  <span class="hljs-keyword">let</span> _fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>); <span class="hljs-comment">//CommonJS导入可以在判断中</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>而 ESM 方案则从规范层面规避这一行为，它要求所有的导入导出语句只能出现在模块顶层，且导入导出的模块名必须为字符串常量<br>所以，ESM 下模块之间的依赖关系是高度确定的，与运行状态无关，编译工具只需要对 ESM 模块做静态分析，就可以从代码字面量中推断出哪些模块值未曾被其它模块使用，这是实现 Tree Shaking 技术的必要条件。</p>
+<blockquote>
+<p>具体 CommonJS 和 ES6 模块导入的区别,可以看我另外一篇 ES6 的文章</p>
+</blockquote>
+<h1 id="TreeShaking-的作用"><a href="#TreeShaking-的作用" class="headerlink" title="TreeShaking 的作用"></a>TreeShaking 的作用</h1><p>简单来说:TreeShaking 就是「标记」导出值是否被使用,然后通过<code>Terser</code>、<code>UglifyJS</code> 等 <code>DCE</code> 工具删掉这些没被使用的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//App.js</span><br><span class="hljs-keyword">import</span> &#123; cube &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;<br><span class="hljs-title function_">cube</span>(<span class="hljs-number">2</span>);<br><br><span class="hljs-comment">//utils.js</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;square&quot;</span>);<br>  <span class="hljs-keyword">return</span> x * x;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cube</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;cube&quot;</span>);<br>  <span class="hljs-keyword">return</span> x * x * x;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>result</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span>(<span class="hljs-params">e, t, r</span>) &#123;<br>  <span class="hljs-string">&quot;use strict&quot;</span>;<br>  r.<span class="hljs-title function_">r</span>(t), <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;cube&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是 TreeShaking 不会删除 IIFE 以及有副作用的函数:</p>
+<ul>
+<li><strong>IIFE</strong></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//App.js</span><br><span class="hljs-keyword">import</span> &#123; cube &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">cube</span>(<span class="hljs-number">2</span>));<br><br><span class="hljs-comment">//utils.js</span><br><span class="hljs-keyword">var</span> square = (<span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;square&quot;</span>);<br>&#125;)();<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cube</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;cube&quot;</span>);<br>  <span class="hljs-keyword">return</span> x * x * x;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>result</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span>(<span class="hljs-params">e, t, n</span>) &#123;<br>  <span class="hljs-string">&quot;use strict&quot;</span>;<br>  n.<span class="hljs-title function_">r</span>(t);<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;square&quot;</span>);<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;cube&quot;</span>), e * e * e<br>  &#125;(<span class="hljs-number">2</span>))<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>原因很简单:因为 IIFE 比较特殊，它在被翻译时(JS 并非编译型的语言)就会被执行，Webpack 不做程序流分析，它不知道 IIFE 会做什么特别的事情，所以不会删除这部分代码</p>
+<ul>
+<li><strong>副作用</strong></li>
+</ul>
+<p>副作用（side effect）的定义是，在导入时会执行特殊行为的代码，而不是仅仅暴露一个 export 或多个 export。例如 polyfill，它影响全局作用域，因而存在副作用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// src/math.js</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-keyword">return</span> x * x;<br>&#125;<br>​<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cube</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-keyword">return</span> x * x * x;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">square</span>(<span class="hljs-number">10</span>));<br>​<br><span class="hljs-comment">// src/index.js</span><br><span class="hljs-keyword">import</span> &#123; cube &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./math.js&#x27;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">cube</span>(<span class="hljs-number">5</span>));<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>result</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> r ,<br>    e = &#123;<br>        <span class="hljs-string">&quot;./src/math.js&quot;</span>: <span class="hljs-function">(<span class="hljs-params">r, e，o</span>)=&gt;</span> &#123;<br>            <span class="hljs-keyword">function</span> <span class="hljs-title function_">t</span>(<span class="hljs-params">r</span>)&#123;<br>                <span class="hljs-keyword">return</span> r *r *r;<br>            &#125;<br>            o.<span class="hljs-title function_">d</span>(e, &#123; <span class="hljs-attr">cube</span>: <span class="hljs-function">()=&gt;</span>t &#125;),<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span> *<span class="hljs-number">10</span>);&#125;,<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>但对付一些是副作用但是可以被删除的代码,你可以<code>/*#__PURE__*/ </code>来注释</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// src/math.js</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-keyword">return</span> x * x;<br>&#125;<br>​<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cube</span>(<span class="hljs-params">x</span>) &#123;<br>  <span class="hljs-keyword">return</span> x * x * x;<br>&#125;<br><span class="hljs-comment">/*#__PURE__*/</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">square</span>(<span class="hljs-number">10</span>));<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>result</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> r ,<br>    e = &#123;<br>        <span class="hljs-string">&quot;./src/math.js&quot;</span>: <span class="hljs-function">(<span class="hljs-params">r, e，o</span>)=&gt;</span> &#123;<br>            <span class="hljs-keyword">function</span> <span class="hljs-title function_">t</span>(<span class="hljs-params">r</span>)&#123;<br>                <span class="hljs-keyword">return</span> r *r *r;<br>            &#125;<br>            t.<span class="hljs-title function_">d</span>(e, &#123; <span class="hljs-attr">cube</span>: <span class="hljs-function">()=&gt;</span>t &#125;)&#125;,<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者你也可以选择在<code>package.json</code>文件中用<code>sideEffects</code>标记不存在副作用的内容文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// package.json</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-project&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;sideEffects&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;./src/some-side-effectful-file.js&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="TreeShaking-的原理"><a href="#TreeShaking-的原理" class="headerlink" title="TreeShaking 的原理"></a>TreeShaking 的原理</h1><p>上面说到 TreeShaking 实现是通过标记文件然后再删除,标记的步骤主要分为两步:</p>
+<ul>
+<li>Make 阶段，收集模块导出变量并记录到模块依赖关系图 <code>ModuleGraph</code> 变量中</li>
+<li>Seal 阶段，遍历 <code>ModuleGraph</code> 标记模块导出变量有没有被使用</li>
+<li>生成代码阶段</li>
+</ul>
+<h2 id="Make-阶段"><a href="#Make-阶段" class="headerlink" title="Make 阶段"></a>Make 阶段</h2><p>首先，Webpack 需要弄清楚每个模块分别有什么导出值，这一过程发生在 make 阶段</p>
+<ol>
+<li>将模块的所有 <code>ESM</code> 导出语句转换为 <code>Dependency</code> 对象，并记录到 <code>module</code> 对象的 <code>dependencies</code> 集合，转换规则：<ul>
+<li>具名导出转换为 <code>HarmonyExportSpecifierDependency</code> 对象</li>
+<li>default 导出转换为 <code>HarmonyExportExpressionDependency</code> 对象</li>
+</ul>
+</li>
+<li>所有模块都编译完毕后，触发<code>compilation.hooks.finishModules</code>钩子，开始执行 <code>FlagDependencyExportsPlugin</code> 插件回调</li>
+<li><code>FlagDependencyExportsPlugin</code> 插件从 <code>entry</code> 开始读取 <code>ModuleGraph</code> 中存储的模块信息，遍历所有 <code>module</code> 对象</li>
+<li>遍历 <code>module</code> 对象的 <code>dependencies</code> 数组，找到所有 <code>HarmonyExportXXXDependency</code> 类型的依赖对象，将其转换为 <code>ExportInfo</code> 对象并记录到 <code>ModuleGraph</code> 体系中</li>
+</ol>
+<p>经过 <code>FlagDependencyExportsPlugin</code> 插件处理后，所有 ESM 风格的 export 语句都会记录在 <code>ModuleGraph</code> 体系内，后续操作就可以从 <code>ModuleGraph</code> 中直接读取出模块的导出值。</p>
+<h2 id="Seal-阶段"><a href="#Seal-阶段" class="headerlink" title="Seal 阶段"></a>Seal 阶段</h2><p>然后,收集完模块导出信息后,Webpack 需要标记出各个模块的导出列表中，哪些导出值有被其它模块用到，哪些没有，这一过程发生在 Seal 阶段</p>
+<ol>
+<li>触发 <code>compilation.hooks.optimizeDependencies</code> 钩子，开始执行 <code>FlagDependencyUsagePlugin</code> 插件逻辑</li>
+<li>在 <code>FlagDependencyUsagePlugin</code> 插件中，从 <code>entry</code> 开始逐步遍历 <code>ModuleGraph</code> 存储的所有 <code>module</code> 对象</li>
+<li>遍历 <code>module</code> 对象对应的 <code>exportInfo</code> 数组</li>
+<li>为每一个 <code>exportInfo</code> 对象执行 <code>compilation.getDependencyReferencedExports</code> 方法，确定其对应的 dependency 对象有否被其它模块使用</li>
+<li>被任意模块使用到的导出值，调用 <code>exportInfo.setUsedConditionally</code> 方法将其标记为已被使用。</li>
+<li><code>exportInfo.setUsedConditionally</code> 内部修改 <code>exportInfo._usedInRuntime</code> 属性，记录该导出被如何使用</li>
+</ol>
+<p>上面是极度简化过的版本，中间还存在非常多的分支逻辑与复杂的集合操作，我们抓住重点：标记模块导出这一操作集中在 <code>FlagDependencyUsagePlugin</code> 插件中，执行结果最终会记录在模块导出语句对应的 <code>exportInfo._usedInRuntime</code> 字典中。</p>
+<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>经过前面的收集与标记步骤后，Webpack 已经在 <code>ModuleGraph</code> 体系中清楚地记录了每个模块都导出了哪些值，每个导出值又没那块模块所使用。接下来，Webpack 会根据导出值的使用情况生成不同的代码<br>大体的流程：</p>
+<ol>
+<li>打包阶段，调用 <code>HarmonyExportXXXDependency.Template.apply</code> 方法生成代码</li>
+<li>在 <code>apply</code> 方法内，读取 <code>ModuleGraph</code> 中存储的 <code>exportsInfo</code> 信息，判断哪些导出值被使用，哪些未被使用</li>
+<li>对已经被使用及未被使用的导出值，分别创建对应的 <code>HarmonyExportInitFragment</code> 对象，保存到 <code>initFragments</code> 数组</li>
+<li>遍历 <code>initFragments</code> 数组，生成最终结果</li>
+</ol>
+<p>基本上，这一步的逻辑就是用前面收集好的 exportsInfo 对象未模块的导出值分别生成导出语句</p>
+<h2 id="删除代码"><a href="#删除代码" class="headerlink" title="删除代码"></a>删除代码</h2><p>经过前面几步操作之后，模块导出列表中未被使用的值都不会定义在 <strong>webpack_exports</strong> 对象中，形成一段不可能被执行的 <code>Dead Code</code> 效果<br>在此之后，将由 Terser、UglifyJS 等 DCE 工具“摇”掉这部分无效代码，构成完整的 Tree Shaking 操作。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>综上所述，Webpack 中 Tree Shaking 的实现分为如下步骤：</p>
+<ul>
+<li>在 <code>FlagDependencyExportsPlugin</code> 插件中根据模块的 dependencies 列表收集模块导出值，并记录到 <code>ModuleGraph</code> 体系的 <code>exportsInfo</code> 中</li>
+<li>在 <code>FlagDependencyUsagePlugin</code> 插件中收集模块的导出值的使用情况，并记录到 <code>exportInfo._usedInRuntime</code> 集合中</li>
+<li>在 <code>HarmonyExportXXXDependency.Template.apply</code> 方法中根据导出值的使用情况生成不同的导出语句</li>
+<li>使用 <code>DCE</code> 工具删除 <code>Dead Code</code>，实现完整的树摇效果</li>
+</ul>
+<p>但上述原理过程中提到大量的 webpack 核心原理中的概念和知识点,需要对 webpack 的核心流程有一点了解<br>推荐文档:<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3OTYwMjcxMA==&mid=2247483744&idx=1&sn=d7128a76eed20746cd8c5100f0899138&scene=21#wechat_redirect">[万字总结] 一文吃透 Webpack 核心原理</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3OTYwMjcxMA==&mid=2247483743&idx=1&sn=0ce0845ee3e5316bcac05993035de3ed&scene=21#wechat_redirect">有点难的 webpack 知识点：Dependency Graph 深度解析</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3OTYwMjcxMA==&mid=2247484088&idx=1&sn=41bf509a72f2cbcca1521747bf5e28f4&scene=21#wechat_redirect">Webpack 原理系列六： 彻底理解 Webpack 运行时</a></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1916421">Webpack 原理系列九：Tree-Shaking 实现原理</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7030727223602905119#heading-3">Tree-shaking 详解</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903687412776974">Webpack Tree shaking 深入探究</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/webpack/">#webpack</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Tree-Shaking</div>
+      <div>https://www.yygod0120.com/2023/11/08/Tree-Shaking/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>叶</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月8日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年11月8日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/06/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BB%84%E4%BB%B6vs%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%84%E4%BB%B6/" title="服务端组件vs客户端组件">
+                        <span class="hidden-mobile">服务端组件vs客户端组件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
