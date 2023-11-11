@@ -24,7 +24,7 @@
 <meta property="og:description" content="浅浅分析一下三大包管理器的区别和各自的优劣">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-02T14:03:56.000Z">
-<meta property="article:modified_time" content="2023-11-02T15:38:40.289Z">
+<meta property="article:modified_time" content="2023-11-11T03:23:51.555Z">
 <meta property="article:author" content="叶">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="npm">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          921 字
+          1.2k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          8 分钟
+          10 分钟
         
       </span>
     
@@ -312,7 +312,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月2日 晚上
+                    本文最后更新于：2023年11月11日 上午
                   
                 
               </p>
@@ -335,6 +335,7 @@
 <p>硬链接是多个文件名指向同一个文件的实际内容，而软链接（符号链接）是一个独立的文件，指向另一个文件或目录的路径</p>
 </blockquote>
 <p>pnpm 是默认支持 monorepo 多项目管理<br>具体的可以看<a target="_blank" rel="noopener" href="https://pnpm.io/zh/workspaces">工作空间</a></p>
+<h1 id="迁移出现的问题"><a href="#迁移出现的问题" class="headerlink" title="迁移出现的问题"></a>迁移出现的问题</h1><h2 id="幽灵依赖"><a href="#幽灵依赖" class="headerlink" title="幽灵依赖"></a>幽灵依赖</h2><p>自己在将 yarn 管理的项目迁移到 pnpm 的时候，遇到过这个问题<br>简单来说就是 yarn 和 npm 管理的项目的依赖，是通过扁平化然后下载到 node_modules,但是并不会添加到 package.json 中<br>就会存在一个 package 里没有，但是依旧能跑项目的情况<br>而 pnpm 不是通过这种递归查询包依赖进行的依赖下载，而是直接通过 package.json(lock)来进行的下载，所以就没法下载不在 package 里的文件导致的依赖缺失<br>最简单的解决方法就是直接通过报错下载文件</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>yarn 和 npm 基本上没啥区别，能采用 pnpm 就尽量使用 pnpm。<br>磁盘占用少和下载时间快就足够替代 yarn 和 npm 了</p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7286362110211489855?searchId=20231102215937FB5260E0F435F23EF815#heading-4">pnpm、npm、yarn 包管理工具『优劣对比』及『环境迁移』</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7269352663258759205?searchId=2023110222201709EA544B078BD246C2ED">为什么要使用 package-lock.json?</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7078233610683170824?searchId=2023110222201709EA544B078BD246C2ED#heading-6">package.json 与 package-lock.json 的关系</a></p>
 
@@ -403,7 +404,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月2日</div>
+          <div>2023年11月11日</div>
         </div>
       
       
