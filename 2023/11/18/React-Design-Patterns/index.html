@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.jpg">
+  <link rel="icon" href="/img/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="叶">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="React 设计模式(译)原文链接 介绍React 开发人员可以通过使用设计模式来节省时间和精力，这些模式提供了一种使用经过测试和信任的解决方案解决问题的快速方法。它们使内聚模块具有较低的耦合性，这反过来又帮助 React 开发人员创建可维护、可扩展和高效的应用程序。在本文中，我们将探讨 React 设计模式，并研究它们如何改进 React 应用程序的开发。 容器和表示模式容器和表示模式是一种模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Design-Patterns">
+<meta property="og:url" content="https://www.yygod0120.com/2023/11/18/React-Design-Patterns/index.html">
+<meta property="og:site_name" content="Ye&#39;s Blog">
+<meta property="og:description" content="React 设计模式(译)原文链接 介绍React 开发人员可以通过使用设计模式来节省时间和精力，这些模式提供了一种使用经过测试和信任的解决方案解决问题的快速方法。它们使内聚模块具有较低的耦合性，这反过来又帮助 React 开发人员创建可维护、可扩展和高效的应用程序。在本文中，我们将探讨 React 设计模式，并研究它们如何改进 React 应用程序的开发。 容器和表示模式容器和表示模式是一种模式">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-18T02:56:30.000Z">
+<meta property="article:modified_time" content="2023-11-18T03:28:49.460Z">
+<meta property="article:author" content="叶">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>React-Design-Patterns - Ye&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.yygod0120.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><style type="text/css">span[class="simple-icon"]{width:1.2rem;height:1.2rem;display:inline-block}span[class="simple-icon"] svg,img{display:inline-block;vertical-align:middle;height:inherit;width:inherit}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YE</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1677946060093-7c9f0208dab1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="React-Design-Patterns"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-18 10:56" pubdate>
+          2023年11月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          89 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">React-Design-Patterns</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年11月18日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>React 设计模式(译)<br><a target="_blank" rel="noopener" href="https://dev.to/refine/react-design-patterns-230o">原文链接</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>React 开发人员可以通过使用设计模式来节省时间和精力，这些模式提供了一种使用经过测试和信任的解决方案解决问题的快速方法。它们使内聚模块具有较低的耦合性，这反过来又帮助 React 开发人员创建可维护、可扩展和高效的应用程序。在本文中，我们将探讨 React 设计模式，并研究它们如何改进 React 应用程序的开发。</p>
+<h1 id="容器和表示模式"><a href="#容器和表示模式" class="headerlink" title="容器和表示模式"></a>容器和表示模式</h1><p>容器和表示模式是一种模式，旨在将表示逻辑与反应代码中的业务逻辑分离，从而使其模块化、可测试，并遵循关注分离原则。<br>大多数情况下，在 react 应用程序中，我们需要从后端/存储中获取数据或计算逻辑，并在 react 组件上表示该计算的结果。在这些情况下，容器和表示模式大放异彩，因为它可用于将组件分为两个，即：</p>
+<ul>
+<li>容器组件，充当负责数据提取或计算的组件。</li>
+<li>表示组件，其工作是在 UI（用户界面）上呈现获取的数据或计算值。</li>
+</ul>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-comment">//Container.tsx</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">CharacterList</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./CharacterList&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">StarWarsCharactersContainer</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span> = <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> [characters, setCharacters] = useState&lt;<span class="hljs-title class_">Character</span>&gt;([]);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState&lt;<span class="hljs-built_in">boolean</span>&gt;(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> [error, setError] = useState&lt;<span class="hljs-built_in">boolean</span>&gt;(<span class="hljs-literal">false</span>);<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">getCharacters</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>        <span class="hljs-string">&quot;https://akabab.github.io/starwars-api/api/all.json&quot;</span><br>      );<br>      <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      <span class="hljs-keyword">if</span> (!data) <span class="hljs-keyword">return</span>;<br>      <span class="hljs-title function_">setCharacters</span>(data);<br>    &#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>      <span class="hljs-title function_">setError</span>(<span class="hljs-literal">true</span>);<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>    &#125;<br>  &#125;;<br><br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">getCharacters</span>();<br>  &#125;, []);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CharacterList</span> <span class="hljs-attr">loading</span>=<span class="hljs-string">&#123;loading&#125;</span> <span class="hljs-attr">error</span>=<span class="hljs-string">&#123;error&#125;</span> <span class="hljs-attr">characters</span>=<span class="hljs-string">&#123;characters&#125;</span> /&gt;</span></span><br>  );<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">StarWarsCharactersContainer</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-comment">//the component is responsible for displaying the characters</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Character</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./types&quot;</span>;<br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">CharacterListProps</span> &#123;<br>  <span class="hljs-attr">loading</span>: <span class="hljs-built_in">boolean</span>;<br>  <span class="hljs-attr">error</span>: <span class="hljs-built_in">boolean</span>;<br>  <span class="hljs-attr">users</span>: <span class="hljs-title class_">Character</span>[];<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">CharacterList</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span>&lt;<span class="hljs-title class_">CharacterListProps</span>&gt; = <span class="hljs-function">(<span class="hljs-params">&#123;</span></span><br><span class="hljs-params"><span class="hljs-function">  loading,</span></span><br><span class="hljs-params"><span class="hljs-function">  error,</span></span><br><span class="hljs-params"><span class="hljs-function">  characters,</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (loading &amp;&amp; !error) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">if</span> (!loading &amp;&amp; error)<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>error occured.unable to load characters<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  <span class="hljs-keyword">if</span> (!characters) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">      &#123;characters.map((user) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;user.id&#125;</span>&gt;</span>&#123;user.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">CharacterList</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="带有-Hooks-的组件组合"><a href="#带有-Hooks-的组件组合" class="headerlink" title="带有 Hooks 的组件组合"></a>带有 Hooks 的组件组合</h1><p>钩子是 React 16.8 中首次亮相的全新功能。从那时起，他们在开发 react 应用程序方面发挥了至关重要的作用。钩子是基本函数，用于授予功能组件对状态和生命周期方法的访问权限（以前仅供类组件使用）。另一方面，钩子可以专门设计来满足组件要求并具有其他用例。<br>现在，我们可以隔离所有有状态逻辑（一种需要反应式状态变量的逻辑），并使用自定义钩子在组件中编写或使用它。因此，代码更加模块化和可测试，因为钩子松散地绑定在组件上，因此可以单独测试。<br>下面显示了带有钩子的组件组合示例：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-comment">// creating a custom hook that fetches star wars characters</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useFetchStarWarsCharacters</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> [characters, setCharacters] = useState&lt;<span class="hljs-title class_">Character</span>&gt;([]);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> [error, setError] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">getCharacters</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>        <span class="hljs-string">&quot;https://akabab.github.io/starwars-api/api/all.json&quot;</span>,<br>        &#123;<br>          <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;GET&quot;</span>,<br>          <span class="hljs-attr">credentials</span>: <span class="hljs-string">&quot;include&quot;</span>,<br>          <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;cors&quot;</span>,<br>          <span class="hljs-attr">headers</span>: &#123;<br>            <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,<br>            <span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>: <span class="hljs-string">&quot;*&quot;</span>,<br>          &#125;,<br>          <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span>,<br>        &#125;<br>      );<br>      <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      <span class="hljs-keyword">if</span> (!data) <span class="hljs-keyword">return</span>;<br>      <span class="hljs-title function_">setCharacters</span>(data);<br>    &#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>      <span class="hljs-title function_">setError</span>(<span class="hljs-literal">true</span>);<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>    &#125;<br>  &#125;;<br><br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">getCharacters</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;<br>      controller.<span class="hljs-title function_">abort</span>();<br>    &#125;;<br>  &#125;, []);<br><br>  <span class="hljs-keyword">return</span> [characters, isLoading, error];<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>创建自定义钩子后，我们会将其导入到我们的 StarWarsCharactersContainer 组件中并使用它:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-comment">// importing the custom hook to a component and fetch the characters</span><br><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Character</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./types&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useFetchStarWarsCharacters &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./useFetchStarWarsCharacters&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">StarWarsCharactersContainer</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span> = <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> [characters, isLoading, error] = <span class="hljs-title function_">useFetchStarWarsCharacters</span>();<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CharacterList</span> <span class="hljs-attr">loading</span>=<span class="hljs-string">&#123;loading&#125;</span> <span class="hljs-attr">error</span>=<span class="hljs-string">&#123;error&#125;</span> <span class="hljs-attr">characters</span>=<span class="hljs-string">&#123;characters&#125;</span> /&gt;</span></span><br>  );<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">StarWarsCharactersContainer</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="使用-Reducers-进行状态管理"><a href="#使用-Reducers-进行状态管理" class="headerlink" title="使用 Reducers 进行状态管理"></a>使用 Reducers 进行状态管理</h1><p>大多数情况下，处理组件中的许多状态会导致许多未分组状态的问题，这可能很麻烦且难以处理。在这种情况下，Reducers 模式可能是一个有用的选择。我们可以使用 reducer 将状态分类为某些操作，这些操作在执行时可以更改分组状态。<br>此模式允许使用它的开发人员控制组件和/或钩子的状态管理，让他们在发送事件时管理状态更改。<br>使用 Reducer 模式的示例如下所示：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123;<span class="hljs-title class_">React</span>, i useReducer &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><span class="hljs-keyword">const</span> initstate = &#123;<br>    <span class="hljs-attr">loggedIn</span>: <span class="hljs-literal">false</span>,<span class="hljs-attr">user</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">token</span>: nuli<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">authReducer</span>(<span class="hljs-params">state,action</span>) &#123;<br>    <span class="hljs-keyword">switch</span> (action.<span class="hljs-property">type</span>) &#123;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;login&#x27;</span>:<br>            <span class="hljs-keyword">return</span> &#123;<br>                <span class="hljs-attr">loggedIn</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">user</span>: action. payload.<span class="hljs-property">user</span>,<span class="hljs-attr">token</span>: action. payload.<span class="hljs-property">token</span><br>                &#125;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;logout&#x27;</span>:<br>            <span class="hljs-keyword">return</span> initState;<br>        <span class="hljs-attr">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">AuthComponent</span> =(<span class="hljs-params"></span>)=&gt; &#123;<br>    <span class="hljs-keyword">const</span> [state, dispatch] = <span class="hljs-title function_">useReducer</span>(authReducer， initstate);<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">logIn</span> =(<span class="hljs-params"></span>)=&gt;&#123;<br>        <span class="hljs-title function_">dispatch</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;login&#x27;</span>,<span class="hljs-attr">payload</span>:&#123;<br>            <span class="hljs-attr">user</span>:&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;John Doe&#x27;</span>&#125;,<br>            <span class="hljs-attr">token</span>:<span class="hljs-string">&#x27;token&#x27;</span><br>        &#125;&#125;);<br>    &#125;<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">logout</span> = (<span class="hljs-params"></span>)=&gt; &#123;<br>        <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;logout&#x27;</span> &#125;);<br>    &#125;<br><span class="hljs-keyword">return</span> (<br>    &lt;div&gt;<br>    &#123; state.loggedIn ? (<br>        &lt;div&gt;<br>            &lt;p&gt; Welcome &#123; state.user.name &#125;&lt;/ p&gt;&lt;button onclick=&#123;logout&#125;&gt;&lt;/ button&gt;<br>        &lt;/div&gt;<br>    ):(<br>    &lt;form onSubmit=&#123;logIn&#125;&gt;<br>        &lt;input type=&quot;text&quot;/&gt;<br>        &lt;input type=&quot;password&quot;/&gt;<br>        &lt;button type=&quot;submit&quot;&gt;&lt;/button&gt;<br>    &lt;/form&gt;<br>    )<br>    &#125;<br>    &lt;/div&gt;<br>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上面的代码中，该组件调度了两个操作：</p>
+<ul>
+<li>“login”操作类型会触发状态更改，该更改会影响三个状态值，即 loggedIn、user、token。</li>
+<li>“注销”操作只是将状态重置为其初始值。</li>
+</ul>
+<h1 id="使用提供程序进行数据管理"><a href="#使用提供程序进行数据管理" class="headerlink" title="使用提供程序进行数据管理"></a>使用提供程序进行数据管理</h1><p>提供程序模式对于数据管理非常有用，因为它利用上下文 API 通过应用程序的组件树传递数据。这种模式是 Props drilling 的有效解决方案，Props drilling 一直是 React 开发中常见的问题。<br>为了实现提供程序模式，我们将首先创建一个提供程序组件。提供程序是 Context 对象提供给我们的高阶组件。我们可以利用 React 提供的 createContext 方法构造一个 Context 对象。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">ThemeContext</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>(<span class="hljs-literal">null</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ThemeProvider</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [theme, setTheme] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;light&quot;</span>);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">theme</span>, <span class="hljs-attr">setTheme</span> &#125;&#125;&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeContext.Provider</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>创建提供程序后，我们将使用创建的提供程序组件将依赖于上下文 API 中数据的组件封闭起来。<br>为了从上下文 API 获取数据，我们调用 useContext 钩子，它接受上下文作为参数（在本例中为 ThemeContext）。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useContext &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ThemeProvider</span>, <span class="hljs-title class_">ThemeContext</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../context&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">HeaderSection</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeProvider</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">TopNav</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeProvider</span>&gt;</span></span>;<br>&#125;;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">TopNav</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> &#123; theme, setTheme &#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ThemeContext</span>);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">backgroundColor:</span> <span class="hljs-attr">theme</span> === <span class="hljs-string">&quot;light&quot;</span> ? &quot;#<span class="hljs-attr">fff</span>&quot; <span class="hljs-attr">:</span> &quot;#<span class="hljs-attr">000</span> &quot; &#125;&#125;&gt;</span></span><br><span class="language-xml">      ...</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="使用-HOC（高阶组件）增强组件"><a href="#使用-HOC（高阶组件）增强组件" class="headerlink" title="使用 HOC（高阶组件）增强组件"></a>使用 HOC（高阶组件）增强组件</h1><p>高阶组件将组件作为参数，并返回注入了附加数据或功能的增压组件。React 中 HOC 的可能性是由于 React 对组合的偏好而不是继承。<br>高阶组件 （HOC） 模式提供了一种增加或修改组件功能的机制，从而促进了组件重用和代码共享。<br>HOC 模式的示例如下所示：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">higherOrderComponent</span> = <span class="hljs-title class_">Component</span> =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HOC</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> &#123;<br>    state = &#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span><br>    &#125;<br><br>    <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#123;this.state.name</span> &#123;<span class="hljs-attr">...this.props</span>&#125;&#125; /&gt;</span></span><br>    &#125;<br> &#125;&#125;<br><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">AvatarComponent</span> = (<span class="hljs-params">props</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-between&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;rounded-full bg-red p-4&quot;</span>&gt;</span></span><br><span class="language-xml">          &#123;props.name&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I am a &#123;props.description&#125;.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  )<br>&#125;<br><br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">SampleHOC</span> = <span class="hljs-title function_">higherOrderComponent</span>(<span class="hljs-title class_">AvatarComponent</span>);<br><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">SampleHOC</span> <span class="hljs-attr">description</span>=<span class="hljs-string">&quot;Frontend Engineer&quot;</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  )<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在上面的代码中，由 higherOrderComponent 提供 props，它将在内部使用。</p>
+<h1 id="复合组件"><a href="#复合组件" class="headerlink" title="复合组件"></a>复合组件</h1><p>复合组件模式是一种 React 设计模式，用于管理由子组件组成的父组件。<br>这种模式背后的原理是将父组件分解为更小的组件，然后使用道具、上下文或其他 React 数据管理技术来管理这些较小组件之间的交互。<br>当需要创建由较小组件组成的可重用的多功能组件时，此模式会派上用场。它使开发人员能够创建复杂的 UI 组件，这些组件可以轻松自定义和扩展，同时保持清晰简单的代码结构。<br>复合组件模式的用例示例如下所示：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; createContext, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">ToggleContext</span> = <span class="hljs-title function_">createContext</span>();<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Toggle</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [on, setOn] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">toggle</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setOn</span>(!on);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ToggleContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">on</span>, <span class="hljs-attr">toggle</span> &#125;&#125;&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ToggleContext.Provider</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-title class_">Toggle</span>.<span class="hljs-property">On</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">ToggleOn</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; on &#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ToggleContext</span>);<br>  <span class="hljs-keyword">return</span> on ? children : <span class="hljs-literal">null</span>;<br>&#125;;<br><br><span class="hljs-title class_">Toggle</span>.<span class="hljs-property">Off</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">ToggleOff</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; on &#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ToggleContext</span>);<br>  <span class="hljs-keyword">return</span> on ? <span class="hljs-literal">null</span> : children;<br>&#125;;<br><br><span class="hljs-title class_">Toggle</span>.<span class="hljs-property">Button</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">ToggleButton</span>(<span class="hljs-params">props</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; on, toggle &#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ToggleContext</span>);<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;toggle&#125;</span> &#123;<span class="hljs-attr">...props</span>&#125; /&gt;</span></span>;<br>&#125;;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Toggle</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Toggle.On</span>&gt;</span>The button is on<span class="hljs-tag">&lt;/<span class="hljs-name">Toggle.On</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Toggle.Off</span>&gt;</span>The button is off<span class="hljs-tag">&lt;/<span class="hljs-name">Toggle.Off</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Toggle.Button</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">Toggle.Button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Toggle</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Prop-组合"><a href="#Prop-组合" class="headerlink" title="Prop 组合"></a>Prop 组合</h1><p>这需要从几个相关的 prop 中创建一个对象，并将其作为单个 prop 传递给组件。<br>这种模式允许我们清理代码并简化道具的管理，这在我们想要将大量相关属性传递给组件时特别有用。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">P</span>(<span class="hljs-params">props</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; color, size, children, ...rest &#125; = props;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">color</span>, <span class="hljs-attr">fontSize:</span> <span class="hljs-attr">size</span> &#125;&#125; &#123;<span class="hljs-attr">...rest</span>&#125;&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> paragraphProps = &#123;<br>    <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;red&quot;</span>,<br>    <span class="hljs-attr">size</span>: <span class="hljs-string">&quot;20px&quot;</span>,<br>    <span class="hljs-attr">lineHeight</span>: <span class="hljs-string">&quot;22px&quot;</span>,<br>  &#125;;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">P</span> &#123;<span class="hljs-attr">...paragraphProps</span>&#125;&gt;</span>This is a P<span class="hljs-tag">&lt;/<span class="hljs-name">P</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="受控输入"><a href="#受控输入" class="headerlink" title="受控输入"></a>受控输入</h1><p>受控输入模式可用于处理输入字段。此模式涉及使用事件处理程序在输入字段的值发生更改时更新组件状态，以及将输入字段的当前值存储在组件状态中。<br>由于 React 控制组件的状态和行为，因此这种模式使代码比不受控制的输入模式更具可预测性和可读性，后者不使用组件的状态，而是直接通过 DOM（文档对象模型）来控制它。<br>受控输入模式的用例示例如下所示：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ControlledInput</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [inputValue, setInputValue] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleChange</span> = (<span class="hljs-params">event</span>) =&gt; &#123;<br>    <span class="hljs-title function_">setInputValue</span>(event.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>);<br>  &#125;;<br><br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;inputValue&#125;</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;handleChange&#125;</span> /&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="使用-fowardRefs-管理自定义组件"><a href="#使用-fowardRefs-管理自定义组件" class="headerlink" title="使用 fowardRefs 管理自定义组件"></a>使用 fowardRefs 管理自定义组件</h1><p>称为 ForwardRef 的高阶组件将另一个组件作为输入，并输出一个传递原始组件的 ref 的新组件。通过这样做，子组件的 ref（可用于检索底层 DOM 节点或组件实例）可供父组件访问。<br>创建与第三方库或应用程序中的其他自定义组件交互的自定义组件时，在工作流中包含 ForwardRef 模式非常有帮助。通过授予对库的 DOM 节点或其他组件的 DOM 实例的访问权限，它有助于将此类组件的控制权转移给您。<br>下面显示了 forwardRef 模式的用例示例：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">CustomInput</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">forwardRef</span>(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> (<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> &#123;<span class="hljs-attr">...props</span>&#125; <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> /&gt;</span></span><br>));<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">ParentComponent</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> inputRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    inputRef.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();<br>  &#125;, []);<br><br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CustomInput</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;inputRef&#125;</span> /&gt;</span></span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>在上面的代码中，我们 <code>&lt;CustomInput/&gt;</code> <code>&lt;ParentComponent/&gt;</code> 使用 forwardRefs .</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我们在本文中讨论了 React 设计模式，包括高阶组件、容器表示组件模式、复合组件、受控组件等等。通过将这些设计模式和最佳实践整合到您的 React 项目中，您可以提高代码质量、促进团队协作，并使您的应用程序更具可扩展性、灵活性和可维护性。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/React/">#React</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>React-Design-Patterns</div>
+      <div>https://www.yygod0120.com/2023/11/18/React-Design-Patterns/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>叶</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年11月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/08/Tree-Shaking/" title="Tree-Shaking">
+                        <span class="hidden-mobile">Tree-Shaking</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
