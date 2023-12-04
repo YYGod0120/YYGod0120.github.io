@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.jpg">
+  <link rel="icon" href="/img/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="叶">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="What is RSC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSC">
+<meta property="og:url" content="https://www.yygod0120.com/2023/12/04/RSC/index.html">
+<meta property="og:site_name" content="Ye&#39;s Blog">
+<meta property="og:description" content="What is RSC">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.yygod0120.com/2023/12/04/RSC/react-server-components.png">
+<meta property="og:image" content="https://www.yygod0120.com/2023/12/04/RSC/react-server-components-placeholders.png">
+<meta property="og:image" content="https://www.yygod0120.com/2023/12/04/RSC/react-server-components-client.png">
+<meta property="article:published_time" content="2023-12-04T02:30:41.000Z">
+<meta property="article:modified_time" content="2023-12-04T08:08:42.512Z">
+<meta property="article:author" content="叶">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.yygod0120.com/2023/12/04/RSC/react-server-components.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>RSC - Ye&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.yygod0120.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><style type="text/css">span[class="simple-icon"]{width:1.2rem;height:1.2rem;display:inline-block}span[class="simple-icon"] svg,img{display:inline-block;vertical-align:middle;height:inherit;width:inherit}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YE</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1677946060093-7c9f0208dab1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RSC"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-04 10:30" pubdate>
+          2023年12月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RSC</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年12月4日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>推荐阅读：<br><a target="_blank" rel="noopener" href="https://chentsulin.medium.com/react-%E6%96%B0%E6%A6%82%E5%BF%B5-server-components-d632f9a18463">React 新概念-服务器组件</a><br><a target="_blank" rel="noopener" href="https://www.plasmic.app/blog/how-react-server-components-work">How React server components work: an in-depth guide</a><br><a target="_blank" rel="noopener" href="https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html">引入零捆绑大小的 React 服务器组件</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在笔者刚了解到 RSC(React Service Component)的时候，笔者总是把他和 SSR(Service-Side Render)混为一谈，其实他们完全就是两个概念。</p>
+<p>SSR 代表的是一种渲染方式，与之对应的是 CSR(Client-Side Render),SSR 是一种利于 SEC，加快首屏渲染减少白屏时间的解决方案，被称之为服务端渲染。<br>我在这篇文章中并不会提到相关内容，如果感兴趣可以去阅读<a target="_blank" rel="noopener" href="https://github.com/yacan8/blog/issues/30">彻底理解服务端渲染-SSR</a></p>
+<p>本篇文章的重点，是 RSC</p>
+<h1 id="什么是-RSC"><a href="#什么是-RSC" class="headerlink" title="什么是 RSC"></a>什么是 RSC</h1><p>早在 2020 年年末，React 官方放出了一个演讲和一段演示，主要内容就是关于 RSC，一种零捆绑大小的 React 服务端组件，致力于解决现阶段的两个问题：</p>
+<ul>
+<li>应用程序中日益增加的捆绑包大小</li>
+<li>缓慢的网络请求</li>
+</ul>
+<h1 id="服务端组件和客户端组件的区别"><a href="#服务端组件和客户端组件的区别" class="headerlink" title="服务端组件和客户端组件的区别"></a>服务端组件和客户端组件的区别</h1><p>你可以通过<code>use service</code>或者<code>use client</code>来告诉 React 你想用服务端组件还是客户端组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-string">&#x27;use client&#x27;</span>;<br><br><span class="hljs-keyword">import</span> &#123;useRef, useEffect&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Circle</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> ref = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br>  <span class="hljs-title function_">useLayoutEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> canvas = ref.<span class="hljs-property">current</span>;<br>    <span class="hljs-keyword">const</span> context = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>);<br>    context.<span class="hljs-title function_">reset</span>();<br>    context.<span class="hljs-title function_">beginPath</span>();<br>    context.<span class="hljs-title function_">arc</span>(<span class="hljs-number">100</span>, <span class="hljs-number">75</span>, <span class="hljs-number">50</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>);<br>    context.<span class="hljs-title function_">stroke</span>();<br>  &#125;);<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> /&gt;</span></span>;<br>&#125;<span class="hljs-string">``</span><span class="hljs-string">`</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-string">&quot;use server&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">requestUsername</span>(<span class="hljs-params">formData</span>) &#123;<br>  <span class="hljs-keyword">const</span> username = formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;username&quot;</span>);<br>  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">canRequest</span>(username)) &#123;<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;successful&quot;</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;failed&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当然在一个应用程序中你可以混用两种组件,就像这样：</p>
+<img src="../RSC/react-server-components.png" srcset="/img/loading.gif" lazyload alt="react-server-components" width="500" height="300">
+
+<p>但值得注意的是，你只能在服务器组件中调用服务器组件或者客户端组件，而客户端组件只能调用客户端组件不能调用服务器组件:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 不可</span><br><span class="hljs-string">&quot;use client&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ServerComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./ServerComponent.js&quot;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ClientComponent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ServerComponent</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>等等，不是说客户端组件不能调用服务器端组件吗?那是怎么做到上面那张图中的树结构中把服务器端组件(orange)挂在客户端组件(blue)上的？</p>
+<p>虽然说我们不能直接 import 服务器组件在客户端组件中，但是我们可以 props 传入的方法将暂时不知道是什么的 ReactNode 作为 props 传给到客户端组件中，而这些 ReactNode 也许就是服务器端组件：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// ClientComponent.jsx</span><br><span class="hljs-string">&#x27;use client&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ClientComponent</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello from client land<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-comment">// ServerComponent.jsx</span><br><span class="hljs-string">&#x27;use server&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ServerComponent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>  	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Hello from server land<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-comment">// OuterServerComponent.jsx</span><br><span class="hljs-comment">// OuterServerComponent 可以支援客戶端和伺服器元件實例化</span><br><span class="hljs-comment">// 我們把 &lt;ServerComponent /&gt; 作為 children 傳入</span><br><span class="hljs-string">&#x27;use service&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ClientComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./ClientComponent&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ServerComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./ServerComponent&#x27;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">OuterServerComponent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ClientComponent</span>&gt;</span></span><br><span class="language-xml">    	<span class="hljs-tag">&lt;<span class="hljs-name">ServerComponent</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ClientComponent</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>这样就实现了在外部的 service 组件中传入了一个客户端组件，而这个客户端组件下挂载了一个服务端组件，实现了上图的树形结构</p>
+<h1 id="RSC-是如何渲染的"><a href="#RSC-是如何渲染的" class="headerlink" title="RSC 是如何渲染的"></a>RSC 是如何渲染的</h1><p>简单的来说：当 React 想要渲染某个服务器组件的时候，会发送一个请求给服务器，携带着各种信息来确定所要渲染的组件及其属性，然后服务器会将这些组件序列化成 JSON 格式再返回给客户端，在客户端上再反序列化，最终呈现出来。</p>
+<p>接下来我们近一步了解一下 RSC 渲染的生命周期</p>
+<h2 id="RSC-渲染的生命周期"><a href="#RSC-渲染的生命周期" class="headerlink" title="RSC 渲染的生命周期"></a>RSC 渲染的生命周期</h2><p>注意：以下内容来源于<a target="_blank" rel="noopener" href="https://www.plasmic.app/blog/how-react-server-components-work">这篇文章</a><br>我对其进行了一点自己的翻译，但感觉依旧晦涩难懂，如果不感兴趣可以直接跳过</p>
+<h3 id="1-服务器收到渲染请求"><a href="#1-服务器收到渲染请求" class="headerlink" title="1. 服务器收到渲染请求"></a>1. 服务器收到渲染请求</h3><p>在上面我们提到过客户端组件是没法引入服务端组件的，所以我们的 RSC 页面将始终以服务器端组件开头。根组件始终是服务器端组件。<br>当我们开始准备渲染时，我们将会发送特定的请求到特定的 url 上，服务器通过我们发送的请求，根据信息来确定要使用的服务器组件。</p>
+<h3 id="2-服务器将根组件元素序列化为-JSON"><a href="#2-服务器将根组件元素序列化为-JSON" class="headerlink" title="2. 服务器将根组件元素序列化为 JSON"></a>2. 服务器将根组件元素序列化为 JSON</h3><p>这里的最终目标是将初始根服务器组件呈现为基本 html 标记和客户端组件“占位符”的树。然后，我们可以 JSON 化这棵树，将其发送到浏览器，浏览器可以对其进行反 JSON，用真实的客户端组件填充客户端占位符，并呈现最终结果。</p>
+<p>还记得上面写到的一个<code>&lt;OuterServerComponent/&gt;</code>组件吗，如果我们要渲染这个服务端组件，是将其直接<code>JSON.stringfy()</code>吗？</p>
+<p>差不多，但不完全是！回想一下其实 React 元素就是一个对象，字段 type 可以是字符串，要么是基本 html 标签，比如 “div” - 或者是一个函数——对于 React 组件实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// React element for &lt;div&gt;oh my&lt;/div&gt;</span><br>&gt; <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-params"><span class="hljs-string">&quot;div&quot;</span>, &#123; title: <span class="hljs-string">&quot;oh my&quot;</span> &#125;</span>)<br>&#123;<br>  <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">element</span>),<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;div&quot;</span>,<br>  <span class="hljs-attr">props</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;oh my&quot;</span> &#125;,<br>  ...<br>&#125;<br><br><span class="hljs-comment">// React element for &lt;MyComponent&gt;oh my&lt;/MyComponent&gt;</span><br>&gt; <span class="hljs-keyword">function</span> <span class="hljs-title function_">MyComponent</span>(<span class="hljs-params">&#123;children&#125;</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>  &#125;<br>&gt; <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-title class_">MyComponent</span>, &#123; <span class="hljs-attr">children</span>: <span class="hljs-string">&quot;oh my&quot;</span> &#125;);<br>&#123;<br>  <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">element</span>),<br>  <span class="hljs-attr">type</span>: <span class="hljs-title class_">MyComponent</span>  <span class="hljs-comment">// reference to the MyComponent function</span><br>  <span class="hljs-attr">props</span>: &#123; <span class="hljs-attr">children</span>: <span class="hljs-string">&quot;oh my&quot;</span> &#125;,<br>  ...<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>但是一个函数是没法被 JSON 序列化的，所以 React 提供了一个特殊的替换函数去被 JSON 序列化。<br>你可以在<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/42c30e8b122841d7fe72e28e36848a6de1363b0c/packages/react-server/src/ReactFlightServer.js#L368">ReactFlightServer.js</a>中找一个 <code>resolveModelToJSON()</code> 函数，就是特殊的替换函数。</p>
+<p>所以，当我们序列化根组件的时候，就会遇到三种不同的 React 元素</p>
+<ul>
+<li>如果是个普通的 HTML 标签元素(就像<code>&lt;div&gt;</code>)，那么没事，它已经是 <code>div</code> 可序列化的了！没什么特别可做的。</li>
+<li>如果是一个服务器组件元素，则和渲染根组件一样通过请求传递信息给服务器，调用对应的服务器组件并且接着进行序列化</li>
+<li>如果是一个客户端组件元素，实际上它也已经可以序列化了，他的 type 指向的就是<strong>模块引用对象</strong>而非组件函数。</li>
+</ul>
+<h4 id="什么是模块引用对象"><a href="#什么是模块引用对象" class="headerlink" title="什么是模块引用对象"></a>什么是模块引用对象</h4><p>RSC 为 React 元素 type 的字段引入了一个新的可能值，称为“模块引用”;它不是组件函数，而是对它的可序列化“引用”。<br>例如，元素 <code>ClientComponent</code> 可能如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JS">&#123;<br>  <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">element</span>),<br>  <span class="hljs-comment">// The type field  now has a reference object,</span><br>  <span class="hljs-comment">// instead of the actual component function</span><br>  <span class="hljs-attr">type</span>: &#123;<br>    <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">module</span>.<span class="hljs-property">reference</span>),<br>    <span class="hljs-comment">// ClientComponent is the default export...</span><br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;default&quot;</span>,<br>    <span class="hljs-comment">// from this file!</span><br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&quot;./src/ClientComponent.client.js&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">props</span>: &#123; <span class="hljs-attr">children</span>: <span class="hljs-string">&quot;oh my&quot;</span> &#125;,<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>我们将对客户端组件函数的引用转换为可序列化的“模块引用”对象要借助于外界。<br>React 团队已经发布了对 webpack 的官方 RSC 支持， react-server-dom-webpack 作为 webpack 加载器或节点寄存器。<br>当服务器组件从 <code>\*.client.jsx</code> 文件中导入某些内容时，它不是实际获取该内容，而是仅获取一个模块引用对象，其中包含该内容的文件名和导出名称。在服务器上构建的 React 树中，从来没有任何客户端组件函数！<br>再次考虑上面的例子，我们试图序列化 <code>&lt;OuterServerComponent  /&gt;</code> ;我们最终会得到一个 JSON 树，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-comment">// The ClientComponent element placeholder with &quot;module reference&quot;</span><br>  <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">element</span>),<br>  <span class="hljs-attr">type</span>: &#123;<br>    <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">module</span>.<span class="hljs-property">reference</span>),<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;default&quot;</span>,<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&quot;./src/ClientComponent.client.js&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-comment">// children passed to ClientComponent, which was &lt;ServerComponent /&gt;.</span><br>    <span class="hljs-attr">children</span>: &#123;<br>      <span class="hljs-comment">// ServerComponent gets directly rendered into html tags;</span><br>      <span class="hljs-comment">// notice that there&#x27;s no reference at all to the</span><br>      <span class="hljs-comment">// ServerComponent - we&#x27;re directly rendering the `span`.</span><br>      <span class="hljs-attr">$$typeof</span>: <span class="hljs-title class_">Symbol</span>(react.<span class="hljs-property">element</span>),<br>      <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;span&quot;</span>,<br>      <span class="hljs-attr">props</span>: &#123;<br>        <span class="hljs-attr">children</span>: <span class="hljs-string">&quot;Hello from server land&quot;</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>离开模块引用对象，回到序列化根组件,在这个过程的最后，我们得到这样一个 React 树：<br><img src="../RSC/react-server-components-placeholders.png" srcset="/img/loading.gif" lazyload alt="react-server-components-placeholders" width="500" height="300"><br>它将被发送到浏览器上以完成最后一步</p>
+<p>还有一点需要记住，因为我们要序列化整个 React 树，所以我们传递的 props 也得是能被序列化的，这意味着从服务器组件中，您不能将事件处理程序作为 prop 传递下来！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// NOT OK: server components cannot pass functions as a prop</span><br><span class="hljs-comment">// to its descendents, because functions are not serializable.</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">SomeServerComponent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> alert(&quot;OHHAI&quot;)&#125;&gt;Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是，当我们遇到客户端组件时，我们从不调用客户端组件函数，因此，如果您有一个实例化另一个客户端组件的客户端组件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SomeServerComponent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ClientComponent1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">ClientComponent1</span>&gt;</span></span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ClientComponent1</span>(<span class="hljs-params">&#123;children&#125;</span>) &#123;<br>  <span class="hljs-comment">// It is okay to pass a function as prop from client to</span><br>  <span class="hljs-comment">// client components</span><br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ClientComponent2</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;...&#125;</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">ClientComponent2</span>&gt;</span></span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><code>ClientComponent2</code> 根本没有出现在这个 RSC-JSON 树中;相反，我们只会看到一个带有模块引用和 <code>props</code> 的 <code>ClientComponent1</code> 元素。因此，将事件处理程序作为道具传递给 <code>ClientComponent2</code> 是完全合法的</p>
+<h3 id="3-浏览器重构-React-树"><a href="#3-浏览器重构-React-树" class="headerlink" title="3. 浏览器重构 React 树"></a>3. 浏览器重构 React 树</h3><p>终于到了我们的最后一步：<br>浏览器接收来自服务器的 JSON 输出，现在必须开始重建要在浏览器中呈现的 React 树。每当我们遇到一个元素 type 是模块引用时，我们都会希望将其替换为对真实客户端组件函数的引用。<br>这个工作依旧需要外界的帮助，他们帮我们将服务器上的模块引用替换了客户端组件函数，现在同样可以用浏览器中真正的客户端组件函数替换这些模块引用。<br>重建的 React 树将如下所示——只交换了原生标签和客户端组件：<br><img src="../RSC/react-server-components-client.png" srcset="/img/loading.gif" lazyload alt="react-server-components-client" width="500" height="300"><br>然后我们像往常一样渲染并将这棵树提交到 DOM 中！</p>
+<h2 id="关于-Suspense"><a href="#关于-Suspense" class="headerlink" title="关于 Suspense"></a>关于 Suspense</h2><p>Suspense 是一个 React 组件，是专门用于 RSC 的一个组件<br>Suspense 允许你在 React 组件需要一些尚未准备好的东西（获取数据、延迟导入组件等）时抛出 promise 。这些 promise 被捕获在“Suspense 边界”——每当渲染 Suspense 子树抛出 promise 时，React 都会暂停渲染该子树，直到 promise 被解析，然后重试。<br>多亏了 Suspense，您可以在服务器组件获取数据时让服务器流式传输 RSC 输出，让浏览器在数据可用时以增量方式呈现数据，并在必要时动态获取客户端组件包。</p>
+<blockquote>
+<p>曾经笔者以为 Suspense 只是和 Loading 组件类似的东西，也是用于数据请求获取中使用，但现在看来似乎不是<br>关于 Suspense 的部分，笔者也没了解清楚，想了解更多的可以去看开头推荐的文章</p>
+</blockquote>
+<h2 id="服务器组件的缺点"><a href="#服务器组件的缺点" class="headerlink" title="服务器组件的缺点"></a>服务器组件的缺点</h2><ul>
+<li>学习一个新东西总是需要时间，心智负担重</li>
+<li>服务器组件上用不了浏览器相关的 api，甚至没法使用 useState，useEffect 等相关状态的 Hooks</li>
+<li>写 RSC 组件比写单纯的客户端组件复杂不少，需要了解相关的 bundler 以及 framework(NextJs)</li>
+<li>目前来说普及度还不够高，迁移难度高，即使与 RSC 最契合的 NEXTJS，你迁移起来依旧难上加难，更别说原生 React 项目</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/React/">#React</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RSC</div>
+      <div>https://www.yygod0120.com/2023/12/04/RSC/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>叶</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年12月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/01/DataHub/" title="DataHub">
+                        <span class="hidden-mobile">DataHub</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
